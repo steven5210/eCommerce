@@ -47,10 +47,12 @@ class items extends CI_Controller {
 		if($data['sort'] == 'price_lowest')
 		{
 			$this->item->sort_lowest();
+			redirect('/');
 		}
 		if($data['sort'] == 'price_highest')
 		{
 			$this->item->sort_highest();
+			redirect('/');
 		}
 	}
 	public function productsPage()
