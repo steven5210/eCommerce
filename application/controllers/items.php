@@ -16,8 +16,13 @@ class items extends CI_Controller {
 	{
 		$this->load->view('product_info');
 	}
+<<<<<<< HEAD
 
 	public function checkoutView()
+=======
+	
+	public function checkout()
+>>>>>>> master
 	{
 		$this->load->view('checkout');
 	}
