@@ -16,10 +16,10 @@
     $(document).ready(function() {
       $('select').material_select();
       $('.datepicker').pickadate({
-	    selectMonths: true, // Creates a dropdown to control month
-	    selectYears: 15, // Creates a dropdown of 15 years to control year
-	    selectDays: false
-	  });
+  	    selectMonths: true, // Creates a dropdown to control month
+  	    selectYears: 15, // Creates a dropdown of 15 years to control year
+  	    selectDays: false
+  	  });
       
   });
    </script>
@@ -36,7 +36,7 @@
   <div id='side_nav'>
   </div>
 <div class="cart">
-	<table class="borderedstriped">
+	<table class="bordered striped">
 		<thead>
 			<th>Item</th>
 			<th>Price</th>
@@ -44,10 +44,20 @@
 			<th>Total</th>
 		</thead>
 		<tbody>
+      <?php if(isset($items)){
+        foreach ($items as $item) { ?>
+        <tr>
+          <td><?=$item['name']?></td>
+          <td><?=$item['price']?></td>
+          <td><?=$item['quantity']?> <a href="">update</a> <a href="">delete</a></td>
+          <td><?=$item['total']?></td>
+        </tr>
+<?php   } 
+      }?>
 			<tr>
 				<td>example item</td>
 				<td>example price</td>
-				<td>example quantity</td>
+				<td>example quantity <a href="">update</a> <a href="">delete</a></td>
 				<td>example total</td>
 			</tr>
 			<tr>

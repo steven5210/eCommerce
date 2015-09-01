@@ -33,7 +33,19 @@ class items extends CI_Controller {
 	}
 	public function fetch_cart()
 	{
+
+		$cart=array(1,1,2,2,1,2,1,1);
+		$stuff=array_count_values($cart);
+		$data=array();
+		foreach ($stuff as $key => $value) {
+			$item=array(
+			'id'=>$key,
+			'quantity'=>$value);
+			$data[]=$this->item->fetch_item($item);
+		}
 		
+		var_dump($data);
+		die();
 	}
 	public function search_by_name()
 	{
@@ -46,6 +58,16 @@ class items extends CI_Controller {
 	{
 		$data = $this->input->post();
 		$this->item->search_by_name($data);
+		if($data['sort'] == 'price_lowest')
+		{
+			$this->item->sort_lowest();
+			redirect('/');
+		}
+		if($data['sort'] == 'price_highest')
+		{
+			$this->item->sort_highest();
+			redirect('/');
+		}
 	}
 	public function productsPage()
 	{

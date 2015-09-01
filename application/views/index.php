@@ -104,7 +104,6 @@
           <select name="sort">
             <option value="price_lowest">Price lowest</option>
             <option value="price_highest">Price highest</option>
-            <option value="most_popular">Most Popular</option>
           </select>
         </p>
         <input type="submit">
