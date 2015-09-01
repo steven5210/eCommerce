@@ -29,6 +29,6 @@
   </nav>
   <div id='side_nav'>
   </div>
-  <h1>Added h1</h1>
+  <a href="/product_info">Product Info Page</a>
 </body>
 </html>

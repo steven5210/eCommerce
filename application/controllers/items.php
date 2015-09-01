@@ -12,6 +12,10 @@ class items extends CI_Controller {
 	{
 		$this->load->view('index');
 	}
+	public function product_infoView()
+	{
+		$this->load->view('product_info');
+	}
 }
 
 /* End of file welcome.php */
