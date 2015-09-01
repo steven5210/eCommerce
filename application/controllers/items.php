@@ -33,5 +33,10 @@ class items extends CI_Controller {
 	{
 		$this->load->view('checkout');
 	}
+	public function search_by_name()
+	{
+		$data = $this->input->post();
+		$this->item->search_by_name($data);
+	}
 }
 
