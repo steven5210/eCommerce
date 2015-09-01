@@ -11,4 +11,6 @@ class admin extends CI_Model {
 	{
 		return $this->db->query("SELECT * FROM admins
 								WHERE email =?", array($email))->row_array();
+	}
 }
+?>

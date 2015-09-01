@@ -14,5 +14,6 @@ $route['search_by_name'] = 'items/search_by_name';
 //index sort item by
 $route['sort_by'] = 'items/sort_by';
 $route['products'] = 'items/productsPage';
+// Main admin login redirect
 $route['ordersMain'] = 'items/admin_loggedIn';
 $route['orderPage'] = 'items/orderPage';

@@ -26,6 +26,7 @@
 </head>
 <body class='container'>
 	<h4 class='adminTitle'>Admin Login Page</h4>
+    <?= $this->session->flashdata('error') ?>
 		<form action='/admin_login' method='post'>
 			<div class="row">
 		        <div class="input-field col s12">
