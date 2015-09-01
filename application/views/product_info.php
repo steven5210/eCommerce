@@ -48,11 +48,12 @@
     <div class="nav-wrapper">
       <a href="#" class="brand-logo">PlaceHolder eCommerce</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="/index">Home</a></li>
         <li><a href="collapsible.html">Shopping Cart(40)</a></li>
       </ul>
     </div>
   </nav>
-  <a href="/index">Go Back</a>
+  
   <h3>Product</h3>
   <ul>
     <li><img class='image_size' src="../assets/images/image1.jpg"><p class='description'>All I want is to be a monkey of moderate intelligence who wears a suit&hellip; that's why I'm transferring to business school! Kif, I have mated with a woman. Inform the men. We're also Santa Claus! Man, I'm sore all over. I feel like I just went ten rounds with mighty Thor. Is today's hectic lifestyle making you tense and impatient? No! Don't jump!</p></li>

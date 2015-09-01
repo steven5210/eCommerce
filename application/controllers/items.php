@@ -16,16 +16,25 @@ class items extends CI_Controller {
 	{
 		$this->load->view('product_info');
 	}
-<<<<<<< HEAD
-
+	public function admin_login()
+	{
+		$this->load->view('admin');
+	}
+	public function admin_loggedIn()
+	{
+		$this->load->view('adminDash');
+	}
+	public function logOff()
+	{
+	//	$this->session->session_destroy();
+		redirect('admin');
+	}
 	public function checkoutView()
-=======
-	
-	public function checkout()
->>>>>>> master
 	{
 		$this->load->view('checkout');
 	}
 }
 
+
 ?>
+
