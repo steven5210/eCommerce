@@ -16,6 +16,7 @@ class items extends CI_Controller {
 	{
 		$this->load->view('product_info');
 	}
+<<<<<<< HEAD
 	public function admin_login()
 	{
 		$this->load->view('admin');
@@ -28,6 +29,12 @@ class items extends CI_Controller {
 	{
 	//	$this->session->session_destroy();
 		redirect('admin');
+=======
+	
+	public function checkout()
+	{
+		$this->load->view('checkout');
+>>>>>>> origin/master
 	}
 }
 
