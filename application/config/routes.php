@@ -5,8 +5,8 @@ $route['default_controller'] = "items";
 $route['404_override'] = '';
 $route['product_info'] = 'items/product_infoView';
 $route['index'] = 'items/index';
-$route['admin'] = 'items/admin_login';
-$route['adminDash'] = 'items/admin_loggedIn';
+$route['admin'] = 'items/admin_login_page';
+$route['admin_login'] = 'admins/admin_login';
 $route['logOff'] = 'items/logOff';
 $route['cart'] = '/items/checkoutView';
 //index search by item name

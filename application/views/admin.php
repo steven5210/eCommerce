@@ -26,16 +26,16 @@
 </head>
 <body class='container'>
 	<h4 class='adminTitle'>Admin Login Page</h4>
-		<form action='/adminDash' method='post'>
+		<form action='/admin_login' method='post'>
 			<div class="row">
 		        <div class="input-field col s12">
-		          <input id="email" type="email" class="validate">
+		          <input id="email" type="email" class="validate" name='email'>
 		          <label for="email">Email</label>
 		        </div>
 		      </div>
 			<div class="row">
 		        <div class="input-field col s12">
-		          <input id="password" type="password" class="validate">
+		          <input id="password" type="password" class="validate" name='password'>
 		          <label for="password">Password</label>
 		        </div>
 		      </div>

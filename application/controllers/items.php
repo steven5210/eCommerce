@@ -14,7 +14,7 @@ class items extends CI_Controller {
 	{
 		$this->load->view('product_info');
 	}
-	public function admin_login()
+	public function admin_login_page()
 	{
 		$this->load->view('admin');
 	}
