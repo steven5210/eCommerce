@@ -1,5 +1,4 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-
 class items extends CI_Controller {
 
 	public function __construct()
@@ -7,7 +6,6 @@ class items extends CI_Controller {
             parent::__construct();
             // Your own constructor code
        }
-	
 	public function index()
 	{
 		$this->load->view('index');
@@ -44,10 +42,15 @@ class items extends CI_Controller {
 	public function sort_by()
 	{
 		$data = $this->input->post();
+		$this->item->search_by_name($data);
 	}
 	public function productsPage()
 	{
 		$this->load->view('productsPage');
+	}
+	public function orderPage()
+	{
+		$this->load->view('OrderPage');
 	}
 }
 ?>
