@@ -120,7 +120,7 @@
             <label for="test5">Same as shipping</label>
         </p> -->
       <!-- ________________________________commented out for now_______________________ -->
-          <!-- <div class="row">
+         <!--  <div class="row">
             <div class="input-field col s4">
               <input id="first_name" type="text" class="validate">
               <label for="first_name">First Name</label>
@@ -159,7 +159,7 @@
               <input id="zipcode" type="text" class="validate">
               <label for="zipcode">Zipcode</label>
             </div>
-          </div>
+          </div> -->
           <div class="row">
             <div class="input-field col s8">
               <input id="cardnumber" type="text" class="validate">
@@ -171,7 +171,17 @@
               <input id="securitycode" type="password" class="validate">
               <label for="securitycode">Security Code</label>
             </div>
-          </div> -->
+          </div>
+          <div class="row">
+            <div class="input-field col s4">
+              <input name="month" type="text" class="validate">
+              <label for="month">Month</label>
+            </div>
+            <div class="input-field col s4">
+              <input name="year" type="text" class="validate">
+              <label for="year">Year</label>
+            </div>
+          </div>
            <!-- <input type="date" class="datepicker"> -->
             <button class="btn waves-effect waves-light" type="submit" name="action">Buy
             <i class="material-icons">send</i>
