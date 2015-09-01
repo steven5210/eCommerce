@@ -30,7 +30,7 @@
       <a href="" class="brand-logo">Dashboard</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
       	<li><a href="">Orders</a></li>
-      	<li><a href="">Products</a></li>
+      	<li><a href="/products">Products</a></li>
         <li><a href="/logOff">Log Off</a></li>
       </ul>
     </div>
@@ -54,6 +54,7 @@
   		</div>
     </li>
   </ul>
+  <!-- start of table here -->
   <table class='striped'>
         <thead>
           <tr>
@@ -67,8 +68,9 @@
         </thead>
 
         <tbody>
+ <!-- echo out data with a for loop here -->
           <tr>
-            <td><a href="">100</a></td>
+            <td><a href="/orderPage">100</a></td>
             <td>Eclair</td>
             <td>09/1/15</td>
             <td>3554 S Somewhere St Moon, CA</td>

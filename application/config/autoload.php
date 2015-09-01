@@ -108,8 +108,8 @@ $autoload['language'] = array();
 |	$autoload['model'] = array('model1', 'model2');
 |
 */
-
 $autoload['model'] = array('customer', 'item');
+$autoload['model'] = array('item');
 
 
 /* End of file autoload.php */
