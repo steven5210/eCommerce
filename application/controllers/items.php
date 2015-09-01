@@ -37,14 +37,17 @@ class items extends CI_Controller {
 	public function search_by_name()
 	{
 		$data = $this->input->post();
-		$this->item->search_by_name($data);
+		// return searched item id
+		$items = $this->item->search_by_name($data);
+		redirect('/');
+	}
+	public function sort_by()
+	{
+		$data = $this->input->post();
+	}
 	public function productsPage()
 	{
 		$this->load->view('productsPage');
-
 	}
 }
-
-
 ?>
-
