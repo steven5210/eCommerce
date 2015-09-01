@@ -39,16 +39,15 @@ class items extends CI_Controller {
 
 		$cart=array(1,1,2,2,1,2,1,1);
 		$stuff=array_count_values($cart);
-		$data=array();
+		$items=array();
 		foreach ($stuff as $key => $value) {
 			$item=array(
 			'id'=>$key,
 			'quantity'=>$value);
-			$data[]=$this->item->fetch_item($item);
+			$items[]=$this->item->fetch_item($item);
 		}
-		
-		var_dump($data);
-		die();
+		$data=array('items'=>$items);
+		$this->load->view('checkout.php', $data);
 	}
 	public function search_by_name()
 	{
