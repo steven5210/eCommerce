@@ -8,3 +8,4 @@ $route['index'] = 'items/index';
 $route['admin'] = 'items/admin_login';
 $route['adminDash'] = 'items/admin_loggedIn';
 $route['logOff'] = 'items/logOff';
+$route['cart'] = '/items/checkoutView';

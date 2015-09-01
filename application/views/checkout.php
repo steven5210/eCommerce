@@ -29,7 +29,7 @@
     <div class="nav-wrapper">
       <a href="#" class="brand-logo">PlaceHolder eCommerce</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="collapsible.html">Shopping Cart(40)</a></li>
+        <li><a href="/cart">Shopping Cart(40)</a></li>
       </ul>
     </div>
   </nav>
@@ -67,58 +67,58 @@
 	<div class="row">
 		<div class="col s4 offset-s8">
 			<h5>Total: $4000000.00</h5>
-			<a class="waves-effect waves-light btn">Continue Shopping</a>
+			<a href="/" class="waves-effect waves-light btn">Continue Shopping</a>
 		</div>
 	</div>
 </div>
     <div class="row" id='shipping'>
         <h3>Shipping Information</h3>
-        <form class="col s8" action='items/checkout' method='post'>
+        <form class="col s8" action='/customers/buy' method='post'>
           <div class="row">
             <div class="input-field col s4">
-              <input id="first_name" type="text" class="validate">
+              <input name="first_name" type="text" class="validate">
               <label for="first_name">First Name</label>
             </div>
             <div class="input-field col s4">
-              <input id="last_name" type="text" class="validate">
+              <input name="last_name" type="text" class="validate">
               <label for="last_name">Last Name</label>
             </div>
           </div>
           <div class="row">
             <div class="input-field col s8">
-              <input id="address" type="text" class="validate">
+              <input name="address" type="text" class="validate">
               <label for="address">Address</label>
             </div>
           </div>
            <div class="row">
             <div class="input-field col s8">
-              <input id="address2" type="text" class="validate">
+              <input name="address2" type="text" class="validate">
               <label for="address2">Address 2</label>
             </div>
           </div>
           <div class="row">
             <div class="input-field col s8">
-              <input id="city" type="text" class="validate">
+              <input name="city" type="text" class="validate">
               <label for="city">City</label>
             </div>
           </div>
           <div class="row">
             <div class="input-field col s8">
-              <input id="state" type="text" class="validate">
+              <input name="state" type="text" class="validate">
               <label for="state">State</label>
             </div>
           </div>
           <div class="row">
             <div class="input-field col s8">
-              <input id="zipcode" type="text" class="validate">
+              <input name="zipcode" type="text" class="validate">
               <label for="zipcode">Zipcode</label>
             </div>
           </div>
-        <h3>Billing Information</h3>
+        <!-- <h3>Billing Information</h3>
         <p>
-            <input type="checkbox" id="test5" />
+            <input type="checkbox" name="test5" />
             <label for="test5">Same as shipping</label>
-        </p>
+        </p> -->
       <!-- ________________________________commented out for now_______________________ -->
           <!-- <div class="row">
             <div class="input-field col s4">

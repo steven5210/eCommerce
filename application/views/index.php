@@ -71,7 +71,7 @@
     <div class="nav-wrapper">
       <a href="#" class="brand-logo">PlaceHolder eCommerce</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="collapsible.html">Shopping Cart(40)</a></li>
+        <li><a href="/cart">Shopping Cart(40)</a></li>
       </ul>
     </div>
   </nav>
