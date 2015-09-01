@@ -29,9 +29,12 @@ class items extends CI_Controller {
 	//	$this->session->session_destroy();
 		redirect('admin');
 	}
-	public function checkout()
+	public function checkoutView()
 	{
 		$this->load->view('checkout');
 	}
 }
+
+
+?>
 
