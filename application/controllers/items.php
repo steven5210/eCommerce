@@ -16,6 +16,11 @@ class items extends CI_Controller {
 	{
 		$this->load->view('product_info');
 	}
+	
+	public function checkout()
+	{
+		$this->load->view('checkout');
+	}
 }
 
 /* End of file welcome.php */
