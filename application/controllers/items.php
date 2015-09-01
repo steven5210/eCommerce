@@ -35,7 +35,19 @@ class items extends CI_Controller {
 	}
 	public function fetch_cart()
 	{
+
+		$cart=array(1,1,2,2,1,2,1,1);
+		$stuff=array_count_values($cart);
+		$data=array();
+		foreach ($stuff as $key => $value) {
+			$item=array(
+			'id'=>$key,
+			'quantity'=>$value);
+			$data[]=$this->item->fetch_item($item);
+		}
 		
+		var_dump($data);
+		die();
 	}
 }
 
