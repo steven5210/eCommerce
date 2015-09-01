@@ -15,7 +15,6 @@
       <script type="text/javascript">
     $(document).ready(function() {
       $('select').material_select();
-      // Materialize.toast(message, displayLength, className, completeCallback);
   });
    </script>
    <style>

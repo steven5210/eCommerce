@@ -33,6 +33,10 @@ class items extends CI_Controller {
 	{
 		$this->load->view('checkout');
 	}
+	public function productsPage()
+	{
+		$this->load->view('productsPage');
+	}
 }
 
 
