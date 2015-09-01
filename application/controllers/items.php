@@ -33,6 +33,7 @@ class items extends CI_Controller {
 	{
 		$this->load->view('checkout');
 	}
+
 	public function fetch_cart()
 	{
 
@@ -49,8 +50,28 @@ class items extends CI_Controller {
 		var_dump($data);
 		die();
 	}
+	public function search_by_name()
+	{
+		$data = $this->input->post();
+		// return searched item id
+		$items = $this->item->search_by_name($data);
+		redirect('/');
+	}
+	public function sort_by()
+	{
+		$data = $this->input->post();
+		if($data['sort'] == 'price_lowest')
+		{
+			$this->item->sort_lowest();
+		}
+		if($data['sort'] == 'price_highest')
+		{
+			$this->item->sort_highest();
+		}
+	}
+	public function productsPage()
+	{
+		$this->load->view('productsPage');
+	}
 }
-
-
 ?>
-

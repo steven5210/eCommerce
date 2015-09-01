@@ -77,6 +77,7 @@
   </nav>
   <div id="wrapper">
     <div id='side_nav'>
+      <!-- completed -->
       <form action="search_by_name" method="post">
         <input type="text" name="search" placeholder="Product name">
         <input type="submit" value="search">
@@ -101,12 +102,11 @@
       <form action="sort_by" method="post">
         <p>Sorted by
           <select name="sort">
-            <option value="#">-Select-</option>
             <option value="price_lowest">Price lowest</option>
             <option value="price_highest">Price highest</option>
-            <option value="most_popular">Most Popular</option>
           </select>
         </p>
+        <input type="submit">
       </form>
       <div id="items_list">
         <table>
