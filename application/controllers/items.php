@@ -14,7 +14,7 @@ class items extends CI_Controller {
 	{
 		$this->load->view('product_info');
 	}
-	public function admin_login()
+	public function admin_login_page()
 	{
 		$this->load->view('admin');
 	}
@@ -31,22 +31,20 @@ class items extends CI_Controller {
 	{
 		$this->load->view('checkout');
 	}
-
 	public function fetch_cart()
 	{
 
 		$cart=array(1,1,2,2,1,2,1,1);
 		$stuff=array_count_values($cart);
-		$data=array();
+		$items=array();
 		foreach ($stuff as $key => $value) {
 			$item=array(
 			'id'=>$key,
 			'quantity'=>$value);
-			$data[]=$this->item->fetch_item($item);
+			$items[]=$this->item->fetch_item($item);
 		}
-		
-		var_dump($data);
-		die();
+		$data=array('items'=>$items);
+		$this->load->view('checkout.php', $data);
 	}
 	public function search_by_name()
 	{
@@ -59,6 +57,10 @@ class items extends CI_Controller {
 	{
 		$data = $this->input->post();
 
+
+
+		$this->item->search_by_name($data);
+
 		if($data['sort'] == 'price_lowest')
 		{
 			$this->item->sort_lowest();
@@ -70,8 +72,8 @@ class items extends CI_Controller {
 			redirect('/');
 		}
 
-		$this->item->search_by_name($data);
 
+		$this->item->search_by_name($data);
 	}
 	public function productsPage()
 	{
