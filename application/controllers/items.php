@@ -29,10 +29,10 @@ class items extends CI_Controller {
 	}
 	public function checkoutView()
 	{
-		$this->load->view('checkout');
-	}
-	public function fetch_cart()
-	{
+	// 	$this->load->view('checkout');
+	// }
+	// public function fetch_cart()
+	// {
 
 		$cart=array(1,1,2,2,1,2,1,1);
 		$stuff=array_count_values($cart);
