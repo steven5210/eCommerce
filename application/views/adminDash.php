@@ -70,7 +70,7 @@
         <tbody>
  <!-- echo out data with a for loop here -->
           <tr>
-            <td><a href="">100</a></td>
+            <td><a href="/orderPage">100</a></td>
             <td>Eclair</td>
             <td>09/1/15</td>
             <td>3554 S Somewhere St Moon, CA</td>

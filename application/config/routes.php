@@ -8,14 +8,14 @@ $route['index'] = 'items/index';
 $route['admin'] = 'items/admin_login';
 $route['adminDash'] = 'items/admin_loggedIn';
 $route['logOff'] = 'items/logOff';
-
-$route['cart'] = '/items/checkoutView';
+$route['cart'] = 'items/checkoutView';
 
 //index search by item name
 $route['search_by_name'] = 'items/search_by_name';
 //index sort item by
 $route['sort_by'] = 'items/sort_by';
-
 $route['products'] = 'items/productsPage';
+$route['ordersMain'] = 'items/admin_loggedIn';
+$route['orderPage'] = 'items/orderPage';
 
 ?>
