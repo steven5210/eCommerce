@@ -54,17 +54,11 @@ class items extends CI_Controller {
 	public function search_by_name()
 	{
 		$data = $this->input->post();
-		// return searched item id
 		$items = $this->item->search_by_name($data);
-		redirect('/');
+		//load product info page
 	}
 	public function sort_by()
 	{
-		$data = $this->input->post();
-
-
-
-		$this->item->search_by_name($data);
 
 		if($data['sort'] == 'price_lowest')
 		{
@@ -76,9 +70,6 @@ class items extends CI_Controller {
 			$this->item->sort_highest();
 			redirect('/');
 		}
-
-
-		$this->item->search_by_name($data);
 	}
 	public function productsPage()
 	{

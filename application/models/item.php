@@ -23,7 +23,6 @@ class Item extends CI_model {
 		$query = "SELECT * FROM items WHERE name = ?";
 		$value = $data;
 		return $this->db->query($query, $value) -> result_array();
-
 	}
 
 	public function sort_lowest()
