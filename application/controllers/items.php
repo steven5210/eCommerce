@@ -3,7 +3,9 @@ class items extends CI_Controller {
  
 	public function __construct()
        {
+       		
             parent::__construct();
+
             // Your own constructor code
        }
 	public function index()
@@ -12,6 +14,11 @@ class items extends CI_Controller {
 		$get_all_categories = $this->item->get_all_categories();
 		$this->load->view('index', 
 						array('get_all_items' => $get_items, 'get_all_categories' => $get_all_categories));
+		$items = $this->item->display_all();
+		$get_items_categories = $this->item->get_all_items_categories();
+		$this->load->view('index', 
+						array('get_items_categories' => $get_items_categories,
+							  'items' => $items));
 	}
 	public function product_infoView($id)
 	{
@@ -118,8 +125,10 @@ class items extends CI_Controller {
 			redirect('/');
 		}
 	}
+
 	public function productsPage()
 	{
+
 		$this->load->view('productsPage');
 	}
 	public function orderPage()

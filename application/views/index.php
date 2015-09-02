@@ -82,6 +82,7 @@
       </ul>
     </div>
   </nav>
+  <?php var_dump($items); ?>
   <div id="wrapper">
     <div id='side_nav'>
       <!-- completed -->

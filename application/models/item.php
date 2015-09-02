@@ -21,7 +21,8 @@ class Item extends CI_model {
 	}
 	public function get_product($id)
 	{
-		$query = "SELECT items.id, items.name, items.price, items.price, items.description
+		$query = "SELECT items.id, items.name, items.price, items.price, items.description";
+		$query = "SELECT items.name, items.price, items.price, items.description 
 				 FROM items
 				 WHERE items.id = ?";
 		$values = array($id);
@@ -36,6 +37,10 @@ class Item extends CI_model {
 	public function get_all_categories()
 	{
 		return $this->db->query("SELECT * FROM categories")->result_array();
+		return $this->db->query("SELECT items.id, items.name AS item_name, items.description, items.price, items.created_at, items.updated_at, items.category_id AS itemsCategory_ID, categories.id AS Category_ID, categories.name as Category, categories.created_at, categories.updated_at
+			FROM ITEMS
+			LEFT JOIN categories
+			ON items.category_id = categories.id ")->result_array();
 	}
 	public function search_by_name($data)
 	{
@@ -43,7 +48,10 @@ class Item extends CI_model {
 		$value = $data;
 		return $this->db->query($query, $value) -> result_array();
 	}
-
+	public function display_all()
+	{
+		return $this->db->query("SELECT items.id, items.name, items.price, images.image FROM items LEFT JOIN images ON items.id = images.item_id") -> result_array();
+	}
 	public function sort_lowest()
 	{
 		return $this->db->query("SELECT * FROM items GROUP BY price DESC") -> result_array();
