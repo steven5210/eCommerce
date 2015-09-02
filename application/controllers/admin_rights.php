@@ -17,6 +17,10 @@ class admin_rights extends CI_Controller {
      			$category_id = $this->admin->add_category($data); 
      			$item_id = $this->admin->add_product($data, $category_id);
                 $image_id = $this->admin->add_image($data, $item_id);
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
      			redirect('/products');
      		}
      		else
@@ -27,5 +31,6 @@ class admin_rights extends CI_Controller {
      		}
      	}
 
-     }
+
+}
 ?>
