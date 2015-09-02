@@ -32,5 +32,6 @@ class admin_rights extends CI_Controller {
      			redirect('/products');
      		}
      	}
+
      }
 ?>
