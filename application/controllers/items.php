@@ -46,6 +46,11 @@ class items extends CI_Controller {
 		$data=array('items'=>$items);
 		$this->load->view('checkout.php', $data);
 	}
+	public function add_to_cart()
+	{
+		
+	}
+
 	public function search_by_name()
 	{
 		$data = $this->input->post();
