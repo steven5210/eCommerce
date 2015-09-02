@@ -8,11 +8,9 @@ $route['index'] = 'items/index';
 $route['admin'] = 'items/admin_login_page';
 $route['admin_login'] = 'admins/admin_login';
 $route['logOff'] = 'items/logOff';
-
 $route['cart'] = 'items/checkoutView';
 
-$route['cart'] = '/items/checkoutView';
-$route['cart'] = '/items/checkoutView';
+$route['items/remove/(:any)']= 'items/remove_from_cart/$1'; //remove item from cart
 
 //index search by item name
 $route['search_by_name'] = 'items/search_by_name';

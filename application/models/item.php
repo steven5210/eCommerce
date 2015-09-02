@@ -10,12 +10,13 @@ class Item extends CI_model {
 	public function fetch_item($item)
 	{
 		
-		$query='SELECT items.name, items.price, items.price*? AS total, categories.name AS category FROM items
+		$query='SELECT items.name, items.price, items.id, items.price*? AS total, categories.name AS category FROM items
 				JOIN categories ON items.category_id=categories.id
 				WHERE items.id= ?';
 		$values=array($item['quantity'], $item['id']);
 		$data= $this->db->query($query, $values)->row_array();
 		$data['quantity']=$item['quantity'];
+
 		return $data;
 	}
 	public function search_by_name($data)
