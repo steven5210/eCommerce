@@ -10,15 +10,10 @@ class items extends CI_Controller {
        }
 	public function index()
 	{
-		$get_items = $this->item->get_all_items();
+		$items = $this->item->display_all();
 		$get_all_categories = $this->item->get_all_categories();
 		$this->load->view('index', 
-						array('get_all_items' => $get_items, 'get_all_categories' => $get_all_categories));
-		$items = $this->item->display_all();
-		$get_items_categories = $this->item->get_all_items_categories();
-		$this->load->view('index', 
-						array('get_items_categories' => $get_items_categories,
-							  'items' => $items));
+						array('items' => $items, 'get_all_categories' => $get_all_categories));
 	}
 	public function product_infoView($id)
 	{
@@ -128,8 +123,9 @@ class items extends CI_Controller {
 
 	public function productsPage()
 	{
-
-		$this->load->view('productsPage');
+		$products = $this->item->display_all();
+		$this->load->view('productsPage',
+						array('products' => $products));
 	}
 	public function orderPage()
 	{

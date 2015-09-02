@@ -82,13 +82,12 @@
       </ul>
     </div>
   </nav>
-  <?php var_dump($items); ?>
   <div id="wrapper">
     <div id='side_nav'>
       <!-- completed -->
       <form action="search_by_name" method="post">
         <input type="text" name="search" placeholder="Product name">
-        <input type="submit" value="search">
+        <input type="hidden" name='page_number' value="0">
       </form>
       <h5>Categories</h5>
       <ul>
@@ -121,9 +120,9 @@
           <tr>
 
       <!-- Items Loop -->
-<?php        foreach($get_all_items as $item)
+<?php        foreach($items as $item)
       {                 ?>
-            <td><a href='/product_info/<?=$item['id']?>'><img class='mini_image' src="../assets/images/image1.jpg"></a><?=$item['item_name']."<br>".$item['price']?></td>
+            <td><a href='/product_info/<?=$item['id']?>'><img class='mini_image' src="../assets/images/image1.jpg"></a><?=$item['name']."<br>".$item['price']?></td>
             <?php  }  ?>
           </tr>
 
