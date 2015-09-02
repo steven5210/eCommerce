@@ -20,7 +20,9 @@
   	    selectYears: 15, // Creates a dropdown of 15 years to control year
   	    selectDays: false
   	  });
-      
+      $('#test5').change(function(){
+        $('.billinginfo').slideToggle();
+      })
   });
    </script>
    </head>
@@ -123,13 +125,13 @@
               <label for="zipcode">Zipcode</label>
             </div>
           </div>
-        <!-- <h3>Billing Information</h3>
+        <h3>Billing Information</h3>
         <p>
-            <input type="checkbox" name="test5" />
-            <label for="test5">Same as shipping</label>
-        </p> -->
-      <!-- ________________________________commented out for now_______________________ -->
-         <!--  <div class="row">
+          <input type="checkbox" id="test5" />
+          <label for="test5">Same as shipping</label>
+        </p>
+      <!-- BILLING INFORMATION -->
+          <div class="row billinginfo">
             <div class="input-field col s4">
               <input id="first_name" type="text" class="validate">
               <label for="first_name">First Name</label>
@@ -139,36 +141,38 @@
               <label for="last_name">Last Name</label>
             </div>
           </div>
-          <div class="row">
+          <div class="row billinginfo">
             <div class="input-field col s8">
               <input id="address" type="text" class="validate">
               <label for="address">Address</label>
             </div>
           </div>
-           <div class="row">
+           <div class="row billinginfo">
             <div class="input-field col s8">
               <input id="address2" type="text" class="validate">
               <label for="address2">Address 2</label>
             </div>
           </div>
-          <div class="row">
+          <div class="row billinginfo">
             <div class="input-field col s8">
               <input id="city" type="text" class="validate">
               <label for="city">City</label>
             </div>
           </div>
-          <div class="row">
+          <div class="row billinginfo">
             <div class="input-field col s8">
               <input id="state" type="text" class="validate">
               <label for="state">State</label>
             </div>
           </div>
-          <div class="row">
+          <div class="row billinginfo">
             <div class="input-field col s8">
               <input id="zipcode" type="text" class="validate">
               <label for="zipcode">Zipcode</label>
             </div>
-          </div> -->
+          </div>
+
+          <!-- START CREDIT CARD INFORMATION -->
           <div class="row">
             <div class="input-field col s8">
               <input id="cardnumber" type="text" class="validate">
