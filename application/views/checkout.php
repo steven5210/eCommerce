@@ -60,18 +60,7 @@
 				<td>example quantity <a href="">update</a> <a href="">delete</a></td>
 				<td>example total</td>
 			</tr>
-			<tr>
-				<td>example item</td>
-				<td>example price</td>
-				<td>example quantity</td>
-				<td>example total</td>
-			</tr>
-			<tr>
-				<td>example item</td>
-				<td>example price</td>
-				<td>example quantity</td>
-				<td>example total</td>
-			</tr>
+			
 		</tbody>
 	</table>
 	<div class="row">
