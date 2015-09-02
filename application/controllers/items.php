@@ -29,26 +29,66 @@ class items extends CI_Controller {
 	}
 	public function checkoutView()
 	{
-	// 	$this->load->view('checkout');
-	// }
-	// public function fetch_cart()
-	// {
-
-		$cart=array(1,1,2,2,1,2,1,1);
-		$stuff=array_count_values($cart);
-		$items=array();
-		foreach ($stuff as $key => $value) {
-			$item=array(
-			'id'=>$key,
-			'quantity'=>$value);
-			$items[]=$this->item->fetch_item($item);
-		}
-		$data=array('items'=>$items);
+		$this->output->enable_profiler();
+		if ($this->session->userdata('cart')!==null);
+		{
+			$cart=$this->session->userdata('cart');
+			$stuff=array_count_values($cart);
+			$items=array();
+			foreach ($stuff as $key => $value) 
+			{
+				$item=array(
+				'id'=>$key,
+				'quantity'=>$value);
+				$items[]=$this->item->fetch_item($item);
+			}
+			$data=array('items'=>$items);
+		};
 		$this->load->view('checkout.php', $data);
 	}
 	public function add_to_cart()
 	{
-		
+		if ($this->session->userdata('cart')!==null)
+		{
+			$cart=$this->session->userdata('cart');
+		} else {
+			$this->session->set_userdata('cart', array());
+			$cart=array();
+		}
+		for ($i=0; $i < $this->input->post('quantity'); $i++) { 
+			$cart[]=$this->input->post('id');
+		}
+		$this->session->set_userdata('cart', $cart);
+		redirect('/cart');
+	}
+	public function remove_from_cart($id) //removes ALL instances of one item from cart
+	{
+		$cart=$this->session->userdata('cart');
+		foreach ($cart as $key => $value) {
+			if($value==$id){
+				unset($cart[$key]);
+			}
+		}
+		$this->session->set_userdata('cart', $cart);
+		redirect('/cart');
+	}
+
+	public function update_cart_quantity() //removes ALL of one item, than readds the updated amount
+	{
+
+		$item=$this->input->post();
+		$cart=$this->session->userdata('cart');
+		foreach ($cart as $key => $value) {
+			if($value==$item['id']){
+				unset($cart[$key]);
+			}
+		}
+		$this->session->set_userdata('cart', $cart);
+		for ($i=0; $i < $item['quantity']; $i++) { 
+			$cart[]=$item['id'];
+		}
+		$this->session->set_userdata('cart', $cart);
+		redirect('/cart');
 	}
 
 	public function search_by_name()

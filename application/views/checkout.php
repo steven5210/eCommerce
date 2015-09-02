@@ -36,6 +36,13 @@
   <div id='side_nav'>
   </div>
 <div class="cart">
+ <!-- THIS IS A DUMMY TABLE FOR TESTING, REMOVE IT BEFORE MERGING -->
+  <form action="/items/add_to_cart" method='post'>
+    <input type="text" name='id' placeholder="test item id">
+    <input type="text" name='quantity'placeholder="test item quantity">
+    <input type="submit" value="submit">
+  </form>
+  <!-- THIS IS WHERE REAL STUFF STARTS UP AGAIN -->
 	<table class="bordered striped">
 		<thead>
 			<th>Item</th>
@@ -45,11 +52,20 @@
 		</thead>
 		<tbody>
       <?php if(isset($items)){
-        foreach ($items as $item) { ?>
+        $total=0;
+        foreach ($items as $item) { 
+          $total+= $item['total']?>
         <tr>
           <td><?=$item['name']?></td>
           <td><?=$item['price']?></td>
-          <td><?=$item['quantity']?> <a href="">update</a> <a href="">delete</a></td>
+          <td>
+            <form action="/items/update_cart_quantity" method="post">
+              <input type="hidden" name='id' value='<?=$item['id'] ?>'>
+              <input type="text" name="quantity" value="<?=$item['quantity']?>">
+              <input type="submit" value="update">
+            </form>
+            <a href="/items/remove/<?=$item['id'] ?>">delete</a>
+          </td>
           <td><?=$item['total']?></td>
         </tr>
 <?php   } 
@@ -65,7 +81,7 @@
 	</table>
 	<div class="row">
 		<div class="col s4 offset-s8">
-			<h5>Total: $4000000.00</h5>
+			<h5>Total: $<?=$total?></h5>
 			<a href="/" class="waves-effect waves-light btn">Continue Shopping</a>
 		</div>
 	</div>
