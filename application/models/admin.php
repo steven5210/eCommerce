@@ -15,7 +15,7 @@ class admin extends CI_Model {
 	public function validate_product($post)
 	{
 		$this->load->library('form_validation');
-		$this->form_validation->set_rules('name', 'Name','required|alpha');
+		$this->form_validation->set_rules('name', 'Name','required');
 		$this->form_validation->set_rules('description', 'Description', 'required');
 		$this->form_validation->set_rules('price', 'Price', 'required|is_natural|trim');
 		if($this->form_validation->run())
@@ -30,8 +30,8 @@ class admin extends CI_Model {
 	public function add_category($category)
 	{
 		$query = "INSERT INTO categories (name, created_at, updated_at)
-				VALUES (?,?,?)";
-		$values = array($category['category'], NOW(), NOW());
+				VALUES (?,NOW(),NOW())";
+		$values = array($category['category']);
 		return $this->db->query($query, $values);
 	}
 	public function add_product($product, $category_id)

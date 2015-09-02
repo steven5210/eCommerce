@@ -51,6 +51,12 @@
     </div>
     </li>
     <li>
+      <?php 
+      if($this->session->flashdata('errors'))
+      {
+      foreach($this->session->flashdata('errors') as $error) {
+        echo $error; }
+      }?>
       <!-- Modal Trigger for new product-->
   <a class="modal-trigger waves-effect waves-light btn" href="#modal1">Add New Product</a>
 
