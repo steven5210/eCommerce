@@ -29,8 +29,10 @@ class items extends CI_Controller {
 	}
 	public function checkoutView()
 	{
+		// $this->session->sess_destroy();
 		$this->output->enable_profiler();
-		if ($this->session->userdata('cart')!==null);
+		$data=array();
+		if (!empty($this->session->userdata('cart')))
 		{
 			$cart=$this->session->userdata('cart');
 			$stuff=array_count_values($cart);

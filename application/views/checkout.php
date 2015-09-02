@@ -29,7 +29,7 @@
     <div class="nav-wrapper">
       <a href="#" class="brand-logo">PlaceHolder eCommerce</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="/cart">Shopping Cart(40)</a></li>
+        <li><a href="/cart">Shopping Cart(<?=count($this->session->userdata('cart'))?>)</a></li>
       </ul>
     </div>
   </nav>
@@ -51,8 +51,9 @@
 			<th>Total</th>
 		</thead>
 		<tbody>
-      <?php if(isset($items)){
-        $total=0;
+      <?php 
+      $total=0;  
+      if(isset($items)){
         foreach ($items as $item) { 
           $total+= $item['total']?>
         <tr>
@@ -70,13 +71,6 @@
         </tr>
 <?php   } 
       }?>
-			<tr>
-				<td>example item</td>
-				<td>example price</td>
-				<td>example quantity <a href="">update</a> <a href="">delete</a></td>
-				<td>example total</td>
-			</tr>
-			
 		</tbody>
 	</table>
 	<div class="row">
