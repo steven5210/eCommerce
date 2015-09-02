@@ -23,7 +23,7 @@
     width: 15%;
    }
    .button {
-    margin-top: 10px;
+    margin-top: 10px; 
    }
    #buttonSpace {
     margin-right: 10px;
@@ -81,7 +81,7 @@
       <ul>
         <li class='button'><button id='buttonSpace' class="btn waves-effect waves-light" type="submit">Cancel</button>
           <button id='buttonSpace' class="btn waves-effect waves-light" type="submit">Preview</button>
-          <button class="btn waves-effect waves-light" type="submit"><a href="/add_product">Add Product</a></button></li>
+          <button class="btn waves-effect waves-light" type="submit">Add Product</button></li>
       </ul>
       </form>​
       

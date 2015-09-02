@@ -23,7 +23,7 @@ class admin extends CI_Model {
 			return 'valid';
 		}
 		else
-		{
+		{ 
 			return array(validation_errors());
 		}
 	}
