@@ -111,8 +111,13 @@ class items extends CI_Controller {
 			redirect('/');
 		}
 	}
+	public function display_all()
+	{
+		$this->item->display_all();
+	}
 	public function productsPage()
 	{
+
 		$this->load->view('productsPage');
 	}
 	public function orderPage()

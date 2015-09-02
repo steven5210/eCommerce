@@ -35,5 +35,9 @@ class Item extends CI_model {
 	{
 		return $this->db->query("SELECT * FROM items GROUP BY price ASC") -> result_array();
 	}
+	public function display_all()
+	{
+		$this->db->query("SELECT * FROM items")
+	}
 }
 ?>
