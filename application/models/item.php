@@ -1,7 +1,6 @@
-
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Item extends CI_Model {
+class Item extends CI_model {
 
 	public function __construct()
 	{
@@ -19,7 +18,10 @@ class Item extends CI_Model {
 		$data['quantity']=$item['quantity'];
 		return $data;
 	}
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4f20935b55f9d4903555bee37556197b027184c3
 	public function search_by_name($data)
 	{
 		$query = "SELECT * FROM items WHERE name = ?";

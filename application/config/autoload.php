@@ -108,11 +108,7 @@ $autoload['language'] = array();
 |	$autoload['model'] = array('model1', 'model2');
 |
 */
-
-
 $autoload['model'] = array('customer', 'item');
-
-
 
 /* End of file autoload.php */
 /* Location: ./application/config/autoload.php */
