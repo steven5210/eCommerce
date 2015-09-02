@@ -8,11 +8,15 @@ class items extends CI_Controller {
        }
 	public function index()
 	{
-		$this->load->view('index');
+		$get_items_categories = $this->item->get_all_items_categories();
+		$this->load->view('index', 
+						array('get_items_categories' => $get_items_categories));
 	}
-	public function product_infoView()
+	public function product_infoView($id)
 	{
-		$this->load->view('product_info');
+		$get_product = $this->item->get_product($id);
+		$this->load->view('product_info', 
+						array('get_product' => $get_product));
 	}
 	public function admin_login_page()
 	{
@@ -29,8 +33,10 @@ class items extends CI_Controller {
 	}
 	public function checkoutView()
 	{
+		// $this->session->sess_destroy();
 		$this->output->enable_profiler();
-		if ($this->session->userdata('cart')!==null);
+		$data=array();
+		if (!empty($this->session->userdata('cart')))
 		{
 			$cart=$this->session->userdata('cart');
 			$stuff=array_count_values($cart);

@@ -63,6 +63,9 @@
       border-right: 1px solid black;
       padding-right: 5px;
     }
+    .mini_image {
+      width: 100%;
+    }
 
    </style>
    </head>
@@ -84,11 +87,10 @@
       </form>
       <h5>Categories</h5>
       <ul>
-        <li><a href="#">temporary category list item</a></li>
-        <li><a href="#">temporary category list item</a></li>
-        <li><a href="#">temporary category list item</a></li>
-        <li><a href="#">temporary category list item</a></li>
-        <li><a href="#">temporary category list item</a></li>
+        <!-- Category Loop -->
+<?php            foreach($get_items_categories as           $category)        { ?>
+        <li><a href="<?=$category['Category_ID']?>"><?=$category['Category']?></a></li>
+<?php }?>
       </ul>
     </div>
     <div id="main_content">
@@ -111,12 +113,14 @@
       <div id="items_list">
         <table>
           <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+
+      <!-- Items Loop -->
+<?php        foreach($get_items_categories as $item)
+      {                 ?>
+            <td><a href='/product_info/<?=$item['id']?>'><img class='mini_image' src="../assets/images/image1.jpg"></a><?=$item['item_name']."<br>".$item['price']?></td>
+            <?php  }  ?>
           </tr>
+
           <tr>
             <td></td>
             <td></td>

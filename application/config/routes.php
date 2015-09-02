@@ -3,7 +3,7 @@
 
 $route['default_controller'] = "items";
 $route['404_override'] = '';
-$route['product_info'] = 'items/product_infoView';
+$route['product_info/(:any)'] = 'items/product_infoView/$1';
 $route['index'] = 'items/index';
 $route['admin'] = 'items/admin_login_page';
 $route['admin_login'] = 'admins/admin_login';
