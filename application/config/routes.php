@@ -18,4 +18,6 @@ $route['products'] = 'items/productsPage';
 // Main admin login redirect
 $route['ordersMain'] = 'items/admin_loggedIn';
 $route['orderPage'] = 'items/orderPage';
+//Admin rights controller for add, update, and etc
+$route['add_product'] = 'admin_rights/add_product';
 ?>

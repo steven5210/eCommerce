@@ -60,17 +60,19 @@
       <h4>Add a new product</h4>
       <form class='' action="" method='post'>​
          <label for="name">Name</label>
-         <input id="name" type="text">
+         <input id="name" type="text" name='name'>
           <input type="hidden" name='id' value=''>​
           <label for='description'>Description</label>
             <textarea name='description'></textarea>
-            <select>
+            <label for="name">Price</label>
+            <input id="price" type="text" name='price'>
+            <select name='category'>
               <option value="" disabled selected>Categories</option>
-              <option value="1">1 ($19.99)</option>
-              <option value="2">2 ($29.99)</option>
-              <option value="3">3 ($39.99)</option>
+              <option value="tshirt">T-Shirt</option>
+              <option value="cup">Cup</option>
+              <option value="hat">Hat</option>
             </select>
-         <input id="category" type="text" placeholder='Add a new Category'>
+         <input id="category" type="text" name='new_category' placeholder='Add a new Category'>
         <div class="btn">
           <span>Image</span>
          <input type="file" />
@@ -79,7 +81,7 @@
       <ul>
         <li class='button'><button id='buttonSpace' class="btn waves-effect waves-light" type="submit">Cancel</button>
           <button id='buttonSpace' class="btn waves-effect waves-light" type="submit">Preview</button>
-          <button class="btn waves-effect waves-light" type="submit">Update</button></li>
+          <button class="btn waves-effect waves-light" type="submit"><a href="/add_product">Add Product</a></button></li>
       </ul>
       </form>​
       
