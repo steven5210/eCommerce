@@ -1,5 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-class admin_powers extends CI_Controller {
+class admin_rights extends CI_Controller {
 
 	public function __construct()
        {
@@ -24,4 +24,5 @@ class admin_powers extends CI_Controller {
      			redirect('/products');
      		}
      	}
+}
 ?>

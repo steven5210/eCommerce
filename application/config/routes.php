@@ -23,7 +23,7 @@ $route['products'] = 'items/productsPage';
 $route['ordersMain'] = 'items/admin_loggedIn';
 $route['orderPage'] = 'items/orderPage';
 
-$route['upload_product'] = 'admins/add_product'
+$route['upload_product'] = 'admins/add_product';
 
 
 //Admin rights controller for add, update, and etc
