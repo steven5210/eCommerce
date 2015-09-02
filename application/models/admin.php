@@ -31,7 +31,7 @@ class admin extends CI_Model {
 	{
 		$query = "INSERT INTO categories (name, created_at, updated_at)
 				VALUES (?,NOW(),NOW())";
-		$values = array($category['category']);
+		$values = array($category['new_category']);
 		return $this->db->query($query, $values);
 	}
 	public function add_product($product, $category_id)
