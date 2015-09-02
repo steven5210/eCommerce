@@ -13,7 +13,7 @@ class items extends CI_Controller {
 		$items = $this->item->display_all();
 		$get_items_categories = $this->item->get_all_items_categories();
 		$this->load->view('index', 
-						array('get_items_categories' => $get_items_categories
+						array('get_items_categories' => $get_items_categories,
 							  'items' => $items));
 	}
 	public function product_infoView($id)
