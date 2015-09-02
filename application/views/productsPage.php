@@ -51,6 +51,12 @@
     </div>
     </li>
     <li>
+      <?php 
+      if($this->session->flashdata('errors'))
+      {
+      foreach($this->session->flashdata('errors') as $error) {
+        echo $error; }
+      }?>
       <!-- Modal Trigger for new product-->
   <a class="modal-trigger waves-effect waves-light btn" href="#modal1">Add New Product</a>
 
@@ -81,7 +87,7 @@
       <ul>
         <li class='button'><button id='buttonSpace' class="btn waves-effect waves-light" type="submit">Cancel</button>
           <button id='buttonSpace' class="btn waves-effect waves-light" type="submit">Preview</button>
-          <button class="btn waves-effect waves-light" type="submit"><a href="/add_product">Add Product</a></button></li>
+          <button class="btn waves-effect waves-light" type="submit">Add Product</button></li>
       </ul>
       </form>​
       
