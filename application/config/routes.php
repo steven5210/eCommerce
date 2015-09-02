@@ -10,7 +10,6 @@ $route['admin_login'] = 'admins/admin_login';
 $route['logOff'] = 'items/logOff';
 $route['cart'] = 'items/checkoutView';
 
-$route['items/update/(:any)']= 'items/update/$1'; //update quantity in cart
 $route['items/remove/(:any)']= 'items/remove_from_cart/$1'; //remove item from cart
 
 //index search by item name
