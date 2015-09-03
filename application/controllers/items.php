@@ -42,16 +42,20 @@ class items extends CI_Controller {
 		if (!empty($this->session->userdata('cart')))
 		{
 			$cart=$this->session->userdata('cart');
-			$stuff=array_count_values($cart);
-			$items=array();
-			foreach ($stuff as $key => $value) 
+			foreach ($cart as $id => $quantity) 
 			{
-				$item=array(
-				'id'=>$key,
-				'quantity'=>$value);
-				$items[]=$this->item->fetch_item($item);
+				if($quantity==0)
+				{
+					unset($cart[$id]);
+				}else{
+					$item=array(
+					'id'=>$id,
+					'quantity'=>$quantity);
+					$items[]=$this->item->fetch_item($item);
+				}
 			}
 			$data=array('items'=>$items);
+			$this->session->set_userdata('cart', $cart);
 		};
 		$this->load->view('checkout.php', $data);
 	}
@@ -64,8 +68,11 @@ class items extends CI_Controller {
 			$this->session->set_userdata('cart', array());
 			$cart=array();
 		}
-		for ($i=0; $i < $this->input->post('quantity'); $i++) { 
-			$cart[]=$this->input->post('id');
+		if(array_key_exists($this->input->post("id"), $cart))
+		{
+			$cart[$this->input->post("id")]+=$this->input->post('quantity');
+		}else{
+			$cart[$this->input->post("id")]=$this->input->post('quantity');
 		}
 		$this->session->set_userdata('cart', $cart);
 		redirect('/cart');
@@ -73,28 +80,21 @@ class items extends CI_Controller {
 	public function remove_from_cart($id) //removes ALL instances of one item from cart
 	{
 		$cart=$this->session->userdata('cart');
-		foreach ($cart as $key => $value) {
-			if($value==$id){
-				unset($cart[$key]);
-			}
+		if(array_key_exists($id, $cart))
+		{
+			unset($cart[$id]);
 		}
 		$this->session->set_userdata('cart', $cart);
 		redirect('/cart');
 	}
 
-	public function update_cart_quantity() //removes ALL of one item, than readds the updated amount
+	public function update_cart_quantity() //updates item quantity
 	{
-
 		$item=$this->input->post();
 		$cart=$this->session->userdata('cart');
-		foreach ($cart as $key => $value) {
-			if($value==$item['id']){
-				unset($cart[$key]);
-			}
-		}
-		$this->session->set_userdata('cart', $cart);
-		for ($i=0; $i < $item['quantity']; $i++) { 
-			$cart[]=$item['id'];
+		if(array_key_exists($item['id'], $cart))
+		{
+			$cart[$item["id"]]=$item['quantity'];
 		}
 		$this->session->set_userdata('cart', $cart);
 		redirect('/cart');
@@ -108,7 +108,6 @@ class items extends CI_Controller {
 	}
 	public function sort_by()
 	{
-
 		if($data['sort'] == 'price_lowest')
 		{
 			$this->item->sort_lowest();
