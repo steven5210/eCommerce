@@ -10,8 +10,19 @@ class Customers extends CI_Controller {
    public function buy()
    {
       $data = $this->input->post();
-	   	$this->customer->buy($data);
-	   	redirect ('/');
+      $result = $this->customer->validate_order($data);
+        if($result == 'valid')
+        {
+          $this->customer->buy($data);
+          redirect ('/success');
+        }
+        else
+        {
+          $errors = validation_errors();
+          $this->session->set_flashdata('errors', $errors);
+          redirect('/cart');
+        }
+	   	
    }
 }
 
