@@ -31,14 +31,15 @@
     <div class="nav-wrapper">
       <a href="#" class="brand-logo">PlaceHolder eCommerce</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="/cart">Shopping Cart(<?=count($this->session->userdata('cart'))?>)</a></li>
+        <li><a href="/cart">Shopping Cart(<?=array_sum($this->session->userdata('cart'))?>)</a></li>
       </ul>
     </div>
   </nav>
   <div id='side_nav'>
   </div>
 <div class="cart">
- <!-- THIS IS A DUMMY TABLE FOR TESTING, REMOVE IT BEFORE MERGING -->
+ <!-- THIS IS A DUMMY TABLE FOR TESTING, REMOVE IT BEFORE MERGING TO MASTER -->
+  <!-- <form action="/items/update_cart_quantity" method='post'> -->
   <form action="/items/add_to_cart" method='post'>
     <input type="text" name='id' placeholder="test item id">
     <input type="text" name='quantity'placeholder="test item quantity">
