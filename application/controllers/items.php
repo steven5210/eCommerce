@@ -125,7 +125,8 @@ class items extends CI_Controller {
 	{
 		$products = $this->item->display_all();
 		$this->load->view('productsPage',
-						array('products' => $products));
+						array('products' => $products)
+						);
 	}
 	public function orderPage()
 	{

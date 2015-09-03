@@ -45,7 +45,7 @@ class Item extends CI_model {
 	}
 	public function display_all()
 	{
-		return $this->db->query("SELECT items.id, items.name, items.price, images.image FROM items LEFT JOIN images ON items.id = images.item_id") -> result_array();
+		return $this->db->query("SELECT items.id, items.name, items.price, items.inventory, images.image FROM items LEFT JOIN images ON items.id = images.item_id") -> result_array();
 	}
 	public function sort_lowest()
 	{
