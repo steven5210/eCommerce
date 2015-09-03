@@ -11,10 +11,9 @@ class items extends CI_Controller {
 	public function index()
 	{
 		$items = $this->item->display_all();
-		$get_items_categories = $this->item->get_all_items_categories();
+		$get_all_categories = $this->item->get_all_categories();
 		$this->load->view('index', 
-						array('get_items_categories' => $get_items_categories,
-							  'items' => $items));
+						array('items' => $items, 'get_all_categories' => $get_all_categories));
 	}
 	public function product_infoView($id)
 	{
@@ -37,7 +36,7 @@ class items extends CI_Controller {
 	}
 	public function checkoutView()
 	{
-		// $this->session->sess_destroy();
+	//	$this->session->sess_destroy();
 		$this->output->enable_profiler();
 		$data=array();
 		if (!empty($this->session->userdata('cart')))
@@ -58,7 +57,7 @@ class items extends CI_Controller {
 	}
 	public function add_to_cart()
 	{
-		if ($this->session->userdata('cart')!==null)
+		if (!empty($this->session->userdata('cart')))
 		{
 			$cart=$this->session->userdata('cart');
 		} else {
@@ -124,8 +123,9 @@ class items extends CI_Controller {
 
 	public function productsPage()
 	{
-
-		$this->load->view('productsPage');
+		$products = $this->item->display_all();
+		$this->load->view('productsPage',
+						array('products' => $products));
 	}
 	public function orderPage()
 	{

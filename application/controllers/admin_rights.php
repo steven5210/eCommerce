@@ -8,8 +8,6 @@ class admin_rights extends CI_Controller {
        }
      	public function add_product()
      	{     
-
-
             $config['upload_path'] = './uploads/';
             $config['allowed_types'] = 'gif|jpg|png';
             $config['max_size'] = '100';
@@ -18,9 +16,7 @@ class admin_rights extends CI_Controller {
             $this->load->library('upload', $config);
             $this->upload->do_upload();
             $file = $this->upload->data();
-
             $data = $this->input->post();
-
      		$result = $this->admin->validate_product($data);
      		if($result == 'valid')
      		{

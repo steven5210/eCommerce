@@ -74,23 +74,27 @@
     <div class="nav-wrapper">
       <a href="#" class="brand-logo">PlaceHolder eCommerce</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="/cart">Shopping Cart(40)</a></li>
+<!-- Shopping Cart item count -->
+<?php        if($this->session->userdata('cart')) {   ?>
+        <li><a href="/cart">Shopping Cart(
+          <?=count($this->session->userdata('cart'))?>)</a></li>
+          <?php         }?>
       </ul>
     </div>
   </nav>
-  <?php var_dump($items); ?>
   <div id="wrapper">
     <div id='side_nav'>
       <!-- completed -->
       <form action="search_by_name" method="post">
         <input type="text" name="search" placeholder="Product name">
-        <input type="submit" value="search">
+        <input type="hidden" name='page_number' value="0">
       </form>
       <h5>Categories</h5>
       <ul>
         <!-- Category Loop -->
-<?php            foreach($get_items_categories as           $category)        { ?>
-        <li><a href="<?=$category['Category_ID']?>"><?=$category['Category']?></a></li>
+<?php            foreach($get_all_categories as           $category)        { ?>
+        <li><a href="<?=$category['id']?>"><?=$category['name']?></a></li>
+
 <?php }?>
       </ul>
     </div>
@@ -116,10 +120,9 @@
           <tr>
 
       <!-- Items Loop -->
-<?php        foreach($items as $item)
-      {                 ?>
-            <td><a href='/product_info/<?=$item['id']?>'><img class='mini_image' src="<?= $item['image']?>"></a><?=$item['name']."<br>".$item['price']?></td>
-            <?php  }  ?>
+      <?php foreach($items as $item): ?>
+          <td><a href='/product_info/<?=$item['id']?>'><img class='mini_image' src="<?= $item['image']?>"></a><?=$item['name']."<br>".$item['price']?></td>
+      <?php  endforeach; ?>
           </tr>
 
           <tr>
