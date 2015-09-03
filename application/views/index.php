@@ -15,6 +15,16 @@
       <script type="text/javascript">
     $(document).ready(function() {
       $('select').material_select();
+      // search function AJAX
+      $('form').on('change', function(data){
+          $.ajax({
+              url: $(this).attr('action'),
+              method: 'post',
+              data: $(this).serialize()
+               }).done(function(data){
+                  console.log(data);
+               })
+      })
   });
    </script>
    <style>
@@ -85,7 +95,7 @@
   <div id="wrapper">
     <div id='side_nav'>
       <!-- completed -->
-      <form action="search_by_name" method="post">
+      <form action="search" method="post">
         <input type="text" name="search" placeholder="Product name">
         <input type="hidden" name='page_number' value="0">
       </form>

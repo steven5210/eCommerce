@@ -99,7 +99,13 @@ class items extends CI_Controller {
 		$this->session->set_userdata('cart', $cart);
 		redirect('/cart');
 	}
-
+	// AJAX SEARCH 
+	public function search_ajax()
+	{
+		var_dump($this->input->post());
+		die();
+	}
+	// End of AJAX search
 	public function search_by_name()
 	{
 		$data = $this->input->post();

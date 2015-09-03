@@ -8,6 +8,8 @@ $route['index'] = 'items/index';
 $route['admin'] = 'items/admin_login_page';
 $route['admin_login'] = 'admins/admin_login';
 $route['logOff'] = 'items/logOff';
+// AJAX Search Function
+$route['search'] = 'items/search_ajax';
 //Cart Functions
 $route['cart'] = 'items/checkoutView';
 //Add quantity and item to cart
