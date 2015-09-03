@@ -10,6 +10,8 @@ class Customers extends CI_Controller {
    public function buy()
    {
       $data = $this->input->post();
+      var_dump($data);
+      die();
 	   	$this->customer->buy($data);
 	   	redirect ('/');
    }
