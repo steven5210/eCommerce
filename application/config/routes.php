@@ -26,4 +26,5 @@ $route['customers/buy'] = 'customers/buy';
 
 //Admin rights controller for add, update, and etc
 $route['add_product'] = 'admin_rights/add_product';
+$route['upload_image'] = 'uploads/do_upload';
 ?>

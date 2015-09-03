@@ -64,7 +64,7 @@
   <div id="modal1" class="modal modal-fixed-footer">
     <div class="modal-content">
       <h4>Add a new product</h4>
-      <form action="add_product" method='post'>​
+      <form action="add_product" method='post' enctype="multipart/form-data">​
          <label for="name">Name</label>
          <input id="name" type="text" name='name'>
           <input type="hidden" name='id' value=''>​
@@ -81,7 +81,10 @@
          <input id="category" type="text" name='new_category' placeholder='Add a new Category'>
         <div class="btn">
           <span>Image</span>
-         <input type="file" name="image">
+
+          <input type="file" name="userfile">
+
+
     <!-- Add in the draggable functionality here -->
         </div>
       <ul>
@@ -89,7 +92,7 @@
           <button id='buttonSpace' class="btn waves-effect waves-light" type="submit">Preview</button>
           <button class="btn waves-effect waves-light" type="submit">Add Product</button></li>
       </ul>
-      </form>​
+    </form>​
       
   </div>
     </li>

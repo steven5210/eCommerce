@@ -116,9 +116,9 @@
           <tr>
 
       <!-- Items Loop -->
-<?php        foreach($get_items_categories as $item)
+<?php        foreach($items as $item)
       {                 ?>
-            <td><a href='/product_info/<?=$item['id']?>'><img class='mini_image' src="../assets/images/image1.jpg"></a><?=$item['item_name']."<br>".$item['price']?></td>
+            <td><a href='/product_info/<?=$item['id']?>'><img class='mini_image' src="<?= $item['image']?>"></a><?=$item['name']."<br>".$item['price']?></td>
             <?php  }  ?>
           </tr>
 

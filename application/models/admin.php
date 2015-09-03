@@ -32,7 +32,9 @@ class admin extends CI_Model {
 		$query = "INSERT INTO categories (name, created_at, updated_at)
 				VALUES (?,NOW(),NOW())";
 		$values = array($category['new_category']);
-		return $this->db->query($query, $values);
+		
+		$this->db->query($query, $values);
+		return $this->db->insert_id();
 	}
 	public function add_product($product, $category_id)
 	{
@@ -42,10 +44,10 @@ class admin extends CI_Model {
 		$this->db->query($query, $values);
 		return $this->db->insert_id();
 	}
-	public function add_image($data, $item_id)
+	public function add_image($file, $item_id)
 	{
 		$query = "INSERT INTO images (image, created_at, updated_at, item_id) VALUES (?, NOW(), NOW(), ?)";
-		$values = array($data['image'], $item_id);
+		$values = array("./uploads/" . $file['file_name'], $item_id);
 		$this->db->query($query, $values);
 		return $this->db->insert_id();
 	}
