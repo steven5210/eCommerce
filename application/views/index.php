@@ -122,7 +122,7 @@
       <!-- Items Loop -->
       <?php foreach($items as $item): ?>
           <td><a href='/product_info/<?=$item['id']?>'><img class='mini_image' src="<?= $item['image']?>"></a><?=$item['name']."<br>".$item['price']?></td>
-      <?php  endforeach; ?>
+      <?php endforeach; ?>
           </tr>
 
           <tr>
