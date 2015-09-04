@@ -16,7 +16,8 @@ class Customers extends CI_Controller {
         if($result == 'valid')
         {
           $this->customer->buy($data);
-          redirect ('/success');
+          $this->session->sess_destroy();
+          redirect ('/');
         }
         else
         {

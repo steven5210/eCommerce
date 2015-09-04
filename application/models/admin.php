@@ -69,5 +69,21 @@ class admin extends CI_Model {
 		$value = $id;
 		$this->db->query($query, $value);
 	}
+	public function get_all_order()
+	{
+
+	}
+	public function get_admin_products($search)
+	{
+		$query = "SELECT items.id, items.name, items.description, items.price, items.inventory, images.image, categories.name AS category_name, 
+			(SELECT COUNT(*) FROM items WHERE (items.name LIKE ?)) AS total
+			FROM items
+			LEFT JOIN images ON items.id = images.item_id 
+			LEFT JOIN categories ON categories.id = items.category_id
+			WHERE (items.name LIKE ?)
+			LIMIT ?, 5";
+		$values = array($search['search'] . '%', $search['search'] . '%', intval($search['page_number']));
+		return $this->db->query($query, $values)->result_array();
+	}
 }
 ?>

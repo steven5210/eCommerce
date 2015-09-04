@@ -22,6 +22,9 @@
   	  // });
       $('#test5').change(function(){
         $('.billinginfo').slideToggle();
+      })
+      $('form').submit(function(){
+
         if($('#test5').is(':checked')){
             $('#bill_first_name').val($('#first_name').val());
             $('#bill_last_name').val($('#last_name').val());
@@ -40,7 +43,7 @@
           $('#bill_state').val("");
           $('#bill_zipcode').val("");
         };
-      })
+      })  
   });
    </script>
    </head>
@@ -208,11 +211,11 @@
           </div>
           <div class="row">
             <div class="input-field col s4">
-              <input name="month" type="text" class="validate">
+              <input name="month" type="number" min='1' max='12' class="validate">
               <label for="month">Month</label>
             </div>
             <div class="input-field col s4">
-              <input name="year" type="text" class="validate">
+              <input name="year" type="number" min='2015' max='2025' class="validate">
               <label for="year">Year</label>
             </div>
           </div>

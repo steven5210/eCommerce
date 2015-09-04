@@ -12,7 +12,7 @@ class Item extends CI_model {
 		$query='SELECT items.name, items.price, items.id, items.price*? AS total, categories.name AS category FROM items
 				JOIN categories ON items.category_id=categories.id
 				WHERE items.id= ?';
-		$values=array($item['quantity'], $item['id']);
+		$values=array(intval($item['quantity']), $item['id']);
 		$data= $this->db->query($query, $values)->row_array();
 		$data['quantity']=$item['quantity'];
 
@@ -27,11 +27,6 @@ class Item extends CI_model {
 		$product = $this->db->query($query, $values)->row_array();
 		return $product;
 	}
-	// public function get_all_items()
-	// {
-	// 	return $this->db->query("SELECT items.id, items.name AS item_name, items.description, items.price, items.created_at, items.updated_at, items.category_id AS itemsCategory_ID
-	// 		FROM ITEMS")->result_array();
-	// }
 	public function get_all_categories()
 	{
 		return $this->db->query("SELECT * FROM categories") ->result_array();
@@ -46,6 +41,16 @@ class Item extends CI_model {
 	{
 		return $this->db->query("SELECT items.id, items.name, items.description, items.price, items.inventory, images.image, categories.name AS category_name FROM items LEFT JOIN images ON items.id = images.item_id LEFT JOIN categories ON categories.id = items.category_id") -> result_array();
 	}
+// ADMIN SIDE PRODUCT DISPLAY ALL
+	public function admin_display_all()
+	{
+		return $this->db->query("SELECT items.id, items.name, items.description, items.price, items.inventory, images.image, categories.name AS category_name, 
+			(SELECT COUNT(*) FROM items) AS total
+			FROM items
+			LEFT JOIN images ON items.id = images.item_id 
+			LEFT JOIN categories ON categories.id = items.category_id
+			LIMIT 0, 5")->result_array();
+	}
 	public function sort_lowest()
 	{
 		return $this->db->query("SELECT * FROM items GROUP BY price DESC") -> result_array();
@@ -54,6 +59,15 @@ class Item extends CI_model {
 	public function sort_highest()
 	{
 		return $this->db->query("SELECT * FROM items GROUP BY price ASC") -> result_array();
+	}
+// AJAX search
+	public function update_view($data)
+	{
+		$query = "SELECT * FROM items
+				WHERE name LIKE ?
+				LIMIT ?, 15";
+		$values = array($data['search'], intval($data['page_number']));
+		return $this->db->query($query, $values)->result_array();
 	}
 }
 ?>

@@ -52,7 +52,17 @@ class admin_rights extends CI_Controller {
             $this->admin->delete_product($id);
             redirect('/products');
         }
-
+        public function orderPage()
+        {   
+        // $orders = $this->admin->get_all_orders();
+        $this->load->view('OrderPage');
+        }
+        public function get_admin_products()
+        {
+            $admin_products = $this->admin->get_admin_products($this->input->post());
+            $this->load->view('/partials/admin_partials',
+                    array('admin_products' => $admin_products));
+        }
 
 }
 ?>
