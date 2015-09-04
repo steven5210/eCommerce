@@ -92,7 +92,7 @@
   <h4>Similar Items</h4>
   <ul>
     <?php foreach($items as $item){
-        if($item['category_name']==$get_product['category']){ ?>
+        if($item['category_name']==$get_product['category'] && $item['id']!==$get_product['id']){ ?>
       <li><a href='/product_info/<?=$item['id']?>'><img class='mini_image' src="<?= $item['image']?>"></a> <br><?=$item['name']?></li>
       <?php }
     } ?>
