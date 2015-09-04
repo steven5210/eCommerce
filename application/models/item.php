@@ -36,7 +36,8 @@ class Item extends CI_model {
 		$query="SELECT items.id, items.name, items.description, items.price, items.inventory, images.image, categories.name AS category_name FROM items 
 				LEFT JOIN images ON items.id = images.item_id 
 				LEFT JOIN categories ON categories.id = items.category_id
-				WHERE categories.id=?";
+				WHERE categories.id=?
+				ORDER BY items.price ASC";
 		$values=$id;
 		return $this->db->query($query, $values)->result_array();
 	}
@@ -44,7 +45,8 @@ class Item extends CI_model {
 	{
 		return $this->db->query("SELECT items.id, items.name, items.description, items.price, items.inventory, images.image, categories.name AS category_name FROM items 
 								LEFT JOIN images ON items.id = images.item_id 
-								LEFT JOIN categories ON categories.id = items.category_id") -> result_array();
+								LEFT JOIN categories ON categories.id = items.category_id
+								ORDER BY items.price ASC") -> result_array();
 	}
 	public function search_by_name($data)
 	{

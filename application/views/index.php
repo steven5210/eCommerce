@@ -15,7 +15,7 @@
       <script type="text/javascript">
     $(document).ready(function() {
       $('select').material_select();
-  });
+});
    </script>
    <style>
     #side_nav {
@@ -120,20 +120,22 @@
         <li><a href="#">2</a></li>
         <li><a href="#">next</a></li>
       </ul>
-      <form action="sort_by" method="post">
-        <p>Sorted by
-          <select name="sort">
-            <option value="price_lowest">Price lowest</option>
-            <option value="price_highest">Price highest</option>
-          </select>
-        </p>
-        <input type="submit">
-      </form>
+		<p>
+			<input type="number" id="max_price">
+         <!--  <select id="max_price" name="max_price">
+            <option value="50">$50</option>
+            <option value="100">$100</option>
+          </select> -->
+		</p>
       <div id="items_list">
       <!-- Items Loop -->
-      <?php foreach($items as $item){ ?>
+      <?php foreach($items as $item){ 
+      	if(isset($max_price)&& $item['price']>=$max_price){
+
+      	}else{ ?>
           <div class="item"><a href='/product_info/<?=$item['id']?>'><img class='mini_image' src="<?= $item['image']?>"></a><?=$item['name']."<br>".$item['price']?></div>
-      <?php } ?>
+      <?php }
+      } ?>
       </div>
       <ul id="pagination">
         <li><a href="#">1</a></li>

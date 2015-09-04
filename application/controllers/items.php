@@ -97,7 +97,11 @@ class items extends CI_Controller {
 		$this->session->set_userdata('cart', $cart);
 		redirect('/cart');
 	}
-
+	public function empty_cart()
+	{
+		$this->session->set_userdata('cart', array());
+		redirect('/cart');
+	}
 	public function update_cart_quantity() //updates item quantity
 	{
 		$item=$this->input->post();

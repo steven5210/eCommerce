@@ -15,11 +15,6 @@
       <script type="text/javascript">
     $(document).ready(function() {
       $('select').material_select();
-     //  $('.datepicker').pickadate({
-  	  //   selectMonths: true, // Creates a dropdown to control month
-  	  //   selectYears: 15, // Creates a dropdown of 15 years to control year
-  	  //   selectDays: false
-  	  // });
       $('#test5').change(function(){
         $('.billinginfo').slideToggle();
       })
@@ -61,11 +56,11 @@
 <div class="cart">
  <!-- THIS IS A DUMMY TABLE FOR TESTING, REMOVE IT BEFORE MERGING TO MASTER -->
   <!-- <form action="/items/update_cart_quantity" method='post'> -->
-  <form action="/items/add_to_cart" method='post'>
+<!--   <form action="/items/add_to_cart" method='post'>
     <input type="text" name='id' placeholder="test item id">
     <input type="text" name='quantity'placeholder="test item quantity">
     <input type="submit" value="submit">
-  </form>
+  </form> -->
   <!-- THIS IS WHERE REAL STUFF STARTS UP AGAIN -->
 	<table class="bordered striped">
 		<thead>
@@ -100,6 +95,7 @@
 	<div class="row">
 		<div class="col s4 offset-s8">
 			<h5>Total: $<?=$total?></h5>
+      <a href="/items/empty_cart">Clear Cart</a>
 			<a href="/" class="waves-effect waves-light btn">Continue Shopping</a>
 		</div>
 	</div>
@@ -219,7 +215,6 @@
               <label for="year">Year</label>
             </div>
           </div>
-           <!-- <input type="date" class="datepicker"> -->
             <button class="btn waves-effect waves-light" type="submit" name="action">Buy
             <i class="material-icons">send</i>
             </button>
