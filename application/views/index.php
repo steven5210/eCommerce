@@ -38,6 +38,7 @@
           $('form').trigger('change');
         })
   });
+
    </script>
    <style>
     #side_nav {
@@ -78,6 +79,13 @@
     table {
       height: 700px;
     }
+    .item{
+      width: 19.5%;
+      height: 33%;
+      outline: 1px solid black;
+      display: inline-block;
+      margin: 0;
+    }
     #pagination li {
       display: inline-block;
     }
@@ -103,8 +111,6 @@
           <?=array_sum($this->session->userdata('cart'))?>)</a></li>
           <?php         }?>
 
-  
-          
       </ul>
     </div>
   </nav>
@@ -118,34 +124,33 @@
       <h5>Categories</h5>
       <ul>
         <!-- Category Loop -->
-<?php            foreach($get_all_categories as           $category)        { ?>
-        <li><a href="<?=$category['id']?>"><?=$category['name']?></a></li>
-
+<?php foreach($get_all_categories as $category){ ?>
+        <li><a href="/category/<?=$category['id']?>"><?=$category['name']?></a></li>
 <?php }?>
+		<li><a href="/">Show All</a></li>
       </ul>
     </div>
     <div id="main_content">
-      <h4>Tshirts (page 2)</h4>
+<?php foreach($get_all_categories as $category){
+	if (isset($id)&&$category['id']==$id) {  
+		$header=ucfirst($category['name']); 
+ }elseif(!isset($id)){ 
+      $header="All Products";
+ }
+} ?>
+<h4><?=$header?></h4>
       <ul id="item_nav">
         <li><a href="#">first</a></li>
         <li><a href="#">prev</a></li>
         <li><a href="#">2</a></li>
         <li><a href="#">next</a></li>
       </ul>
-      <form action="sort_by" method="post">
-        <p>Sorted by
-          <select name="sort">
-            <option value="price_lowest">Price lowest</option>
-            <option value="price_highest">Price highest</option>
-          </select>
-        </p>
-        <input type="submit">
-      </form>
- <!-- AJAX HERE for table      -->
       <div id="items_list">
-        <?php require('partials/index_partial.php') ?>
+      <!-- Items Loop -->
+      <?php foreach($items as $item){ ?>
+          <div class="item"><a href='/product_info/<?=$item['id']?>'><img class='mini_image' src="<?= $item['image']?>"></a><?=$item['name']."<br>".$item['price']?></div>
+      <?php } ?>
 
-      </div>
     </div>
   </div>
 </body>

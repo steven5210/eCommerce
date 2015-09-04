@@ -14,21 +14,29 @@ class items extends CI_Controller {
 		$get_all_categories = $this->item->get_all_categories();
 		$this->load->view('index', 
 						array('items' => $items, 'get_all_categories' => $get_all_categories));
+		
+	}
+	public function get_category($id)
+	{
+		$get_all_categories = $this->item->get_all_categories();
+		$items=$this->item->get_category($id);
+		$this->load->view('index', 
+						array('items' => $items,
+						 'get_all_categories' => $get_all_categories,
+						 'id'=>$id));
 	}
 	public function product_infoView($id)
 	{
+		$items = $this->item->display_all();
 		$get_product = $this->item->get_product($id);
 		$this->load->view('product_info', 
-						array('get_product' => $get_product));
+						array('items' => $items,'get_product' => $get_product));
 	}
 	public function admin_login_page()
 	{
 		$this->load->view('admin');
 	}
-	public function admin_loggedIn()
-	{
-		$this->load->view('adminDash');
-	}
+
 	public function logOff()
 	{
 	//	$this->session->session_destroy();
@@ -87,7 +95,11 @@ class items extends CI_Controller {
 		$this->session->set_userdata('cart', $cart);
 		redirect('/cart');
 	}
-
+	public function empty_cart()
+	{
+		$this->session->set_userdata('cart', array());
+		redirect('/cart');
+	}
 	public function update_cart_quantity() //updates item quantity
 	{
 		$item=$this->input->post();
