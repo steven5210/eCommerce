@@ -12,7 +12,6 @@ class Customers extends CI_Controller {
       $data = $this->input->post();
 	   	$this->customer->buy($data);
 	   	redirect ('/');
-
       $result = $this->customer->validate_order($data);
         if($result == 'valid')
         {
