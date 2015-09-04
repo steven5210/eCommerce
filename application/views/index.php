@@ -139,7 +139,34 @@
       </form>
  <!-- AJAX HERE for table      -->
       <div id="items_list">
+<<<<<<< HEAD
         <?php require('partials/index_partial.php') ?>
+=======
+        <table>
+          <tr>
+
+      <!-- Items Loop -->
+      <?php foreach($items as $item): ?>
+          <td><a href='/product_info/<?=$item['id']?>'><img class='mini_image' src="<?= $item['image']?>"></a><?=$item['name']."<br>".$item['price']?></td>
+      <?php endforeach; ?>
+          </tr>
+
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </table>
+>>>>>>> develop
       </div>
     </div>
   </div>

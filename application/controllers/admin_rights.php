@@ -8,15 +8,22 @@ class admin_rights extends CI_Controller {
        }
      	public function add_product()
      	{     
+            $config['upload_path'] = './uploads/';
+            $config['allowed_types'] = 'gif|jpg|png';
+            $config['max_size'] = '3000';
+            $config['max_width']  = '1024';
+            $config['max_height']  = '768';
+            $this->load->library('upload', $config);
+            $this->upload->do_upload();
+            $file = $this->upload->data();
             $data = $this->input->post();
-
      		$result = $this->admin->validate_product($data);
      		if($result == 'valid')
      		{
      			$data = $this->input->post();
      			$category_id = $this->admin->add_category($data); 
      			$item_id = $this->admin->add_product($data, $category_id);
-                $image_id = $this->admin->add_image($data, $item_id);
+                $image_id = $this->admin->add_image($file, $item_id);
      			redirect('/products');
      		}
      		else
@@ -26,6 +33,25 @@ class admin_rights extends CI_Controller {
      			redirect('/products');
      		}
      	}
+        public function update_product()
+        {
+            $config['upload_path'] = './uploads/';
+            $config['allowed_types'] = 'gif|jpg|png';
+            $config['max_size'] = '3000';
+            $config['max_width']  = '1024';
+            $config['max_height']  = '768';
+            $this->load->library('upload', $config);
+            $this->upload->do_upload();
+            $file = $this->upload->data();
+            $data = $this->input->post();
+            $result = $this->admin->update_product($data, $file['file_name']);
+            redirect('/products');
+        }
+        public function delete_product($id)
+        {
+            $this->admin->delete_product($id);
+            redirect('/products');
+        }
 
 
 }

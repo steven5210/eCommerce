@@ -28,4 +28,6 @@ $route['customers/buy'] = 'customers/buy';
 
 //Admin rights controller for add, update, and etc
 $route['add_product'] = 'admin_rights/add_product';
+$route['update_product'] = 'admin_rights/update_product';
+$route['delete/(:any)'] = 'admin_rights/delete_product/$1';
 ?>

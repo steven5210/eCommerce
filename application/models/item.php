@@ -9,7 +9,6 @@ class Item extends CI_model {
 	}
 	public function fetch_item($item)
 	{
-		
 		$query='SELECT items.name, items.price, items.id, items.price*? AS total, categories.name AS category FROM items
 				JOIN categories ON items.category_id=categories.id
 				WHERE items.id= ?';
@@ -45,7 +44,11 @@ class Item extends CI_model {
 	}
 	public function display_all()
 	{
+<<<<<<< HEAD
 		return $this->db->query("SELECT items.id, items.name, items.price, images.image FROM items LEFT JOIN images ON items.id = images.item_id LIMIT 0, 15") -> result_array();
+=======
+		return $this->db->query("SELECT items.id, items.name, items.description, items.price, items.inventory, images.image, categories.name AS category_name FROM items LEFT JOIN images ON items.id = images.item_id LEFT JOIN categories ON categories.id = items.category_id") -> result_array();
+>>>>>>> develop
 	}
 	public function sort_lowest()
 	{
