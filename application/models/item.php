@@ -12,7 +12,7 @@ class Item extends CI_model {
 		$query='SELECT items.name, items.price, items.id, items.price*? AS total, categories.name AS category FROM items
 				JOIN categories ON items.category_id=categories.id
 				WHERE items.id= ?';
-		$values=array($item['quantity'], $item['id']);
+		$values=array(intval($item['quantity']), $item['id']);
 		$data= $this->db->query($query, $values)->row_array();
 		$data['quantity']=$item['quantity'];
 
@@ -27,11 +27,6 @@ class Item extends CI_model {
 		$product = $this->db->query($query, $values)->row_array();
 		return $product;
 	}
-	// public function get_all_items()
-	// {
-	// 	return $this->db->query("SELECT items.id, items.name AS item_name, items.description, items.price, items.created_at, items.updated_at, items.category_id AS itemsCategory_ID
-	// 		FROM ITEMS")->result_array();
-	// }
 	public function get_all_categories()
 	{
 		return $this->db->query("SELECT * FROM categories") ->result_array();
