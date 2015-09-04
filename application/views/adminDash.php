@@ -13,10 +13,17 @@
     $(document).ready(function() {
       $('select').material_select();
 
+<<<<<<< HEAD
       // AJAX search and PAGINATION
          $('form').on('change', function(data){
           $.ajax({
             url: "admin_products",
+=======
+          // AJAX search and PAGINATION
+         $('form').on('change', function(data){
+          $.ajax({
+            url: "admin_orders",
+>>>>>>> ajax-search-pagination
             method: 'post',
             data: $('#search_form').serialize()
           }).done(function(data){
@@ -28,7 +35,11 @@
           var page_num = 0;
           $('#page_number').attr('value', page_num);
           $.ajax({
+<<<<<<< HEAD
             url: "admin_products",
+=======
+            url: "admin_orders",
+>>>>>>> ajax-search-pagination
             method: 'post',
             data: $('#search_form').serialize()
           }).done(function(data){
@@ -57,7 +68,7 @@
 <body class='container'>
 	<nav>
     <div class="nav-wrapper">
-      <a href="" class="brand-logo">Dashboard</a>
+      <a href="" class="brand-logo">Admin Dashboard</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
       	<li><a href="">Orders</a></li>
       	<li><a href="/products">Products</a></li>
@@ -76,6 +87,15 @@
             <label for="icon_prefix">Search</label>
           </div>
         </form>
+		 <form action='admin_orders' method='post' id='search_form'>
+        <div class="input-field col s6">
+          <i class="material-icons prefix">search</i>
+          <input id="icon_prefix" type="text" name='search' class='search'>
+          <input type='hidden' value='0' id='page_number' name='page_number'>
+          <label for="icon_prefix">Search</label>
+        </div>
+      </form>
+ <!-- ajax-search-pagination -->
     </li>
     <li class='show_all'>
     	<div class="input-field col s12">
@@ -89,85 +109,10 @@
     </li>
   </ul>
   <!-- start of table here -->
-  <table class='striped'>
-        <thead>
-          <tr>
-              <th data-field="orderID">Order ID</th>
-              <th data-field="name">Name</th>
-              <th data-field="date">Date</th>
-              <th data-field="bill_add">Billing Address</th>
-              <th data-field="total">Total</th>
-              <th data-field="status">Status</th>
-          </tr>
-        </thead>
-
-        <tbody>
- <!-- echo out data with a for loop here -->
-          <tr>
-            <td><a href="/orderPage">100</a></td>
-            <td>Eclair</td>
-            <td>09/1/15</td>
-            <td>3554 S Somewhere St Moon, CA</td>
-            <td>$99.99</td>
-            <td><!-- Dropdown Trigger -->
-				  <a class='dropdown-button btn' href='#' data-activates='dropdown1'>Status</a>
-
-				  <!-- Dropdown Structure -->
-				  <ul id='dropdown1' class='dropdown-content'>
-				    <li><a href="#!">Order In Process</a></li>
-				    <li><a href="#!">Shipped</a></li>
-				    <li class="divider"></li>
-				    <li><a href="#!">Cancelled</a></li>
-				  </ul>
-		  </td>
-          </tr>
-          <tr>
-            <td><a href="">99</a></td>
-            <td>Jellybean</td>
-            <td>09/1/15</td>
-            <td>9999 N MiddleOfNowhere, WA</td>
-            <td>$99.99</td>
-            <td><!-- Dropdown Trigger -->
-				  <a class='dropdown-button btn' href='#' data-activates='dropdown1'>Status</a>
-
-				  <!-- Dropdown Structure -->
-				  <ul id='dropdown1' class='dropdown-content'>
-				    <li><a href="#!">Order In Process</a></li>
-				    <li><a href="#!">Shipped</a></li>
-				    <li class="divider"></li>
-				    <li><a href="#!">Cancelled</a></li>
-				  </ul>
-		  </td>
-          </tr>
-          <tr>
-            <td><a href="">98</a></td>
-            <td>Lollipop</td>
-            <td>09/1/15</td>
-            <td>38573 S Volcano, WA</td>
-            <td>$99.99</td>
-            <td><!-- Dropdown Trigger -->
-				  <a class='dropdown-button btn' href='#' data-activates='dropdown1'>Status</a>
-
-				  <!-- Dropdown Structure -->
-				  <ul id='dropdown1' class='dropdown-content'>
-				    <li><a href="#!">Order In Process</a></li>
-				    <li><a href="#!">Shipped</a></li>
-				    <li class="divider"></li>
-				    <li><a href="#!">Cancelled</a></li>
-				  </ul>
-		  </td>
-          </tr>
-        </tbody>
-      </table>
-    <ul class="pagination">
-    <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
-    <li class="active"><a href="#!">1</a></li>
-    <li class="waves-effect"><a href="#!">2</a></li>
-    <li class="waves-effect"><a href="#!">3</a></li>
-    <li class="waves-effect"><a href="#!">4</a></li>
-    <li class="waves-effect"><a href="#!">5</a></li>
-    <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
-  </ul>
+  <h3>Orders</h3>
+  <div class='table_here'>
+<?php require('partials/admin_dash_partials.php') ?>
+  </div>
 
 </body>
 </html>

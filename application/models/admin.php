@@ -85,5 +85,27 @@ class admin extends CI_Model {
 		$values = array($search['search'] . '%', $search['search'] . '%', intval($search['page_number']));
 		return $this->db->query($query, $values)->result_array();
 	}
+	public function get_all_admin_orders()
+	{
+		return $this->db->query("SELECT orders.id, CONCAT_WS('', customers.ship_first_name, ' ', customers.ship_last_name) AS full_name, customers.created_at, customers.bill_address, customers.total_price, customers.status,
+			(SELECT COUNT(*) FROM orders) AS total
+			FROM orders
+			LEFT JOIN customers
+			ON orders.customers_id = customers.id
+			LIMIT 0, 5")->result_array();
+	}
+	public function get_admin_orders($search)
+	{
+		$query = "SELECT orders.id, CONCAT_WS('', customers.ship_first_name, ' ', customers.ship_last_name) AS full_name, customers.created_at, customers.bill_address, customers.total_price, customers.status,
+			(SELECT COUNT(*) FROM orders WHERE(orders.id
+				LIKE ?)) AS total
+			FROM orders
+			LEFT JOIN customers
+			ON orders.customers_id = customers.id
+			WHERE (orders.id LIKE ?)
+			LIMIT ?, 5";
+		$values = array($search['search'] . '%', $search['search'] . '%', intval($search['page_number']));
+		return $this->db->query($query, $values)->result_array();
+	}
 }
 ?>

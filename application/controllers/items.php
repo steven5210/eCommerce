@@ -25,10 +25,7 @@ class items extends CI_Controller {
 	{
 		$this->load->view('admin');
 	}
-	public function admin_loggedIn()
-	{
-		$this->load->view('adminDash');
-	}
+
 	public function logOff()
 	{
 	//	$this->session->session_destroy();
