@@ -63,6 +63,9 @@
       border-right: 1px solid black;
       padding-right: 5px;
     }
+    .mini_image {
+      width: 100%;
+    }
 
    </style>
    </head>
@@ -71,7 +74,11 @@
     <div class="nav-wrapper">
       <a href="#" class="brand-logo">PlaceHolder eCommerce</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="collapsible.html">Shopping Cart(40)</a></li>
+<!-- Shopping Cart item count -->
+<?php        if($this->session->userdata('cart')) {   ?>
+        <li><a href="/cart">Shopping Cart(
+          <?=array_sum($this->session->userdata('cart'))?>)</a></li>
+          <?php         }?>
       </ul>
     </div>
   </nav>
@@ -80,15 +87,15 @@
       <!-- completed -->
       <form action="search_by_name" method="post">
         <input type="text" name="search" placeholder="Product name">
-        <input type="submit" value="search">
+        <input type="hidden" name='page_number' value="0">
       </form>
       <h5>Categories</h5>
       <ul>
-        <li><a href="#">temporary category list item</a></li>
-        <li><a href="#">temporary category list item</a></li>
-        <li><a href="#">temporary category list item</a></li>
-        <li><a href="#">temporary category list item</a></li>
-        <li><a href="#">temporary category list item</a></li>
+        <!-- Category Loop -->
+<?php            foreach($get_all_categories as           $category)        { ?>
+        <li><a href="<?=$category['id']?>"><?=$category['name']?></a></li>
+
+<?php }?>
       </ul>
     </div>
     <div id="main_content">
@@ -104,7 +111,6 @@
           <select name="sort">
             <option value="price_lowest">Price lowest</option>
             <option value="price_highest">Price highest</option>
-            <option value="most_popular">Most Popular</option>
           </select>
         </p>
         <input type="submit">
@@ -112,12 +118,13 @@
       <div id="items_list">
         <table>
           <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+
+      <!-- Items Loop -->
+      <?php foreach($items as $item): ?>
+          <td><a href='/product_info/<?=$item['id']?>'><img class='mini_image' src="<?= $item['image']?>"></a><?=$item['name']."<br>".$item['price']?></td>
+      <?php endforeach; ?>
           </tr>
+
           <tr>
             <td></td>
             <td></td>

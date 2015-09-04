@@ -39,6 +39,14 @@
     width: 95px;
     display: inline-block;
     }
+    .price {
+      font-size: 25px;
+      color: red;
+    }
+    .buyDiv{
+      display: inline-block;
+      width: 10%;
+    }
    </style>
 
    </head>
@@ -48,27 +56,33 @@
       <a href="#" class="brand-logo">PlaceHolder eCommerce</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li><a href="/index">Home</a></li>
-        <li><a href="collapsible.html">Shopping Cart(40)</a></li>
+        <!-- Shopping Cart item count -->
+<?php        if($this->session->userdata('cart')) {   ?>
+        <li><a href="/cart">Shopping Cart(
+          <?=array_sum($this->session->userdata('cart'))?>)</a></li>
+          <?php         }?>
       </ul>
     </div>
   </nav>
-  
-  <h3>Product</h3>
+  <!-- Product Echo -->
+  <h3><?=$get_product['name']?></h3>
   <ul>
-    <li><img class='image_size' src="../assets/images/image1.jpg"><p class='description'>All I want is to be a monkey of moderate intelligence who wears a suit&hellip; that's why I'm transferring to business school! Kif, I have mated with a woman. Inform the men. We're also Santa Claus! Man, I'm sore all over. I feel like I just went ten rounds with mighty Thor. Is today's hectic lifestyle making you tense and impatient? No! Don't jump!</p></li>
+    <li><img class='image_size' src="../assets/images/image1.jpg"><p class='description'><?=$get_product['description']?></p></li>
     <li><img class='mini_image' src="../assets/images/image1.jpg"><img class='mini_image' src="../assets/images/image1.jpg"><img class='mini_image' src="../assets/images/image1.jpg"><img class='mini_image' src="../assets/images/image1.jpg"><img class='mini_image' src="../assets/images/image1.jpg"></li>
+    <li><p class='price'>$<?=$get_product['price']?></p></li>
   </ul>
   <div class='buyDiv'>
-    <div class="input-field col s12">
-      <select>
-        <option value="" disabled selected>Quantity</option>
-        <option value="1">1 ($19.99)</option>
-        <option value="2">2 ($29.99)</option>
-        <option value="3">3 ($39.99)</option>
-      </select>
-    </div>
-      <a class="btn" onclick="Materialize.toast('Item added to the cart!', 4000)">Buy!</a>
+    <!-- ADD in quantity function to shopping cart? -->
+    <form action="/add_cart" method='post'>​
+        <div class="input-field col s6">
+         <input name='id' type='hidden' value="<?=$get_product['id']?>">
+           <input id="quantity" type="text" name='quantity'>
+          <label for="quantity">Quantity</label>
+        </div>
+  </div>
+      <input type='submit' class="btn" onclick="Materialize.toast('Item added to the cart!', 4000)" value="Buy!">
   </div>  
+    </form>
   <h4>Similar Items</h4>
   <ul>
     <li><img class='mini_image2' src="../assets/images/image1.jpg"><img class='mini_image2' src="../assets/images/image1.jpg"><img class='mini_image2' src="../assets/images/image1.jpg"><img class='mini_image2' src="../assets/images/image1.jpg"><img class='mini_image2' src="../assets/images/image1.jpg"><img class='mini_image2' src="../assets/images/image1.jpg"><img class='mini_image2' src="../assets/images/image1.jpg"><img class='mini_image2' src="../assets/images/image1.jpg"></li>
