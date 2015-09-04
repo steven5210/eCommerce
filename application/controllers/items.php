@@ -102,15 +102,6 @@ class items extends CI_Controller {
 	// AJAX SEARCH 
 	public function search_ajax()
 	{
-		// $arr = array(
-		// 	"peter" => "Mr . Peter",
-		// 	"tom" => "Mr. Tom",
-		// 	"John" => "mr. john",
-		// 	"steven" => "mr steven",
-		// 	"xavier" => "mr x"
-		// );
-		
-		// return $arr;
 		$items['data'] = $this->item->display_all();
 		$results = $this->item->update_view($this->input->post());
 		$this->load->view('/partials/index_partial', array(
@@ -139,14 +130,10 @@ class items extends CI_Controller {
 
 	public function productsPage()
 	{
-		$products = $this->item->display_all();
+		$admin_products = $this->item->admin_display_all();
 		$this->load->view('productsPage',
-						array('products' => $products)
+						array('admin_products' => $admin_products)
 						);
-	}
-	public function orderPage()
-	{
-		$this->load->view('OrderPage');
 	}
 }
 ?>

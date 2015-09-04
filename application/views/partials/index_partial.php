@@ -13,19 +13,4 @@
     <td><a href='/product_info/<?=$item['id']?>'><img class='mini_image' src="../assets/images/image1.jpg"></a><?=$item['name']."<br>".$item['price']?></td>
     <?php  }  ?>
   	</tr>  
-<!-- 
-  	<tr>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-  	</tr>
-  	<tr>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-  	</tr> -->
 </table>
