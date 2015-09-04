@@ -118,6 +118,7 @@
 
           <?=array_sum($this->session->userdata('cart'))?>)</a></li>
           <?php         }?>
+
       </ul>
     </div>
   </nav>

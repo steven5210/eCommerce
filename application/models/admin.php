@@ -69,10 +69,17 @@ class admin extends CI_Model {
 		$value = $id;
 		$this->db->query($query, $value);
 	}
-	public function get_all_order()
+	public function get_all_orders()
 	{
+	return $this->db->query("SELECT orders.id, concat_ws(' ', customers.ship_first_name, customers.ship_last_name) as name, orders.created_at, concat_ws(' ', customers.bill_address, customers.bill_state ) as billing_address, customers.total_price, customers.status 
+						FROM orders 
+						LEFT JOIN customers 
+						ON customers.id = orders.customers_id 
+						LEFT JOIN items 
+						ON orders.items_id = items.id") -> result_array();
 
 	}
+
 	public function get_admin_products($search)
 	{
 		$query = "SELECT items.id, items.name, items.description, items.price, items.inventory, images.image, categories.name AS category_name, 
