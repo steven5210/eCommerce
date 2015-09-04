@@ -56,6 +56,13 @@
     table {
       height: 700px;
     }
+    .item{
+      width: 19.5%;
+      height: 33%;
+      outline: 1px solid black;
+      display: inline-block;
+      margin: 0;
+    }
     #pagination li {
       display: inline-block;
     }
@@ -92,14 +99,21 @@
       <h5>Categories</h5>
       <ul>
         <!-- Category Loop -->
-<?php            foreach($get_all_categories as           $category)        { ?>
-        <li><a href="<?=$category['id']?>"><?=$category['name']?></a></li>
-
+<?php foreach($get_all_categories as $category){ ?>
+        <li><a href="/category/<?=$category['id']?>"><?=$category['name']?></a></li>
 <?php }?>
+		<li><a href="/">Show All</a></li>
       </ul>
     </div>
     <div id="main_content">
-      <h4>Tshirts (page 2)</h4>
+<?php foreach($get_all_categories as $category){
+	if (isset($id)&&$category['id']==$id) {  
+		$header=ucfirst($category['name']); 
+ }elseif(!isset($id)){ 
+      $header="All Products";
+ }
+} ?>
+<h4><?=$header?></h4>
       <ul id="item_nav">
         <li><a href="#">first</a></li>
         <li><a href="#">prev</a></li>
@@ -116,30 +130,10 @@
         <input type="submit">
       </form>
       <div id="items_list">
-        <table>
-          <tr>
-
       <!-- Items Loop -->
-      <?php foreach($items as $item): ?>
-          <td><a href='/product_info/<?=$item['id']?>'><img class='mini_image' src="<?= $item['image']?>"></a><?=$item['name']."<br>".$item['price']?></td>
-      <?php endforeach; ?>
-          </tr>
-
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-        </table>
+      <?php foreach($items as $item){ ?>
+          <div class="item"><a href='/product_info/<?=$item['id']?>'><img class='mini_image' src="<?= $item['image']?>"></a><?=$item['name']."<br>".$item['price']?></div>
+      <?php } ?>
       </div>
       <ul id="pagination">
         <li><a href="#">1</a></li>

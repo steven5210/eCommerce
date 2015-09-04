@@ -14,6 +14,16 @@ class items extends CI_Controller {
 		$get_all_categories = $this->item->get_all_categories();
 		$this->load->view('index', 
 						array('items' => $items, 'get_all_categories' => $get_all_categories));
+		
+	}
+	public function get_category($id)
+	{
+		$get_all_categories = $this->item->get_all_categories();
+		$items=$this->item->get_category($id);
+		$this->load->view('index', 
+						array('items' => $items,
+						 'get_all_categories' => $get_all_categories,
+						 'id'=>$id));
 	}
 	public function product_infoView($id)
 	{
