@@ -76,7 +76,7 @@ class admin extends CI_Model {
 						LEFT JOIN customers 
 						ON customers.id = orders.customers_id 
 						LEFT JOIN items 
-						ON orders.items_id = items.id");
+						ON orders.items_id = items.id") -> result_array();
 
 	}
 }

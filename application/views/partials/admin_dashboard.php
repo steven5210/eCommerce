@@ -1,4 +1,4 @@
-<?php foreach($orders as $order): ?>
+<?php var_dump($orders); foreach($orders as $order): ?>
 	<ul>
 		<li>hello</li>
 		<li>mudda</li>

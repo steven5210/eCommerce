@@ -1,4 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
 class items extends CI_Controller {
  
 	public function __construct()
@@ -8,6 +9,7 @@ class items extends CI_Controller {
 
             // Your own constructor code
        }
+	
 	public function index()
 	{
 		$items = $this->item->display_all();
@@ -108,6 +110,7 @@ class items extends CI_Controller {
 	}
 	public function sort_by()
 	{
+
 		if($data['sort'] == 'price_lowest')
 		{
 			$this->item->sort_lowest();
@@ -118,6 +121,9 @@ class items extends CI_Controller {
 			$this->item->sort_highest();
 			redirect('/');
 		}
+
+		$data = $this->input->post();
+
 	}
 
 	public function productsPage()
@@ -126,10 +132,6 @@ class items extends CI_Controller {
 		$this->load->view('productsPage',
 						array('products' => $products)
 						);
-	}
-	public function orderPage()
-	{
-		$this->load->view('OrderPage');
 	}
 }
 ?>
