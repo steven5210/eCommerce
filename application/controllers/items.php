@@ -28,9 +28,10 @@ class items extends CI_Controller {
 	}
 	public function product_infoView($id)
 	{
+		$items = $this->item->display_all();
 		$get_product = $this->item->get_product($id);
 		$this->load->view('product_info', 
-						array('get_product' => $get_product));
+						array('items' => $items,'get_product' => $get_product));
 	}
 	public function admin_login_page()
 	{

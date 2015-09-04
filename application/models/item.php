@@ -20,8 +20,9 @@ class Item extends CI_model {
 	}
 	public function get_product($id)
 	{
-		$query = "SELECT items.id, items.name, items.price, items.description
+		$query = "SELECT items.id, items.name, items.price, items.description, categories.name AS category
 				 FROM items
+				 JOIN categories ON categories.id=items.category_id
 				 WHERE items.id = ?";
 		$values = array($id);
 		$product = $this->db->query($query, $values)->row_array();

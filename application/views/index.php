@@ -157,19 +157,20 @@
         <li><a href="#">next</a></li>
       </ul>
       <div id="items_list">
-      <form action="sort_by" method="post">
-        <p>Sorted by
-          <select name="sort">
-            <option value="price_lowest">Price lowest</option>
-            <option value="price_highest">Price highest</option>
-          </select>
+        <form action="sort_by" method="post">
+          <p>Sorted by
+            <select name="sort">
+              <option value="price_lowest">Price lowest</option>
+              <option value="price_highest">Price highest</option>
+           </select>
         </p>
-        <input type="submit">
-      </form>
+          <input type="submit">
+        </form>
  <!-- AJAX HERE for table      -->
       <div class="table_here">
         <?php require('partials/index_partial.php') ?>
       </div>
+
     </div>
   </div>
 </body>
