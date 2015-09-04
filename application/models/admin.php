@@ -107,5 +107,45 @@ class admin extends CI_Model {
 		$values = array($search['search'] . '%', $search['search'] . '%', intval($search['page_number']));
 		return $this->db->query($query, $values)->result_array();
 	}
+	public function get_by_order($id)
+	{
+		$query = "SELECT orders.id AS order_id, customers.ship_address, concat_ws('', customers.ship_first_name, ' ', customers.ship_last_name) AS ship_name, 
+			customers.ship_city AS ship_city, customers.ship_state AS ship_state, customers.ship_zipcode AS ship_zipcode, 
+			concat_ws('', customers.bill_first_name, ' ',customers.bill_last_name) AS bill_name, customers.bill_address, 
+			customers.bill_city, customers.bill_state, customers.bill_zipcode,
+			items.id AS item_id, categories.name as category_name, items.price as item_price, orders.quantity,
+			customers.total_price, customers.status
+			FROM customers
+			LEFT JOIN orders
+			ON customers.id = orders.customers_id
+			LEFT JOIN items
+			ON orders.items_id = items.id
+			LEFT JOIN categories
+			ON items.category_id = categories.id
+			WHERE orders.id = ?";
+		
+		$values = $id;
+		return $this->db->query($query, $values)->row_array();
+	}
+	public function get_all_order_by_id($id)
+	{
+		$query = "SELECT orders.id AS order_id, customers.ship_address, concat_ws('', customers.ship_first_name, ' ', customers.ship_last_name) AS ship_name, 
+			customers.ship_city AS ship_city, customers.ship_state AS ship_state, customers.ship_zipcode AS ship_zipcode, 
+			concat_ws('', customers.bill_first_name, ' ',customers.bill_last_name) AS bill_name, customers.bill_address, 
+			customers.bill_city, customers.bill_state, customers.bill_zipcode,
+			items.id AS item_id, categories.name as category_name, items.price as item_price, orders.quantity,
+			customers.total_price, customers.status
+			FROM customers
+			LEFT JOIN orders
+			ON customers.id = orders.customers_id
+			LEFT JOIN items
+			ON orders.items_id = items.id
+			LEFT JOIN categories
+			ON items.category_id = categories.id
+			WHERE orders.id = ?";
+		
+		$values = $id;
+		return $this->db->query($query, $values)->result_array();
+	}
 }
 ?>

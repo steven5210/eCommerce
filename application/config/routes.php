@@ -22,8 +22,6 @@ $route['products'] = 'items/productsPage';
 // Main admin login redirect
 $route['ordersMain'] = 'admin_rights/admin_loggedIn';
 
-$route['orderPage'] = 'admin_rights/orderPage';
-
  // ajax-search-pagination
 
 $route['upload_product'] = 'admins/add_product';
