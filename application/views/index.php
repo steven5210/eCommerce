@@ -103,8 +103,7 @@
           <?=array_sum($this->session->userdata('cart'))?>)</a></li>
           <?php         }?>
 
-          <?=count($this->session->userdata('cart'))?>)</a></li>
-          <?php        }?>
+  
           
       </ul>
     </div>
