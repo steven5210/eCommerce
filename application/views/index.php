@@ -13,8 +13,30 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       <script type="text/javascript">
-    $(document).ready(function() {
+    $(document).ready(function() 
+    {
       $('select').material_select();
+      // search function AJAX
+      $('#search').keyup(function(event)
+          {
+            event.preventDefault();
+            search_ajax();
+          });
+            function search_ajax()
+            {
+              $('#items_list').show();
+              var search_this = $('#search').val();
+              $.post('/items/search_ajax', {searchit : search_this}, function(data)
+                {
+                   $('#items_list').html(data);   
+                })  
+            };
+      $(document).on('click', 'a', function()
+        {
+          var page_val = $(this).attr('value');
+          $('#page_number').attr('value', page_val);
+          $('form').trigger('change');
+        })
   });
    </script>
    <style>
@@ -77,17 +99,22 @@
 <!-- Shopping Cart item count -->
 <?php        if($this->session->userdata('cart')) {   ?>
         <li><a href="/cart">Shopping Cart(
+
           <?=array_sum($this->session->userdata('cart'))?>)</a></li>
           <?php         }?>
+
+          <?=count($this->session->userdata('cart'))?>)</a></li>
+          <?php        }?>
+          
       </ul>
     </div>
   </nav>
   <div id="wrapper">
     <div id='side_nav'>
       <!-- completed -->
-      <form action="search_by_name" method="post">
-        <input type="text" name="search" placeholder="Product name">
-        <input type="hidden" name='page_number' value="0">
+      <form action="/items/search_ajax" method="post" id='search_form'>
+        <input id='search' type="text" name="search" placeholder="Product name">
+        <input id='page_number' type="hidden" name='page_number' value="0">
       </form>
       <h5>Categories</h5>
       <ul>
@@ -115,37 +142,11 @@
         </p>
         <input type="submit">
       </form>
+ <!-- AJAX HERE for table      -->
       <div id="items_list">
-        <table>
-          <tr>
+        <?php require('partials/index_partial.php') ?>
 
-      <!-- Items Loop -->
-      <?php foreach($items as $item): ?>
-          <td><a href='/product_info/<?=$item['id']?>'><img class='mini_image' src="<?= $item['image']?>"></a><?=$item['name']."<br>".$item['price']?></td>
-      <?php endforeach; ?>
-          </tr>
-
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-        </table>
       </div>
-      <ul id="pagination">
-        <li><a href="#">1</a></li>
-        <li><a href="#">2</a></li>
-        <li><a href="#">3</a></li>
-      </ul>
     </div>
   </div>
 </body>

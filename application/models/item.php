@@ -41,6 +41,16 @@ class Item extends CI_model {
 	{
 		return $this->db->query("SELECT items.id, items.name, items.description, items.price, items.inventory, images.image, categories.name AS category_name FROM items LEFT JOIN images ON items.id = images.item_id LEFT JOIN categories ON categories.id = items.category_id") -> result_array();
 	}
+// ADMIN SIDE PRODUCT DISPLAY ALL
+	public function admin_display_all()
+	{
+		return $this->db->query("SELECT items.id, items.name, items.description, items.price, items.inventory, images.image, categories.name AS category_name, 
+			(SELECT COUNT(*) FROM items) AS total
+			FROM items
+			LEFT JOIN images ON items.id = images.item_id 
+			LEFT JOIN categories ON categories.id = items.category_id
+			LIMIT 0, 5")->result_array();
+	}
 	public function sort_lowest()
 	{
 		return $this->db->query("SELECT * FROM items GROUP BY price DESC") -> result_array();
@@ -49,6 +59,15 @@ class Item extends CI_model {
 	public function sort_highest()
 	{
 		return $this->db->query("SELECT * FROM items GROUP BY price ASC") -> result_array();
+	}
+// AJAX search
+	public function update_view($data)
+	{
+		$query = "SELECT * FROM items
+				WHERE name LIKE ?
+				LIMIT ?, 15";
+		$values = array($data['search'], intval($data['page_number']));
+		return $this->db->query($query, $values)->result_array();
 	}
 }
 ?>
