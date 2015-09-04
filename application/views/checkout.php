@@ -1,3 +1,4 @@
+<?php require_once('config.php'); ?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -15,13 +16,11 @@
       <script type="text/javascript">
     $(document).ready(function() {
       $('select').material_select();
-     //  $('.datepicker').pickadate({
-  	  //   selectMonths: true, // Creates a dropdown to control month
-  	  //   selectYears: 15, // Creates a dropdown of 15 years to control year
-  	  //   selectDays: false
-  	  // });
       $('#test5').change(function(){
         $('.billinginfo').slideToggle();
+      })
+      $('form').submit(function(){
+
         if($('#test5').is(':checked')){
             $('#bill_first_name').val($('#first_name').val());
             $('#bill_last_name').val($('#last_name').val());
@@ -40,7 +39,7 @@
           $('#bill_state').val("");
           $('#bill_zipcode').val("");
         };
-      })
+      })  
   });
    </script>
    </head>
@@ -58,11 +57,11 @@
 <div class="cart">
  <!-- THIS IS A DUMMY TABLE FOR TESTING, REMOVE IT BEFORE MERGING TO MASTER -->
   <!-- <form action="/items/update_cart_quantity" method='post'> -->
-  <form action="/items/add_to_cart" method='post'>
+<!--   <form action="/items/add_to_cart" method='post'>
     <input type="text" name='id' placeholder="test item id">
     <input type="text" name='quantity'placeholder="test item quantity">
     <input type="submit" value="submit">
-  </form>
+  </form> -->
   <!-- THIS IS WHERE REAL STUFF STARTS UP AGAIN -->
 	<table class="bordered striped">
 		<thead>
@@ -97,6 +96,7 @@
 	<div class="row">
 		<div class="col s4 offset-s8">
 			<h5>Total: $<?=$total?></h5>
+      <a href="/items/empty_cart">Clear Cart</a>
 			<a href="/" class="waves-effect waves-light btn">Continue Shopping</a>
 		</div>
 	</div>
@@ -208,19 +208,28 @@
           </div>
           <div class="row">
             <div class="input-field col s4">
-              <input name="month" type="text" class="validate">
+              <input name="month" type="number" min='1' max='12' class="validate">
               <label for="month">Month</label>
             </div>
             <div class="input-field col s4">
-              <input name="year" type="text" class="validate">
+              <input name="year" type="number" min='2015' max='2025' class="validate">
               <label for="year">Year</label>
             </div>
           </div>
-           <!-- <input type="date" class="datepicker"> -->
             <button class="btn waves-effect waves-light" type="submit" name="action">Buy
             <i class="material-icons">send</i>
             </button>
         </form>
     </div>
+  <div>
+    <form action="charge" method="post">
+      <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+              data-key="<?php echo $stripe['publishable_key']; ?>"
+              data-description="Access for a year"
+              data-amount="5000"
+              data-locale="auto">
+      </script>
+    </form>
+  </div>
 </div>
 </html>

@@ -13,6 +13,36 @@
     $(document).ready(function() {
       $('select').material_select();
        $('.modal-trigger').leanModal();
+
+    // AJAX search and PAGINATION
+         $('form').on('change', function(data){
+          $.ajax({
+            url: "admin_products",
+            method: 'post',
+            data: $('#search_form').serialize()
+          }).done(function(data){
+            $('.table_here').html(data);
+          })
+          return false;      
+        });
+        $('.search').keyup(function(data){
+          var page_num = 0;
+          $('#page_number').attr('value', page_num);
+          $.ajax({
+            url: "admin_products",
+            method: 'post',
+            data: $('#search_form').serialize()
+          }).done(function(data){
+            $('.table_here').html(data);
+          })
+          return false;
+        })
+        $(document).on('click', '.page_link', function(){
+          var page_num = $(this).attr('value');
+          console.log(page_num);
+          $('#page_number').attr('value', page_num);
+          $('#search_form').trigger('change');
+        })
     });
    </script>
    <style>
@@ -47,11 +77,14 @@
 
   <ul>
     <li>
-      <div class="input-field col s6">
-        <i class="material-icons prefix">search</i>
-        <input id="icon_prefix" type="text" class="validate">
-        <label for="icon_prefix">Search</label>
-      </div>
+      <form action='admin_products' method='post' id='search_form'>
+        <div class="input-field col s6">
+          <i class="material-icons prefix">search</i>
+          <input id="icon_prefix" type="text" name='search' class='search'>
+          <input type='hidden' value='0' id='page_number' name='page_number'>
+          <label for="icon_prefix">Search</label>
+        </div>
+      </form>
     </li>
     <li>
     <?php 
@@ -85,14 +118,14 @@
                 <span>Image</span>
                 <input type="file" name="userfile">
               </div>
-<!-- Add in the draggable functionality here -->
+<!-- Add in the draggable functionality here
               <ul>
                 <li class='button'><button id='buttonSpace' class="btn waves-effect waves-light" type="submit">Cancel</button>
                   <button id='buttonSpace' class="btn waves-effect waves-light" type="submit">Preview</button>
                   <button class="btn waves-effect waves-light" type="submit">Add Product</button>
                 </li>
               </ul>
-            </form>​
+            </form>​ -->
           </div>
         </div>
       </li>
@@ -118,6 +151,7 @@
   </ul>
 
 <!-- start of table here -->
+
   <table class='striped'>
     <thead>
       <tr>
@@ -259,4 +293,9 @@
     <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
   </ul>
 </body>
+
+<div class='table_here'>
+<?php     require('partials/admin_partials.php')        ?>
+</div>   
+
 </html>

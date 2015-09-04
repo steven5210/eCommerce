@@ -12,12 +12,12 @@ class Customers extends CI_Controller {
       $data = $this->input->post();
 	   	$this->customer->buy($data);
 	   	redirect ('/');
-
       $result = $this->customer->validate_order($data);
         if($result == 'valid')
         {
           $this->customer->buy($data);
-          redirect ('/success');
+          $this->session->sess_destroy();
+          redirect ('/');
         }
         else
         {
@@ -26,6 +26,11 @@ class Customers extends CI_Controller {
           redirect('/cart');
         }
    }
+  public function charge()
+  {
+    $data = $this->input->post();
+    var_dump($data);
+  } 
 }
 
 ?>

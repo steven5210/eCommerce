@@ -12,9 +12,37 @@
       <script type="text/javascript">
     $(document).ready(function() {
       $('select').material_select();
-      $.get("admin_rights/get_customer_orders", function(res) {
-        console.log(res);
-      });
+
+
+          // AJAX search and PAGINATION
+         $('form').on('change', function(data){
+          $.ajax({
+            url: "admin_orders",
+            method: 'post',
+            data: $('#search_form').serialize()
+          }).done(function(data){
+            $('.table_here').html(data);
+          })
+          return false;      
+        });
+        $('.search').keyup(function(data){
+          var page_num = 0;
+          $('#page_number').attr('value', page_num);
+          $.ajax({
+            url: "admin_orders",
+            method: 'post',
+            data: $('#search_form').serialize()
+          }).done(function(data){
+            $('.table_here').html(data);
+          })
+          return false;
+        })
+        $(document).on('click', '.page_link', function(){
+          var page_num = $(this).attr('value');
+          console.log(page_num);
+          $('#page_number').attr('value', page_num);
+          $('#search_form').trigger('change');
+        })
   	});
    </script>
    <style>
@@ -30,7 +58,7 @@
 <body class='container'>
 	<nav>
     <div class="nav-wrapper">
-      <a href="" class="brand-logo">Dashboard</a>
+      <a href="" class="brand-logo">Admin Dashboard</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
       	<li><a href="">Orders</a></li>
       	<li><a href="/products">Products</a></li>
@@ -40,11 +68,15 @@
   </nav>
   <ul>
   	<li>
-		<div class="input-field col s6">
-	         <i class="material-icons prefix">search</i>
-	         <input id="icon_prefix" type="text" class="validate">
-	         <label for="icon_prefix">Search</label>
-		</div>
+<!-- SEARCH BOX -->
+  		<form action='admin_orders' method='post' id='search_form'>
+          <div class="input-field col s6">
+            <i class="material-icons prefix">search</i>
+            <input id="icon_prefix" type="text" name='search' class='search'>
+            <input type='hidden' value='0' id='page_number' name='page_number'>
+            <label for="icon_prefix">Search</label>
+          </div>
+        </form>
     </li>
     <li class='show_all'>
     	<div class="input-field col s12">
@@ -58,6 +90,7 @@
     </li>
   </ul>
   <!-- start of table here -->
+
   <table class='striped'>
         <thead>
           <tr>
@@ -138,6 +171,12 @@
     <li class="waves-effect"><a href="#!">5</a></li>
     <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
   </ul>
+
+  <h3>Orders</h3>
+  <div class='table_here'>
+<?php require('partials/admin_dash_partials.php') ?>
+  </div>
+
 
 </body>
 </html>

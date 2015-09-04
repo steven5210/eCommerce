@@ -22,15 +22,30 @@ $route['sort_by'] = 'items/sort_by';
 
 $route['products'] = 'items/productsPage';
 
+
 $route['ordersMain'] = 'items/admin_loggedIn';
 $route['orderPage'] = 'items/orderPage';
+
+$route['category/(:any)'] = 'items/get_category/$1';
+
+// Main admin login redirect
+$route['ordersMain'] = 'admin_rights/admin_loggedIn';
+
+ // ajax-search-pagination
+
 
 
 $route['upload_product'] = 'admins/add_product';
 $route['customers/buy'] = 'customers/buy';
+$route['orderPage/(:any)'] = 'admin_rights/orderPage/$1';
 
 //Admin rights controller for add, update, and etc
 $route['add_product'] = 'admin_rights/add_product';
 $route['update_product'] = 'admin_rights/update_product';
 $route['delete/(:any)'] = 'admin_rights/delete_product/$1';
+$route['admin_products'] = 'admin_rights/get_admin_products';
+
+$route['charge'] = 'customers/charge';
+
+$route['admin_orders'] = 'admin_rights/get_admin_orders';
 ?>

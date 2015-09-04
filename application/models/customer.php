@@ -16,15 +16,16 @@ class Customer extends CI_Model {
 		$cust_id=$this->db->insert_id();
 		foreach ($cart as $id => $quantity) {
 			$query="INSERT INTO orders(customers_id, items_id, quantity) VALUES(?,?,?)";
-			$values=array($cust_id,$id,$quantity);
+			$values=array($cust_id,$id,intval($quantity));
 			$this->db->query($query,$values);
+			$query2="UPDATE items SET inventory = inventory - ? WHERE id = ?";
+			$values2=array(intval($quantity), $id);
+			$this->db->query($query2,$values2);
 		}
 	}
 
 	public function validate_order($post)
 	{
-		var_dump($this->input->post());
-		die();
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('first_name', 'First Name','trip|required|alpha');
 		$this->form_validation->set_rules('last_name', 'Last Name', 'trip|required|alpha');
