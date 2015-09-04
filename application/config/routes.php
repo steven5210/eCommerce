@@ -24,7 +24,8 @@ $route['category/(:any)'] = 'items/get_category/$1';
 // Main admin login redirect
 $route['ordersMain'] = 'admin_rights/admin_loggedIn';
 
- // ajax-search-pagination
+ // ajax-search-pagination index page
+$route['index_partials'] = 'items/search_ajax';
 
 $route['upload_product'] = 'admins/add_product';
 $route['customers/buy'] = 'customers/buy';

@@ -74,13 +74,23 @@ class Item extends CI_model {
 		return $this->db->query("SELECT * FROM items GROUP BY price ASC") -> result_array();
 	}
 // AJAX search
-	public function update_view($data)
+	public function update_view($search)
 	{
-		$query = "SELECT * FROM items
-				WHERE name LIKE ?
-				LIMIT ?, 15";
-		$values = array($data['search'], intval($data['page_number']));
+		$query = "SELECT *,
+			(SELECT COUNT(*) FROM items WHERE(items.name
+				LIKE ?)) AS total
+			FROM items
+			WHERE (items.name LIKE ?)
+			LIMIT ?, 15";
+		$values = array($search['search'] . '%', $search['search'] . '%', intval($search['page_number']));
 		return $this->db->query($query, $values)->result_array();
+	}
+	public function get_all_items()
+	{
+		return $this->db->query("SELECT *,
+			(SELECT COUNT(*) FROM items) AS total
+			FROM items
+			LIMIT 0, 15")->result_array();
 	}
 }
 ?>

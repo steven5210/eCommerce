@@ -1,9 +1,3 @@
-
-<!--       <ul id="pagination">
-        <li><a href="#">1</a></li>
-        <li><a href="#">2</a></li>
-        <li><a href="#">3</a></li>
-      </ul> -->
 <table>
     <tr>
 
@@ -14,3 +8,18 @@
     <?php  }  ?>
   	</tr>  
 </table>
+
+<!-- PAGINATION START -->
+<div id='pagination'>
+  <ul class="pagination">
+    <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+<?php     if($items)
+      {
+        $count = ($items['total']/5);
+          for($i = 0; $i < $count; $i++)
+          {         ?>
+    <li class="active"><a class='page_link' href="#" value='<?=$i * 5?>'><?=$i + 1?></a></li>
+<?php     }   
+          } ?>
+    <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+  </ul>

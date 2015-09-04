@@ -16,32 +16,37 @@
     $(document).ready(function() 
     {
       $('select').material_select();
-<<<<<<< HEAD
-});
-=======
-      // search function AJAX
-      $('#search').keyup(function(event)
-          {
-            event.preventDefault();
-            search_ajax();
-          });
-            function search_ajax()
-            {
-              $('#items_list').show();
-              var search_this = $('#search').val();
-              $.post('/items/search_ajax', {searchit : search_this}, function(data)
-                {
-                   $('#items_list').html(data);   
-                })  
-            };
-      $(document).on('click', 'a', function()
-        {
-          var page_val = $(this).attr('value');
-          $('#page_number').attr('value', page_val);
-          $('form').trigger('change');
+
+  // AJAX search and PAGINATION
+         $('form').on('change', function(data){
+          $.ajax({
+            url: "index_partials",
+            method: 'post',
+            data: $('#search_form').serialize()
+          }).done(function(data){
+            $('.table_here').html(data);
+          })
+          return false;      
+        });
+        $('.search').keyup(function(data){
+          var page_num = 0;
+          $('#page_number').attr('value', page_num);
+          $.ajax({
+            url: "index_partials",
+            method: 'post',
+            data: $('#search_form').serialize()
+          }).done(function(data){
+            $('.table_here').html(data);
+          })
+          return false;
+        })
+        $(document).on('click', '.page_link', function(){
+          var page_num = $(this).attr('value');
+          console.log(page_num);
+          $('#page_number').attr('value', page_num);
+          $('#search_form').trigger('change');
         })
   });
->>>>>>> 817db707aac574b87778f8f3a42467fbb0b2c225
    </script>
    <style>
     #side_nav {
@@ -118,10 +123,14 @@
   </nav>
   <div id="wrapper">
     <div id='side_nav'>
-      <!-- completed -->
-      <form action="/items/search_ajax" method="post" id='search_form'>
-        <input id='search' type="text" name="search" placeholder="Product name">
-        <input id='page_number' type="hidden" name='page_number' value="0">
+<!-- SEARCH FORM AJAX -->
+       <form action='index_partials' method='post' id='search_form'>
+        <div class="input-field col s6">
+          <i class="material-icons prefix">search</i>
+          <input id="icon_prefix" type="text" name='search' class='search'>
+          <input type='hidden' value='0' id='page_number' name='page_number'>
+          <label for="icon_prefix">Search</label>
+        </div>
       </form>
       <h5>Categories</h5>
       <ul>
@@ -148,15 +157,6 @@
         <li><a href="#">next</a></li>
       </ul>
       <div id="items_list">
-      <!-- Items Loop -->
-      <?php foreach($items as $item){ 
-      	if(isset($max_price)&& $item['price']>=$max_price){
-
-      	}else{ ?>
-          <div class="item"><a href='/product_info/<?=$item['id']?>'><img class='mini_image' src="<?= $item['image']?>"></a><?=$item['name']."<br>".$item['price']?></div>
-      <?php }
-      } ?>
-
       <form action="sort_by" method="post">
         <p>Sorted by
           <select name="sort">
@@ -167,7 +167,7 @@
         <input type="submit">
       </form>
  <!-- AJAX HERE for table      -->
-      <div id="items_list">
+      <div class="table_here">
         <?php require('partials/index_partial.php') ?>
       </div>
     </div>

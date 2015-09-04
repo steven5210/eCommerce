@@ -11,9 +11,10 @@ class items extends CI_Controller {
 	public function index()
 	{
 		$items = $this->item->display_all();
+		$items_all = $this->item->get_all_items();
 		$get_all_categories = $this->item->get_all_categories();
 		$this->load->view('index', 
-						array('items' => $items, 'get_all_categories' => $get_all_categories));
+						array('items' => $items, 'get_all_categories' => $get_all_categories, 'items_all' => $items_all));
 		
 	}
 	public function get_category($id)
@@ -110,13 +111,12 @@ class items extends CI_Controller {
 		$this->session->set_userdata('cart', $cart);
 		redirect('/cart');
 	}
-	// AJAX SEARCH 
+// AJAX SEARCH 
 	public function search_ajax()
 	{
-		$items['data'] = $this->item->display_all();
-		$results = $this->item->update_view($this->input->post());
-		$this->load->view('/partials/index_partial', array(
-			'results'=>$results, 'items' => $items));
+		$items = $this->item->update_view($this->input->post());
+            $this->load->view('/partials/index_partial',
+                    array('items' => $items));
 	}
 	// End of AJAX search
 	public function search_by_name()
