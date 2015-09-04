@@ -30,4 +30,5 @@ $route['customers/buy'] = 'customers/buy';
 $route['add_product'] = 'admin_rights/add_product';
 $route['update_product'] = 'admin_rights/update_product';
 $route['delete/(:any)'] = 'admin_rights/delete_product/$1';
+$route['customer_orders'] = 'admin_rights/get_all_orders';
 ?>

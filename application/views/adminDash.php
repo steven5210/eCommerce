@@ -12,6 +12,9 @@
       <script type="text/javascript">
     $(document).ready(function() {
       $('select').material_select();
+      $.get("admin_rights/get_customer_orders", function(res) {
+        console.log(res);
+      });
   	});
    </script>
    <style>
@@ -67,7 +70,7 @@
           </tr>
         </thead>
 
-        <tbody>
+        <tbody id="orders">
  <!-- echo out data with a for loop here -->
           <tr>
             <td><a href="/orderPage">100</a></td>
@@ -76,16 +79,17 @@
             <td>3554 S Somewhere St Moon, CA</td>
             <td>$99.99</td>
             <td><!-- Dropdown Trigger -->
-				  <a class='dropdown-button btn' href='#' data-activates='dropdown1'>Status</a>
+				      <a class='dropdown-button btn' href='#' data-activates='dropdown1'>Status</a>
 
 				  <!-- Dropdown Structure -->
-				  <ul id='dropdown1' class='dropdown-content'>
-				    <li><a href="#!">Order In Process</a></li>
-				    <li><a href="#!">Shipped</a></li>
-				    <li class="divider"></li>
-				    <li><a href="#!">Cancelled</a></li>
-				  </ul>
-		  </td>
+      				  <ul id='dropdown1' class='dropdown-content'>
+      				    <li><a href="#!">Order In Process</a></li>
+      				    <li><a href="#!">Shipped</a></li>
+      				    <li class="divider"></li>
+      				    <li><a href="#!">Cancelled</a></li>
+      				  </ul>
+
+      		  </td>
           </tr>
           <tr>
             <td><a href="">99</a></td>
