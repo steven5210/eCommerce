@@ -102,8 +102,19 @@ class items extends CI_Controller {
 	// AJAX SEARCH 
 	public function search_ajax()
 	{
-		var_dump($this->input->post());
-		die();
+		// $arr = array(
+		// 	"peter" => "Mr . Peter",
+		// 	"tom" => "Mr. Tom",
+		// 	"John" => "mr. john",
+		// 	"steven" => "mr steven",
+		// 	"xavier" => "mr x"
+		// );
+		
+		// return $arr;
+		$items['data'] = $this->item->display_all();
+		$results = $this->item->update_view($this->input->post());
+		$this->load->view('/partials/index_partial', array(
+			'results'=>$results, 'items' => $items));
 	}
 	// End of AJAX search
 	public function search_by_name()
