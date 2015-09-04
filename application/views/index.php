@@ -16,9 +16,6 @@
     $(document).ready(function() 
     {
       $('select').material_select();
-<<<<<<< HEAD
-});
-=======
       // search function AJAX
       $('#search').keyup(function(event)
           {
@@ -41,7 +38,7 @@
           $('form').trigger('change');
         })
   });
->>>>>>> 817db707aac574b87778f8f3a42467fbb0b2c225
+
    </script>
    <style>
     #side_nav {
@@ -149,27 +146,10 @@
       </ul>
       <div id="items_list">
       <!-- Items Loop -->
-      <?php foreach($items as $item){ 
-      	if(isset($max_price)&& $item['price']>=$max_price){
-
-      	}else{ ?>
+      <?php foreach($items as $item){ ?>
           <div class="item"><a href='/product_info/<?=$item['id']?>'><img class='mini_image' src="<?= $item['image']?>"></a><?=$item['name']."<br>".$item['price']?></div>
-      <?php }
-      } ?>
+      <?php } ?>
 
-      <form action="sort_by" method="post">
-        <p>Sorted by
-          <select name="sort">
-            <option value="price_lowest">Price lowest</option>
-            <option value="price_highest">Price highest</option>
-          </select>
-        </p>
-        <input type="submit">
-      </form>
- <!-- AJAX HERE for table      -->
-      <div id="items_list">
-        <?php require('partials/index_partial.php') ?>
-      </div>
     </div>
   </div>
 </body>

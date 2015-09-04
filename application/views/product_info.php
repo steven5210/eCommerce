@@ -47,6 +47,12 @@
       display: inline-block;
       width: 10%;
     }
+    li{
+      display: inline-block;
+      margin-left: 10px;
+      padding-left: 10px;
+      border-left: 1px solid black;
+    }
    </style>
 
    </head>
@@ -85,7 +91,11 @@
     </form>
   <h4>Similar Items</h4>
   <ul>
-    <li><img class='mini_image2' src="../assets/images/image1.jpg"><img class='mini_image2' src="../assets/images/image1.jpg"><img class='mini_image2' src="../assets/images/image1.jpg"><img class='mini_image2' src="../assets/images/image1.jpg"><img class='mini_image2' src="../assets/images/image1.jpg"><img class='mini_image2' src="../assets/images/image1.jpg"><img class='mini_image2' src="../assets/images/image1.jpg"><img class='mini_image2' src="../assets/images/image1.jpg"></li>
+    <?php foreach($items as $item){
+        if($item['category_name']==$get_product['category']){ ?>
+      <li><a href='/product_info/<?=$item['id']?>'><img class='mini_image' src="<?= $item['image']?>"></a> <br><?=$item['name']?></li>
+      <?php }
+    } ?>
   </ul>
 
 </body>
