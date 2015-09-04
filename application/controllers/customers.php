@@ -26,6 +26,11 @@ class Customers extends CI_Controller {
           redirect('/cart');
         }
    }
+  public function charge()
+  {
+    $data = $this->input->post();
+    var_dump($data);
+  } 
 }
 
 ?>

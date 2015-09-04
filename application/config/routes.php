@@ -31,4 +31,6 @@ $route['add_product'] = 'admin_rights/add_product';
 $route['update_product'] = 'admin_rights/update_product';
 $route['delete/(:any)'] = 'admin_rights/delete_product/$1';
 $route['admin_products'] = 'admin_rights/get_admin_products';
+$route['billing'] = 'customers/pay';
+$route['charge'] = 'customers/charge';
 ?>

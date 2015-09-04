@@ -1,3 +1,4 @@
+<?php require_once('config.php'); ?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -225,5 +226,15 @@
             </button>
         </form>
     </div>
+  <div>
+    <form action="charge" method="post">
+      <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+              data-key="<?php echo $stripe['publishable_key']; ?>"
+              data-description="Access for a year"
+              data-amount="5000"
+              data-locale="auto">
+      </script>
+    </form>
+  </div>
 </div>
 </html>
