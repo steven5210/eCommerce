@@ -14,14 +14,13 @@
     </thead>
     <tbody>
 <!-- echo out data with a for loop here -->
-
  <?php foreach($admin_products as $product) { ?>
       <tr>
         <td><img class='mini_image' src="<?= $product['image'] ?>"></td>
         <td><?=$product['id']?></td>
         <td><?=$product['name']?></td>
         <td><?=$product['inventory']?></td>
-        <td>$99.99</td>
+        <td></td>
         <td>
           <ul>
 <!-- Modal Trigger for new product-->
