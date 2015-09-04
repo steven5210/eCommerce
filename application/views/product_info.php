@@ -59,7 +59,7 @@
         <!-- Shopping Cart item count -->
 <?php        if($this->session->userdata('cart')) {   ?>
         <li><a href="/cart">Shopping Cart(
-          <?=count($this->session->userdata('cart'))?>)</a></li>
+          <?=array_sum($this->session->userdata('cart'))?>)</a></li>
           <?php         }?>
       </ul>
     </div>
