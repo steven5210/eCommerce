@@ -13,17 +13,10 @@
     $(document).ready(function() {
       $('select').material_select();
 
-<<<<<<< HEAD
-      // AJAX search and PAGINATION
-         $('form').on('change', function(data){
-          $.ajax({
-            url: "admin_products",
-=======
           // AJAX search and PAGINATION
          $('form').on('change', function(data){
           $.ajax({
             url: "admin_orders",
->>>>>>> ajax-search-pagination
             method: 'post',
             data: $('#search_form').serialize()
           }).done(function(data){
@@ -35,11 +28,7 @@
           var page_num = 0;
           $('#page_number').attr('value', page_num);
           $.ajax({
-<<<<<<< HEAD
-            url: "admin_products",
-=======
             url: "admin_orders",
->>>>>>> ajax-search-pagination
             method: 'post',
             data: $('#search_form').serialize()
           }).done(function(data){
@@ -87,15 +76,6 @@
             <label for="icon_prefix">Search</label>
           </div>
         </form>
-		 <form action='admin_orders' method='post' id='search_form'>
-        <div class="input-field col s6">
-          <i class="material-icons prefix">search</i>
-          <input id="icon_prefix" type="text" name='search' class='search'>
-          <input type='hidden' value='0' id='page_number' name='page_number'>
-          <label for="icon_prefix">Search</label>
-        </div>
-      </form>
- <!-- ajax-search-pagination -->
     </li>
     <li class='show_all'>
     	<div class="input-field col s12">
