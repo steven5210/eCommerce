@@ -63,6 +63,12 @@ class admin_rights extends CI_Controller {
             $this->load->view('/partials/admin_partials',
                     array('admin_products' => $admin_products));
         }
+        public function admin_loggedIn()
+        {
+            $admin_orders = $this->admin->get_admin_orders();
+            $this->load->view('adminDash',
+                            array('admin_orders' => $admin_oders));
+        }
 
 }
 ?>

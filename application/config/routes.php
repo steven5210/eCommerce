@@ -20,7 +20,7 @@ $route['search_by_name'] = 'items/search_by_name';
 $route['sort_by'] = 'items/sort_by';
 $route['products'] = 'items/productsPage';
 // Main admin login redirect
-$route['ordersMain'] = 'items/admin_loggedIn';
+$route['ordersMain'] = 'admin_rights/admin_loggedIn';
 $route['orderPage'] = 'admin_rights/orderPage';
 
 $route['upload_product'] = 'admins/add_product';
