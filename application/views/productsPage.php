@@ -116,14 +116,14 @@
                 <span>Image</span>
                 <input type="file" name="userfile">
               </div>
-<!-- Add in the draggable functionality here
+<!-- Add in the draggable functionality here -->
               <ul>
                 <li class='button'><button id='buttonSpace' class="btn waves-effect waves-light" type="submit">Cancel</button>
                   <button id='buttonSpace' class="btn waves-effect waves-light" type="submit">Preview</button>
                   <button class="btn waves-effect waves-light" type="submit">Add Product</button>
                 </li>
               </ul>
-            </form>​ -->
+            </form>​
           </div>
         </div>
       </li>

@@ -17,8 +17,21 @@
     {
       $('select').material_select();
 
-  // AJAX search and PAGINATION
-         $('form').on('change', function(data){
+  // AJAX search and PAGINATION and Sort_by
+          //sort_by Ajax
+          $('#sort_by').on('change', function(data){
+          $.ajax({
+            url: "sort_by",
+            method: 'post',
+            data: $('#sort_by').serialize()
+          }).done(function(data){
+            $('.table_here').html(data);
+          })
+          return false;      
+        });
+
+
+         $('#search_form').on('change', function(data){
           $.ajax({
             url: "index_partials",
             method: 'post',
@@ -158,21 +171,20 @@
         <li><a href="#">next</a></li>
       </ul>
       <div id="items_list">
-        <form action="sort_by" method="post">
+        <form id="sort_by" action="sort_by" method="post">
           <p>Sorted by
             <select name="sort">
               <option value="price_lowest">Price lowest</option>
               <option value="price_highest">Price highest</option>
            </select>
-        </p>
-          <input type="submit">
+          </p>
         </form>
  <!-- AJAX HERE for table      -->
-      <div class="table_here">
-        <?php require('partials/index_partial.php') ?>
-      </div>
+        <div class="table_here">
+          <?php require('partials/index_partial.php') ?>
+        </div>
 
-    </div>
+      </div>
   </div>
 </body>
 </html>

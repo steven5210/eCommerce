@@ -67,12 +67,18 @@ class Item extends CI_model {
 	}
 	public function sort_lowest()
 	{
-		return $this->db->query("SELECT * FROM items GROUP BY price DESC") -> result_array();
+		return $this->db->query("SELECT * FROM items
+								LEFT JOIN images
+								ON items.id = images.item_id
+								ORDER BY price ASC") -> result_array();
 	}
 
 	public function sort_highest()
 	{
-		return $this->db->query("SELECT * FROM items GROUP BY price ASC") -> result_array();
+		return $this->db->query("SELECT * FROM items
+								LEFT JOIN images
+								ON items.id = images.item_id
+								ORDER BY price DESC") -> result_array();
 	}
 // AJAX search
 	public function update_view($search)
@@ -81,6 +87,8 @@ class Item extends CI_model {
 			(SELECT COUNT(*) FROM items WHERE(items.name
 				LIKE ?)) AS total
 			FROM items
+			LEFT JOIN images
+			ON items.id = images.item_id
 			WHERE (items.name LIKE ?)
 			LIMIT ?, 15";
 		$values = array($search['search'] . '%', $search['search'] . '%', intval($search['page_number']));

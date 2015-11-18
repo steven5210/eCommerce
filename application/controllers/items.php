@@ -130,19 +130,21 @@ class items extends CI_Controller {
 	}
 	public function sort_by()
 	{
-
+		$data = $this->input->post();
 		if($data['sort'] == 'price_lowest')
 		{
-			$this->item->sort_lowest();
-			redirect('/');
+			$items = $this->item->sort_lowest();
+			$this->load->view('/partials/index_partial', 
+								array('items' => $items));
 		}
 		if($data['sort'] == 'price_highest')
 		{
-			$this->item->sort_highest();
-			redirect('/');
+			$items = $this->item->sort_highest();
+			$this->load->view('/partials/index_partial', 
+								array('items' => $items));
 		}
 
-		$data = $this->input->post();
+		
 
 	}
 

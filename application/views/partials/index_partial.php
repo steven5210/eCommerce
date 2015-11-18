@@ -1,10 +1,9 @@
 <table>
     <tr>
-
       <!-- Items Loop -->
   <?php     foreach($items as $item)
       {                 ?>
-    <td><a href='/product_info/<?=$item['id']?>'><img class='mini_image' src="../assets/images/image1.jpg"></a><?=$item['name']."<br>".$item['price']?></td>
+    <td><a href='/product_info/<?=$item['id']?>'><img class='mini_image' src="<?= $item['image'] ?>"></a><?=$item['name']."<br>".$item['price']?></td>
     <?php  }  ?>
   	</tr>  
 </table>
@@ -13,7 +12,7 @@
 <div id='pagination'>
   <ul class="pagination">
     <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
-<?php     if($items)
+<?php     if(isset($items) && isset($items['total']))
       {
         $count = ($items['total']/5);
           for($i = 0; $i < $count; $i++)
