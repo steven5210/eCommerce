@@ -62,12 +62,18 @@
   });
    </script>
    <style>
-    #side_nav {
-      width: 200px;
+    #nav {
+      width: 100%;
       border: 1px solid black;
-      display: inline-block;
-      vertical-align: top;
     }
+      #search_form {
+        display: inline-block;
+        width: 400px;
+      }
+      #categories {
+        display:inline-block;
+        width: 200px;
+      }
     #main_content {
       display: inline-block;
       border: 1px solid black;
@@ -117,17 +123,24 @@
     .mini_image {
       width: 100%;
     }
+    .nav-wrapper {
+      background-color: black;
+      padding-left: 20px;
+    }
+    .shopping_cart {
+      padding-right: 20px;
+    }
 
    </style>
    </head>
-<body class='container'>
+<body>
   <nav>
     <div class="nav-wrapper">
       <a href="#" class="brand-logo">PlaceHolder eCommerce</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
 <!-- Shopping Cart item count -->
 <?php        if($this->session->userdata('cart')) {   ?>
-        <li><a href="/cart">Shopping Cart(
+        <li class='shopping_cart'><a href="/cart">Shopping Cart(
 
           <?=array_sum($this->session->userdata('cart'))?>)</a></li>
           <?php         }?>
@@ -136,25 +149,40 @@
     </div>
   </nav>
   <div id="wrapper">
-    <div id='side_nav'>
-<!-- SEARCH FORM AJAX -->
-       <form action='index_partials' method='post' id='search_form'>
-        <div class="input-field col s6">
-          <i class="material-icons prefix">search</i>
-          <input id="icon_prefix" type="text" name='search' class='search'>
-          <input type='hidden' value='0' id='page_number' name='page_number'>
-          <label for="icon_prefix">Search</label>
-        </div>
-      </form>
-      <h5>Categories</h5>
-      <ul>
-        <!-- Category Loop -->
-<?php foreach($get_all_categories as $category){ ?>
-        <li><a href="/category/<?=$category['id']?>"><?=$category['name']?></a></li>
-<?php }?>
-		<li><a href="/">Show All</a></li>
-      </ul>
+
+    <div id='nav'>
+
+    <!-- Dropdown Trigger -->
+
+      <div id="categories">
+        <a class='dropdown-button btn' href='#' data-activates='dropdown1'>Categories</a>
+        <ul>
+          <!-- Category Loop -->
+           <!-- Dropdown Structure -->
+            <ul id='dropdown1' class='dropdown-content'>
+              <?php foreach($get_all_categories as $category){ ?>
+              <li><a href="/category/<?=$category['id']?>"><?=$category['name']?></a></li>
+              <li class="divider"></li>
+              <?php }?>
+              <li><a href="/">Show All</a></li>
+            </ul>    
+        </ul>
+      </div>
+
+    <!-- SEARCH FORM AJAX -->
+      <div id='search_form'>
+        <form action='index_partials' method='post' >
+          <div class="input-field col s6">
+            <i class="material-icons prefix">search</i>
+            <input id="icon_prefix" type="text" name='search' class='search'>
+            <input type='hidden' value='0' id='page_number' name='page_number'>
+            <label for="icon_prefix">Search</label>
+          </div>
+        </form>
+      </div>
+      
     </div>
+
     <div id="main_content">
 <?php foreach($get_all_categories as $category){
 	if (isset($id)&&$category['id']==$id) {  

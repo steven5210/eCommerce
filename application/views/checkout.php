@@ -46,7 +46,7 @@
 <body class='container'>
   <nav>
     <div class="nav-wrapper">
-      <a href="#" class="brand-logo">PlaceHolder eCommerce</a>
+      <a href="/" class="brand-logo">PlaceHolder eCommerce</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li><a href="/cart">Shopping Cart(<?=array_sum($this->session->userdata('cart'))?>)</a></li>
       </ul>
