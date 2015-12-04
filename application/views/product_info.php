@@ -73,7 +73,7 @@
   <!-- Product Echo -->
   <h3><?=$get_product['name']?></h3>
   <ul>
-    <li><img class='image_size' src="../assets/images/image1.jpg"><p class='description'><?=$get_product['description']?></p></li>
+    <li><img class='image_size' src="<?=$get_product['image']?>"><p class='description'><?=$get_product['description']?></p></li>
     <li><img class='mini_image' src="../assets/images/image1.jpg"><img class='mini_image' src="../assets/images/image1.jpg"><img class='mini_image' src="../assets/images/image1.jpg"><img class='mini_image' src="../assets/images/image1.jpg"><img class='mini_image' src="../assets/images/image1.jpg"></li>
     <li><p class='price'>$<?=$get_product['price']?></p></li>
   </ul>

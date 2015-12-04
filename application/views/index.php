@@ -5,9 +5,9 @@
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
     <!--Import jQuery before materialize.js-->
-      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <!-- Compiled and minified CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
 
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
@@ -137,23 +137,23 @@
   </nav>
   <div id="wrapper">
     <div id='side_nav'>
-<!-- SEARCH FORM AJAX -->
-       <form action='index_partials' method='post' id='search_form'>
-        <div class="input-field col s6">
-          <i class="material-icons prefix">search</i>
-          <input id="icon_prefix" type="text" name='search' class='search'>
-          <input type='hidden' value='0' id='page_number' name='page_number'>
-          <label for="icon_prefix">Search</label>
-        </div>
-      </form>
-      <h5>Categories</h5>
-      <ul>
-        <!-- Category Loop -->
-<?php foreach($get_all_categories as $category){ ?>
-        <li><a href="/category/<?=$category['id']?>"><?=$category['name']?></a></li>
-<?php }?>
-		<li><a href="/">Show All</a></li>
-      </ul>
+    <!-- SEARCH FORM AJAX -->
+           <form action='index_partials' method='post' id='search_form'>
+            <div class="input-field col s6">
+              <i class="material-icons prefix">search</i>
+              <input id="icon_prefix" type="text" name='search' class='search'>
+              <input type='hidden' value='0' id='page_number' name='page_number'>
+              <label for="icon_prefix">Search</label>
+            </div>
+          </form>
+          <h5>Categories</h5>
+          <ul>
+            <!-- Category Loop -->
+    <?php foreach($get_all_categories as $category){ ?>
+            <li><a href="/category/<?=$category['id']?>"><?=$category['name']?></a></li>
+    <?php }?>
+    		<li><a href="/">Show All</a></li>
+          </ul>
     </div>
     <div id="main_content">
 <?php foreach($get_all_categories as $category){
