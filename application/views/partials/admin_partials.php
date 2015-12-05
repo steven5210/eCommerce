@@ -25,8 +25,7 @@
           <ul>
 <!-- Modal Trigger for new product-->
             <li>
-              <a class="modal-trigger" href="#modal<?=$product['id']?>">Edit</a>
-              <a class='delete_style' href="delete/<?=$product['id']?>">Delete</a>
+              <a class="modal-trigger" href="#modal<?=$product['id']?>">Edit</a><a class='delete_style' href="delete/<?=$product['id']?>">Delete</a>
             </li>
           </ul>
 <!-- Modal Structure for new product -->
