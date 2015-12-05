@@ -4,17 +4,17 @@
       <!-- Items Loop -->
       <?php  for($j = $i; $j < $i + 5; $j++) { ?>
         <?php  if(!empty($items[$j])) { ?>
-          <td style="background-image: url(<?= $items[$j]['image']?>); background-size: 100% 100%">
-            <a href='/product_info/<?=$items[$j]['id']?>'>
-            
-            <p><?=$items[$j]['name'] ?></p>
-            <p><?=$items[$j]['price'] ?></p>
-            </a>
+          <td id="products_td" style="background-image: url(<?= $items[$j]['image']?>); background-size: 100% 100%">
+            <a id="product_link" href='/product_info/<?=$items[$j]['id']?>'></a>
+            <div id="product_description">
+              <p id="product_price"><?=$items[$j]['price'] ?></p>
+              <p><?=$items[$j]['name'] ?></p>
+            </div>
           </td>
         <?php  }  ?>
       <?php  }  ?>
     </tr> 
-  <?php  }  ?> 
+  <?php  } ?> 
 </table>
 <!-- PAGINATION START -->
 <div id='pagination'>
