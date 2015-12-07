@@ -1,4 +1,7 @@
-
+<script type="text/javascript">
+    $('select').material_select();
+     $('.modal-trigger').leanModal();
+</script>
 
 <!-- start of table here -->
   <table class='striped'>
@@ -23,12 +26,12 @@
         <td></td>
         <td>
           <ul>
-<!-- Modal Trigger for new product-->
+<!-- Modal Trigger to edit product-->
             <li>
               <a class="modal-trigger" href="#modal<?=$product['id']?>">Edit</a><a class='delete_style' href="delete/<?=$product['id']?>">Delete</a>
             </li>
           </ul>
-<!-- Modal Structure for new product -->
+<!-- Modal Structure to edit product -->
           <div id="modal<?=$product['id']?>" class="modal modal-fixed-footer">
             <div class="modal-content">
               <h4>Edit Product</h4>
