@@ -46,10 +46,13 @@ class Item extends CI_model {
 	}
 	public function display_all()
 	{
-		return $this->db->query("SELECT items.id, items.name, items.description, items.price, items.inventory, images.image, categories.name AS category_name FROM items 
+		return $this->db->query("SELECT items.id, items.name, items.description, items.price, items.inventory, images.image, categories.name AS category_name,
+								(SELECT COUNT(*) FROM items) AS total
+								FROM items 
 								LEFT JOIN images ON items.id = images.item_id 
 								LEFT JOIN categories ON categories.id = items.category_id
-								ORDER BY items.price ASC") -> result_array();
+								ORDER BY items.price ASC
+								Limit 0, 15") -> result_array();
 	}
 	public function search_by_name($data)
 	{
@@ -101,7 +104,7 @@ class Item extends CI_model {
 		return $this->db->query("SELECT *,
 			(SELECT COUNT(*) FROM items) AS total
 			FROM items
-			LIMIT 0, 15")->result_array();
+			LIMIT 0, 30")->result_array();
 	}
 }
 ?>

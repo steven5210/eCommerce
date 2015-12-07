@@ -155,7 +155,7 @@
 <body>
   <nav>
     <div class="nav-wrapper">
-      <a href="#" class="brand-logo">PlaceHolder eCommerce</a>
+      <a href="/" class="brand-logo">PlaceHolder eCommerce</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
 <!-- Shopping Cart item count -->
 <?php        if($this->session->userdata('cart')) {   ?>
@@ -189,7 +189,9 @@
 
     <!-- SEARCH FORM AJAX -->
       <div id='search'>
-        <form  id='search_form' action='index_partials' method='post' >
+
+        <form id='search_form' action='index_partials' method='post' >
+
           <div class="input-field col s6">
             <i class="material-icons prefix">search</i>
             <input id="icon_prefix" type="text" name='search' class='search'>
@@ -204,6 +206,7 @@
   </div>
 
     <div id="main_content">
+
       <?php foreach($get_all_categories as $category){
       	if (isset($id)&&$category['id']==$id) {  
       		$header=ucfirst($category['name']); 
@@ -212,12 +215,6 @@
        }
       } ?>
       <h4><?=$header?></h4>
-            <ul id="item_nav">
-              <li><a href="#">first</a></li>
-              <li><a href="#">prev</a></li>
-              <li><a href="#">2</a></li>
-              <li><a href="#">next</a></li>
-            </ul>
             <div id="items_list">
               <form id="sort_by" action="sort_by" method="post">
                 <p>Sorted by
