@@ -15,11 +15,7 @@
       <script type="text/javascript">
     $(document).ready(function() 
         {
-          $('#product_description').hide();
 
-          $('#products_td').hover(function() {
-            $('#product_description').show();
-          });
           $('select').material_select();
 
       // AJAX search and PAGINATION and Sort_by
@@ -102,15 +98,24 @@
       border-right: 1px solid black;
       padding-right: 5px;
     }
+    table {
+      border-collapse: separate;
+      border-spacing: 0px 10px;
+    }
+    td:nth-child(even) {
+      border-right: solid white 3px;
+    }
     td {
-      border: 1px solid black;
+      border: 1px solid rgb(0, 154, 173);
       height: 100px;
       width: 100px;
+      padding: 5px;
     }
     
-      #products_td {
+      .products_td {
         height: 100px;
         width: 200px;
+        padding-right: 0px;
       }
       #product_link {
         display: block;
@@ -118,13 +123,28 @@
         width: 100%;
       }
       #product_price {
-        background-color: grey;
+        text-align: center;
       }
       #product_description {
-        position: relative;
-        z-index: 1;
-        top: -50px;
+        color: white;
+        background-color: rgb(0, 154, 173);
       }
+      #product_name {
+        text-align: center;
+
+      }
+
+      .arrow-left {
+        float: right;
+        margin-right: 0px;
+        margin-bottom: 10px;
+        width: 20px; 
+        height: 20px; 
+        border-top: 10px solid transparent;
+        border-bottom: 10px solid transparent; 
+        border-right:10px solid rgb(0, 154, 173); 
+      }
+
     .item{
       width: 19.5%;
       height: 33%;
@@ -228,7 +248,23 @@
               <div class="table_here">
                 <?php require('partials/index_partial.php') ?>
               </div>
-
+        <div id='pagination'>
+          <ul class="pagination">
+            <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+        <?php     if($items_all)
+              {
+                foreach($items_all as $items_all)
+                {
+                }
+                $count = ($items_all['total']/15);
+                  for($i = 0; $i < $count; $i++)
+                  {         ?>
+            <li class="active"><a class='page_link' href="#" value='<?=$i * 15?>'><?=$i + 1?></a></li>
+        <?php     }   
+              } ?>
+            <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+          </ul>
+        </div>
             </div>
       </div>
 </body>
