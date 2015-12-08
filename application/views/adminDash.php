@@ -9,6 +9,8 @@
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+   <!-- Google fonts -->
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
       <script type="text/javascript">
     $(document).ready(function() {
       $('select').material_select();
@@ -53,6 +55,18 @@
    	.pagination{
    		margin-left: 29%;
    	}
+    .nav-wrapper {
+      background-color: black;
+      padding-left: 20px;
+    }
+    .brand-logo {
+    margin-left: 30px;
+    font-family: 'Pacifico', cursive;
+    text-align: center;
+    }
+    .pagination li.active {
+      background-color: rgb(76, 117, 127);
+   }
    </style>
 </head>
 <body class='container'>
