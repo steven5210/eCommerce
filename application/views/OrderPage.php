@@ -9,6 +9,8 @@
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!-- Google fonts -->
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
       <script type="text/javascript">
     $(document).ready(function() {
       $('select').material_select();
@@ -28,12 +30,27 @@
     .border {
       border: 1px solid black;
     }
+    .brand-logo {
+      margin-left: 30px;
+      font-family: 'Pacifico', cursive;
+      text-align: center;
+    }
+    .nav-wrapper {
+      background-color: black;
+      padding-left: 20px;
+    }
+    .order-info {
+      padding-left: 10px;
+    }
+    .border {
+      padding-left: 5px;
+    }
    </style>
 </head>
 <body class='container'>
 	<nav>
     <div class="nav-wrapper">
-      <a href="" class="brand-logo">Dashboard</a>
+      <a href="" class="brand-logo">Admin Dashboard</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li><a href="/ordersMain">Orders</a></li>
         <li><a href="/products">Products</a></li>
@@ -42,7 +59,7 @@
     </div>
   </nav>
   <div class='orderID'>
-  	<ul>
+  	<ul class='order-info'>
   		<li><p>Order ID : <?=$order['order_id']?></p><li>
   		<li><p>Customer shipping info:</p></li>
   		<li><p>Name: <?=$order['ship_name']?></p></li>

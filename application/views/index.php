@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Place searches</title>
+    <title>iStock</title>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
     <!--Import jQuery before materialize.js-->
@@ -203,6 +203,7 @@
     <div class="nav-wrapper">
       <a href="/" class="brand-logo">iStock</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="/admin">Admin</a></li>
 <!-- Shopping Cart item count -->
 <?php        if($this->session->userdata('cart')) {   ?>
         <li class='shopping_cart'><a href="/cart">Shopping Cart(<?=array_sum($this->session->userdata('cart'))?>)</a></li>
@@ -313,7 +314,7 @@
 </div>
   </div>  
 </div>
-  <footer></footer>
+  
 </body>
-
+<footer></footer>
 </html>
