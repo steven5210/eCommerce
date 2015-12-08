@@ -44,6 +44,9 @@
   });
    </script>
    <style>
+     .item_table {
+        padding-left: 50px;
+     }
      .nav-wrapper {
         background-color: black;
         padding-left: 20px;
@@ -54,15 +57,17 @@
         text-align: center;
       }
       #billing {
-        width: 800px;
+        width: 700px;
         display: inline-block;
         vertical-align: top;
-        float: right;
       }
       #shipping {
-        width: 800px;
+        vertical-align: top;
+        width: 700px;
         display: inline-block;
-        padding-left: 10%;
+      }
+      #checkout_wrapper {
+        padding-left: 50px;
       }
    </style>
    </head>
@@ -90,7 +95,7 @@
   <!-- THIS IS WHERE REAL STUFF STARTS UP AGAIN -->
 	<table class="bordered striped">
 		<thead>
-			<th>Item</th>
+			<th class="item_table">Item</th>
 			<th>Price</th>
 			<th>Quantity</th>
 			<th>Total</th>
@@ -102,7 +107,7 @@
         foreach ($items as $item) { 
           $total+= $item['total']?>
         <tr>
-          <td><?=$item['name']?></td>
+          <td class="item_table"><?=$item['name']?></td>
           <td><?=$item['price']?></td>
           <td>
             <form action="/items/update_cart_quantity" method="post">
@@ -127,6 +132,7 @@
 	</div>
 </div>
 
+  <div id="checkout_wrapper">
     <div class="row" id='shipping'>
       <?= $this->session->flashdata('errors') ?>
         <h3>Shipping Information</h3>
@@ -171,10 +177,8 @@
               <input id="zipcode" name="zipcode" type="text" class="validate">
               <label for="zipcode">Zipcode</label>
             </div>
-          </div>
-        
-    </div>
-  </div>
+          </div>     
+      </div>
       <!-- BILLING INFORMATION -->
       <div id="billing">
           <h3>Billing Information</h3>
@@ -258,10 +262,7 @@
               </script>
             </form>
         </form>
+      </div>
     </div>
-  <div>
 
-    
-  </div>
-</div>
 </html>
