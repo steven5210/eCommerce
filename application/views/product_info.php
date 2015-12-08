@@ -89,6 +89,7 @@
     </div>
   </nav>
   <!-- Product Echo -->
+
   <div class='main_content'> 
     <h3 class='product_name'><?=$get_product['name']?></h3>
     <ul>
@@ -120,6 +121,7 @@
         <?php }
       } ?>
     </ul>
+
   </div>
 </body>
 </html>
