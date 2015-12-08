@@ -51,7 +51,6 @@ class Item extends CI_model {
 								FROM items 
 								LEFT JOIN images ON items.id = images.item_id 
 								LEFT JOIN categories ON categories.id = items.category_id
-								ORDER BY items.price ASC
 								Limit 0, 15") -> result_array();
 	}
 	public function search_by_name($data)

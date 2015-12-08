@@ -4,7 +4,7 @@
       <!-- Items Loop -->
       <?php  for($j = $i; $j < $i + 3; $j++) { ?>
         <?php  if(!empty($items[$j])) { ?>
-          <td class="products_td" style="background-image: url(<?= $items[$j]['image']?>); background-size: 100% 100%">
+          <td id="product_image"class="products_td" style="background-image: url(<?= $items[$j]['image']?>); background-size: 100% 100%">
             <a id="product_link" href='/product_info/<?=$items[$j]['id']?>'></a>
             <div class="arrow-left"></div>
           </td>
@@ -17,3 +17,4 @@
     </tr> 
   <?php  } ?> 
 </table>
+
