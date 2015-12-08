@@ -1,3 +1,4 @@
+<?php require_once('config.php'); ?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -8,18 +9,14 @@
       <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <!-- Compiled and minified CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
-
+  <!-- Google fonts -->
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       <script type="text/javascript">
     $(document).ready(function() {
       $('select').material_select();
-     //  $('.datepicker').pickadate({
-  	  //   selectMonths: true, // Creates a dropdown to control month
-  	  //   selectYears: 15, // Creates a dropdown of 15 years to control year
-  	  //   selectDays: false
-  	  // });
       $('#test5').change(function(){
         $('.billinginfo').slideToggle();
       })
@@ -46,30 +43,62 @@
       })  
   });
    </script>
+   <style>
+     .item_table {
+        padding-left: 50px;
+     }
+     .nav-wrapper {
+        background-color: black;
+        padding-left: 20px;
+      }
+      .brand-logo {
+        margin-left: 30px;
+        font-family: 'Pacifico', cursive;
+        text-align: center;
+      }
+      #billing {
+        width: 700px;
+        display: inline-block;
+        vertical-align: top;
+      }
+      #shipping {
+        vertical-align: top;
+        width: 700px;
+        display: inline-block;
+      }
+      #checkout_wrapper {
+        padding-left: 50px;
+      }
+      .item_table {
+        padding-left: 50px;
+      }
+   </style>
    </head>
-<body class='container'>
+<body>
   <nav>
     <div class="nav-wrapper">
-      <a href="#" class="brand-logo">PlaceHolder eCommerce</a>
+      <a href="/" class="brand-logo">iStock</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li><a href="/cart">Shopping Cart(<?=array_sum($this->session->userdata('cart'))?>)</a></li>
       </ul>
     </div>
   </nav>
+
   <div id='side_nav'>
   </div>
+
 <div class="cart">
  <!-- THIS IS A DUMMY TABLE FOR TESTING, REMOVE IT BEFORE MERGING TO MASTER -->
   <!-- <form action="/items/update_cart_quantity" method='post'> -->
-  <form action="/items/add_to_cart" method='post'>
+<!--   <form action="/items/add_to_cart" method='post'>
     <input type="text" name='id' placeholder="test item id">
     <input type="text" name='quantity'placeholder="test item quantity">
     <input type="submit" value="submit">
-  </form>
+  </form> -->
   <!-- THIS IS WHERE REAL STUFF STARTS UP AGAIN -->
 	<table class="bordered striped">
 		<thead>
-			<th>Item</th>
+			<th class="item_table">Item</th>
 			<th>Price</th>
 			<th>Quantity</th>
 			<th>Total</th>
@@ -81,7 +110,7 @@
         foreach ($items as $item) { 
           $total+= $item['total']?>
         <tr>
-          <td><?=$item['name']?></td>
+          <td class="item_table"><?=$item['name']?></td>
           <td><?=$item['price']?></td>
           <td>
             <form action="/items/update_cart_quantity" method="post">
@@ -100,10 +129,13 @@
 	<div class="row">
 		<div class="col s4 offset-s8">
 			<h5>Total: $<?=$total?></h5>
+      <a href="/items/empty_cart">Clear Cart</a>
 			<a href="/" class="waves-effect waves-light btn">Continue Shopping</a>
 		</div>
 	</div>
 </div>
+
+  <div id="checkout_wrapper">
     <div class="row" id='shipping'>
       <?= $this->session->flashdata('errors') ?>
         <h3>Shipping Information</h3>
@@ -148,13 +180,15 @@
               <input id="zipcode" name="zipcode" type="text" class="validate">
               <label for="zipcode">Zipcode</label>
             </div>
-          </div>
-        <h3>Billing Information</h3>
-        <p>
-          <input type="checkbox" id="test5"/>
-          <label for="test5">Same as shipping</label>
-        </p>
+          </div>     
+      </div>
       <!-- BILLING INFORMATION -->
+      <div id="billing">
+          <h3>Billing Information</h3>
+          <p>
+            <input type="checkbox" id="test5"/>
+            <label for="test5">Same as shipping</label>
+          </p>
           <div class="row billinginfo">
             <div class="input-field col s4">
               <input id="bill_first_name" name="bill_first_name" type="text" class="validate">
@@ -219,11 +253,19 @@
               <label for="year">Year</label>
             </div>
           </div>
-           <!-- <input type="date" class="datepicker"> -->
             <button class="btn waves-effect waves-light" type="submit" name="action">Buy
             <i class="material-icons">send</i>
             </button>
+            <form action="charge" method="post">
+              <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                      data-key="<?php echo $stripe['publishable_key']; ?>"
+                      data-description="Access for a year"
+                      data-amount="5000"
+                      data-locale="auto">
+              </script>
+            </form>
         </form>
+      </div>
     </div>
-</div>
+
 </html>

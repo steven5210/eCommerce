@@ -20,9 +20,12 @@ class Item extends CI_model {
 	}
 	public function get_product($id)
 	{
-		$query = "SELECT items.id, items.name, items.price, items.price, items.description
+		$query = "SELECT items.id, items.name, images.image, items.price, items.description, categories.name AS category
 				 FROM items
-				 WHERE items.id = ?";
+				 JOIN categories ON categories.id=items.category_id
+				 JOIN images ON items.id = images.item_id
+				 WHERE items.id = ?
+				 ";
 		$values = array($id);
 		$product = $this->db->query($query, $values)->row_array();
 		return $product;
@@ -31,24 +34,89 @@ class Item extends CI_model {
 	{
 		return $this->db->query("SELECT * FROM categories") ->result_array();
 	}
+	public function get_category($id)
+	{
+		$query="SELECT items.id, items.name, items.description, items.price, items.inventory, images.image, categories.name AS category_name FROM items 
+				LEFT JOIN images ON items.id = images.item_id 
+				LEFT JOIN categories ON categories.id = items.category_id
+				WHERE categories.id=?
+				ORDER BY items.price ASC";
+		$values=$id;
+		return $this->db->query($query, $values)->result_array();
+	}
+	public function display_all()
+	{
+		return $this->db->query("SELECT items.id, items.name, items.description, items.price, items.inventory, images.image, categories.name AS category_name,
+								(SELECT COUNT(*) FROM items) AS total
+								FROM items 
+								LEFT JOIN images ON items.id = images.item_id 
+								LEFT JOIN categories ON categories.id = items.category_id
+								Limit 0, 15") -> result_array();
+	}
 	public function search_by_name($data)
 	{
 		$query = "SELECT * FROM items WHERE name = ?";
 		$value = $data;
 		return $this->db->query($query, $value) -> result_array();
 	}
-	public function display_all()
+// ADMIN SIDE PRODUCT DISPLAY ALL
+	public function admin_display_all()
 	{
-		return $this->db->query("SELECT items.id, items.name, items.description, items.price, items.inventory, images.image, categories.name AS category_name FROM items LEFT JOIN images ON items.id = images.item_id LEFT JOIN categories ON categories.id = items.category_id") -> result_array();
+		return $this->db->query("SELECT items.id, items.name, items.description, items.price, items.inventory, images.image, categories.name AS category_name, 
+			(SELECT COUNT(*) FROM items) AS total
+			FROM items
+			LEFT JOIN images ON items.id = images.item_id 
+			LEFT JOIN categories ON categories.id = items.category_id
+			LIMIT 0, 5")->result_array();
 	}
 	public function sort_lowest()
 	{
-		return $this->db->query("SELECT * FROM items GROUP BY price DESC") -> result_array();
+		return $this->db->query("SELECT * FROM items
+								LEFT JOIN images
+								ON items.id = images.item_id
+								ORDER BY price ASC") -> result_array();
 	}
 
 	public function sort_highest()
 	{
-		return $this->db->query("SELECT * FROM items GROUP BY price ASC") -> result_array();
+		return $this->db->query("SELECT * FROM items
+								LEFT JOIN images
+								ON items.id = images.item_id
+								ORDER BY price DESC") -> result_array();
+	}
+// AJAX search
+	public function update_view($search)
+	{
+		$query = "SELECT *,
+			(SELECT COUNT(*) FROM items WHERE(items.name
+				LIKE ?)) AS total
+			FROM items
+			LEFT JOIN images
+			ON items.id = images.item_id
+			WHERE (items.name LIKE ?)
+			LIMIT ?, 15";
+		$values = array($search['search'] . '%', $search['search'] . '%', intval($search['page_number']));
+		return $this->db->query($query, $values)->result_array();
+	}
+	public function get_all_items()
+	{
+		return $this->db->query("SELECT *,
+			(SELECT COUNT(*) FROM items) AS total
+			FROM items
+			LIMIT 0, 30")->result_array();
+	}
+	public function get_items_by_category($id)
+	{
+		$query="SELECT items.id, items.name, items.description, items.price, items.inventory, images.image, categories.name AS category_name,
+				(SELECT Count(*)
+				FROM items) AS total 
+				FROM items
+				LEFT JOIN images ON items.id = images.item_id 
+				LEFT JOIN categories ON categories.id = items.category_id
+				WHERE categories.id=?
+				LIMIT 0, 15";
+		$values=$id;
+		return $this->db->query($query, $values)->result_array();
 	}
 }
 ?>

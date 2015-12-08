@@ -2,13 +2,15 @@
 <head>
 	<title>OrderID Page</title>
 	<!--Import jQuery before materialize.js-->
-      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <!-- Compiled and minified CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
 
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!-- Google fonts -->
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
       <script type="text/javascript">
     $(document).ready(function() {
       $('select').material_select();
@@ -28,12 +30,27 @@
     .border {
       border: 1px solid black;
     }
+    .brand-logo {
+      margin-left: 30px;
+      font-family: 'Pacifico', cursive;
+      text-align: center;
+    }
+    .nav-wrapper {
+      background-color: black;
+      padding-left: 20px;
+    }
+    .order-info {
+      padding-left: 10px;
+    }
+    .border {
+      padding-left: 5px;
+    }
    </style>
 </head>
 <body class='container'>
 	<nav>
     <div class="nav-wrapper">
-      <a href="" class="brand-logo">Dashboard</a>
+      <a href="" class="brand-logo">Admin Dashboard</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li><a href="/ordersMain">Orders</a></li>
         <li><a href="/products">Products</a></li>
@@ -42,19 +59,19 @@
     </div>
   </nav>
   <div class='orderID'>
-  	<ul>
-  		<li><p>Order ID : 1</p><li>
+  	<ul class='order-info'>
+  		<li><p>Order ID : <?=$order['order_id']?></p><li>
   		<li><p>Customer shipping info:</p></li>
-  		<li><p>Name: Goku</p></li>
-  		<li><p>Address: 123 dojo ave</p></li>
-  		<li><p>City: Somewhere</p></li>
-  		<li><p>States: Wa</p></li>
-  		<li><p>Zip: 98171</p></li>
+  		<li><p>Name: <?=$order['ship_name']?></p></li>
+  		<li><p>Address: <?=$order['ship_address']?></p></li>
+  		<li><p>City: <?=$order['ship_city']?></p></li>
+  		<li><p>States: <?=$order['ship_state']?></p></li>
+  		<li><p>Zip: <?=$order['ship_zipcode']?></p></li>
   		<li><p>Customer billing info: </p></li>
-  		<li><p>Name: Goku</p></li>
-  		<li><p>City: Seattle</p></li>
-  		<li><p>State: WA</p></li>
-  		<li><p>Zip: 98171</p></li>
+  		<li><p>Name: <?=$order['bill_name']?></p></li>
+  		<li><p>City: <?=$order['bill_city']?></p></li>
+  		<li><p>State: <?=$order['bill_state']?></p></li>
+  		<li><p>Zip: <?=$order['bill_zipcode']?></p></li>
   	</ul>
 
   </div>
@@ -70,36 +87,22 @@
               <th data-field="total">Total</th>
           </tr>
         </thead>
-
         <tbody>
- <!-- echo out data with a for loop here -->
           <tr>
-            <td><a href="/orderPage">100</a></td>
-            <td>Eclair</td>
-            <td>09/1/15</td>
-            <td>3554 S Somewhere St Moon, CA</td>
-            <td>$99.99</td>
+<!-- echo out data with a for loop here -->
+<?php           foreach($orders as $order)  
+                {?>
+            <td><a href="/product_info/<?=$order['item_id']?>"><?=$order['item_id']?></a></td>
+            <td><?=$order['category_name']?></td>
+            <td><?=$order['item_price']?></td>
+            <td><?=$order['quantity']?></td>
+            <td>$<?=$order['total_price']?></td>
           </tr>
-          <tr>
-            <td><a href="">99</a></td>
-            <td>Jellybean</td>
-            <td>09/1/15</td>
-            <td>9999 N MiddleOfNowhere, WA</td>
-            <td>$99.99</td>
-		  </td>
-          </tr>
-          <tr>
-            <td><a href="">98</a></td>
-            <td>Lollipop</td>
-            <td>09/1/15</td>
-            <td>38573 S Volcano, WA</td>
-            <td>$99.99</td>
-		  </td>
-          </tr>
+<?php           }?>
         </tbody>
       </table>
       <ul>
-        <li><p class='border'>Status: shipped</p><p class='border'>Sub total: $29.98 <br>Shipping: 1.00 <br>Total Price: $30.95</p></li>
+        <li><p class='border'>Status: <?=$order['status']?></p><p class='border'>Sub total: $29.98 <br>Shipping: What Math <br>Total Price: $<?=$order['total_price']?></p></li>
       </ul>
   </div>
 

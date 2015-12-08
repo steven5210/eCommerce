@@ -9,7 +9,7 @@ class admin_rights extends CI_Controller {
      	public function add_product()
      	{     
             $config['upload_path'] = './uploads/';
-            $config['allowed_types'] = 'gif|jpg|png';
+            $config['allowed_types'] = 'gif|jpg|png|jpe|jpeg|gif';
             $config['max_size'] = '3000';
             $config['max_width']  = '1024';
             $config['max_height']  = '768';
@@ -52,7 +52,37 @@ class admin_rights extends CI_Controller {
             $this->admin->delete_product($id);
             redirect('/products');
         }
-
-
+        public function get_customer_orders() 
+        {
+            $orders = $this->admin->get_all_orders();
+            $this->load->view('partials/admin_dashboard', array(
+                'orders' => $orders));
+        }
+        public function orderPage($id)
+        {   
+        $orders = $this->admin->get_all_order_by_id($id);
+        $order = $this->admin->get_by_order($id);
+        $this->load->view('OrderPage', 
+                        array('order' => $order, 'orders' => $orders));
+        }
+        public function get_admin_products()
+        {
+            $admin_products = $this->admin->get_admin_products($this->input->post());
+            $this->load->view('/partials/admin_partials',
+                    array('admin_products' => $admin_products));
+        }
+// Main page for orders after logging in for ADMIN
+        public function admin_loggedIn()
+        {
+            $admin_orders = $this->admin->get_all_admin_orders();
+            $this->load->view('adminDash',
+                            array('admin_orders' => $admin_orders));
+        }
+        public function get_admin_orders()
+        {
+            $admin_orders = $this->admin->get_admin_orders($this->input->post());
+            $this->load->view('/partials/admin_dash_partials',
+                            array('admin_orders' => $admin_orders));
+        }
 }
 ?>

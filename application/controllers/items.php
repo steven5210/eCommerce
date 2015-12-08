@@ -1,4 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
 class items extends CI_Controller {
  
 	public function __construct()
@@ -8,27 +9,40 @@ class items extends CI_Controller {
 
             // Your own constructor code
        }
+	
 	public function index()
 	{
 		$items = $this->item->display_all();
+		$items_all = $this->item->get_all_items();
 		$get_all_categories = $this->item->get_all_categories();
 		$this->load->view('index', 
-						array('items' => $items, 'get_all_categories' => $get_all_categories));
+						array('items' => $items, 'get_all_categories' => $get_all_categories, 'items_all' => $items_all));
+		
+	}
+	public function get_category($id)
+	{
+		$get_all_categories = $this->item->get_all_categories();
+		$items=$this->item->get_category($id);
+		$item_by_category = $this->item->get_items_by_category($id);
+		
+		$this->load->view('index', 
+						array('items' => $items,
+						 'get_all_categories' => $get_all_categories,
+						 'id'=>$id,
+						 'item_by_category' => $item_by_category));
 	}
 	public function product_infoView($id)
 	{
+		$items = $this->item->display_all();
 		$get_product = $this->item->get_product($id);
 		$this->load->view('product_info', 
-						array('get_product' => $get_product));
+						array('items' => $items,'get_product' => $get_product));
 	}
 	public function admin_login_page()
 	{
 		$this->load->view('admin');
 	}
-	public function admin_loggedIn()
-	{
-		$this->load->view('adminDash');
-	}
+
 	public function logOff()
 	{
 	//	$this->session->session_destroy();
@@ -37,7 +51,7 @@ class items extends CI_Controller {
 	public function checkoutView()
 	{
 		// $this->session->sess_destroy();
-		$this->output->enable_profiler();
+		
 		$data=array();
 		if (!empty($this->session->userdata('cart')))
 		{
@@ -87,7 +101,11 @@ class items extends CI_Controller {
 		$this->session->set_userdata('cart', $cart);
 		redirect('/cart');
 	}
-
+	public function empty_cart()
+	{
+		$this->session->set_userdata('cart', array());
+		redirect('/cart');
+	}
 	public function update_cart_quantity() //updates item quantity
 	{
 		$item=$this->input->post();
@@ -99,7 +117,14 @@ class items extends CI_Controller {
 		$this->session->set_userdata('cart', $cart);
 		redirect('/cart');
 	}
-
+// AJAX SEARCH 
+	public function search_ajax()
+	{
+		$items = $this->item->update_view($this->input->post());
+            $this->load->view('/partials/index_partial',
+                    array('items' => $items));
+	}
+	// End of AJAX search
 	public function search_by_name()
 	{
 		$data = $this->input->post();
@@ -108,28 +133,28 @@ class items extends CI_Controller {
 	}
 	public function sort_by()
 	{
+		$data = $this->input->post();
 		if($data['sort'] == 'price_lowest')
 		{
-			$this->item->sort_lowest();
-			redirect('/');
+			$items = $this->item->sort_lowest();
+			$this->load->view('/partials/index_partial', 
+								array('items' => $items));
 		}
 		if($data['sort'] == 'price_highest')
 		{
-			$this->item->sort_highest();
-			redirect('/');
-		}
+			$items = $this->item->sort_highest();
+			$this->load->view('/partials/index_partial', 
+								array('items' => $items));
+		}	
 	}
 
 	public function productsPage()
 	{
-		$products = $this->item->display_all();
+		$admin_products = $this->item->admin_display_all();
+		$item_by_category = $this->item->get_all_categories();
 		$this->load->view('productsPage',
-						array('products' => $products)
-						);
-	}
-	public function orderPage()
-	{
-		$this->load->view('OrderPage');
+						array('admin_products' => $admin_products,
+							  'item_by_category' => $item_by_category));
 	}
 }
 ?>
