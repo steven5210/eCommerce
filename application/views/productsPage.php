@@ -17,7 +17,7 @@
        $('.modal-trigger').leanModal();
 
     // AJAX search and PAGINATION
-         $('form').on('change', function(data){
+         $('#search_form').on('change', function(data){
           $.ajax({
             url: "admin_products",
             method: 'post',
@@ -121,9 +121,10 @@
               <input type="text" name="inventory">
               <select name='category'>
                 <option value="" disabled selected>Categories</option>
-                <option value="tshirt">T-Shirt</option>
-                <option value="cup">Cup</option>
-                <option value="hat">Hat</option>
+<?php           foreach($item_by_category as $category)
+                {   ?>
+                <option value="<?=$category['id']?>"><?=$category['name']?></option>
+<?php           } ?>
               </select>
               <input id="category" type="text" name='new_category' placeholder='Add a new Category'>
               <div class="btn">
