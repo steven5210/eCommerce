@@ -8,7 +8,8 @@
       <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <!-- Compiled and minified CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
-
+  <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -17,11 +18,16 @@
       $('select').material_select();
   });
    </script>
-   <style>    
+   <style>  
+   
     .nav-wrapper {
       background-color: black;
       padding-left: 20px;
    }
+   body {
+      background-image: url("/assets/images/wooden-color-background.jpg");
+      color: white;
+    } 
     .shopping-cart {
       padding-right: 20px;
     }
@@ -55,17 +61,30 @@
       font-size: 19px;
       color: red;
     }
-    .buyDiv{
-      display: inline-block;
-      width: 10%;
-    }
+
     .product_name {
       padding-left: 18px;
       text-align: center;
     }
+      #product_purchase {
+        display: inline-block;
+        padding: 5px;
+        height: 300px;
+        width: 200px;
+        background-color: white;
+        border-radius: 4px;
+      }
+      #product_images {
+        display: inline-block;
+      }
     .stock {
       font-size: 19px;
       color: green;
+    }
+    .brand-logo {
+      margin-left: 30px;
+      font-family: 'Pacifico', cursive;
+      text-align: center;
     }
     li{
       display: inline-block;
@@ -78,7 +97,7 @@
 <body>
   <nav>
     <div class="nav-wrapper">
-      <a href="/" class="brand-logo">PlaceHolder eCommerce</a>
+      <a href="/" class="brand-logo">iStock</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li><a href="/">Home</a></li>
         <!-- Shopping Cart item count -->
@@ -92,28 +111,31 @@
 
   <div class='main_content'> 
     <h3 class='product_name'><?=$get_product['name']?></h3>
-    <ul>
-      <li><img class='image_size' src="../assets/images/image1.jpg"><p>List Price: <span class='price'>$<?=$get_product['price']?></span></p>
-        <li><p class='stock'>In Stock.</p></li>
-          <li><p class='description'><?=$get_product['description']?></p></li>
-          </li>
-      <li><img class='mini_image' src="../assets/images/image1.jpg"><img class='mini_image' src="../assets/images/image1.jpg"><img class='mini_image' src="../assets/images/image1.jpg"><img class='mini_image' src="../assets/images/image1.jpg"><img class='mini_image' src="../assets/images/image1.jpg"></li>
-      <li><p>List Price: <span class='price'>$<?=$get_product['price']?></span></p>
-          <p class='stock'>In Stock.</p>
-      </li>
-    </ul>
-    <div class='buyDiv'>
+
+    <div id="product_images">
+      <ul>
+        <li><img class='image_size' src="../assets/images/image1.jpg"></li>
+        <li><img class='mini_image' src="../assets/images/image1.jpg"><img class='mini_image' src="../assets/images/image1.jpg"><img class='mini_image' src="../assets/images/image1.jpg"><img class='mini_image' src="../assets/images/image1.jpg"><img class='mini_image' src="../assets/images/image1.jpg"></li>
+        <li><p class='description'><?=$get_product['description']?></p></li>
+      </ul>
+    </div>
+
+    <div id="product_purchase" class='buyDiv'>     
+      <p>List Price: <span class='price'>$<?=$get_product['price']?></span></p>
+      <p class='stock'>In Stock.</p>
       <!-- ADD in quantity function to shopping cart? -->
       <form action="/add_cart" method='post'>​
-          <div class="input-field col s6">
-           <input name='id' type='hidden' value="<?=$get_product['id']?>">
-             <input id="quantity" type="text" name='quantity'>
-            <label for="quantity">Quantity</label>
-          </div>
-    </div>
-        <input type='submit' class="btn" onclick="Materialize.toast('Item added to the cart!', 4000)" value="Add to Cart">
-    </div>  
+        <div class="input-field col s6">
+          <input name='id' type='hidden' value="<?=$get_product['id']?>">
+          <input id="quantity" type="text" name='quantity'>
+          <label for="quantity">Quantity</label>
+        </div>
       </form>
+      <input type='submit' class="btn" onclick="Materialize.toast('Item added to the cart!', 4000)" value="Add to Cart">
+    </div>
+        
+  
+      
     <ul>
       <?php foreach($items as $item){
           if($item['category_name']==$get_product['category'] && $item['id']!==$get_product['id']){ ?>
@@ -121,7 +143,7 @@
         <?php }
       } ?>
     </ul>
+  </div>  
 
-  </div>
 </body>
 </html>

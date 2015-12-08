@@ -65,7 +65,7 @@
    </script>
    <style>
     body {
-      background-image: url("./assets/images/wooden-color-background.jpg");
+      background-image: url("/assets/images/wooden-color-background.jpg");
     }
     #nav {
       width: 100%;
