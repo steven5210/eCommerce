@@ -47,9 +47,10 @@
                 <input type="text" value="<?=$product['inventory']?>">
                 <select name='category'>
                   <option value="" disabled selected>Categories</option>
-                  <option value="tshirt">T-Shirt</option>
-                  <option value="cup">Cup</option>
-                  <option value="hat">Hat</option>
+<?php             foreach($item_by_category as $category)
+                  {  ?>
+                  <option value="<?=$category['id']?>"><?=$category['name']?></option>
+<?php             }  ?>
                 </select>
                 <input id="category" type="text" name='new_category' value="<?=$product['category_name']?>">
                 <div class="btn">

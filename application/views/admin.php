@@ -57,6 +57,9 @@
     #password {
       color: white;
     }
+    .error {
+      color: red;
+    }
    </style>
 </head>
 <body class='container'>
@@ -68,7 +71,7 @@
       </ul>
     </div>
   </nav>
-    <?= $this->session->flashdata('error') ?>
+    <p class='error'><?= $this->session->flashdata('error') ?></p>
 		<form action='/admin_login' method='post'>
 			<div class="row">
 		        <div class="input-field col s12">

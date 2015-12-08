@@ -151,9 +151,10 @@ class items extends CI_Controller {
 	public function productsPage()
 	{
 		$admin_products = $this->item->admin_display_all();
+		$item_by_category = $this->item->get_all_categories();
 		$this->load->view('productsPage',
-						array('admin_products' => $admin_products)
-						);
+						array('admin_products' => $admin_products,
+							  'item_by_category' => $item_by_category));
 	}
 }
 ?>
