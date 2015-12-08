@@ -9,7 +9,8 @@
       <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <!-- Compiled and minified CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
-
+  <!-- Google fonts -->
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -42,18 +43,42 @@
       })  
   });
    </script>
+   <style>
+     .nav-wrapper {
+        background-color: black;
+        padding-left: 20px;
+      }
+      .brand-logo {
+        margin-left: 30px;
+        font-family: 'Pacifico', cursive;
+        text-align: center;
+      }
+      #billing {
+        width: 800px;
+        display: inline-block;
+        vertical-align: top;
+        float: right;
+      }
+      #shipping {
+        width: 800px;
+        display: inline-block;
+        padding-left: 10%;
+      }
+   </style>
    </head>
 <body>
   <nav>
     <div class="nav-wrapper">
-      <a href="/" class="brand-logo">PlaceHolder eCommerce</a>
+      <a href="/" class="brand-logo">iStock</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li><a href="/cart">Shopping Cart(<?=array_sum($this->session->userdata('cart'))?>)</a></li>
       </ul>
     </div>
   </nav>
+
   <div id='side_nav'>
   </div>
+
 <div class="cart">
  <!-- THIS IS A DUMMY TABLE FOR TESTING, REMOVE IT BEFORE MERGING TO MASTER -->
   <!-- <form action="/items/update_cart_quantity" method='post'> -->
@@ -101,6 +126,7 @@
 		</div>
 	</div>
 </div>
+
     <div class="row" id='shipping'>
       <?= $this->session->flashdata('errors') ?>
         <h3>Shipping Information</h3>
@@ -146,12 +172,16 @@
               <label for="zipcode">Zipcode</label>
             </div>
           </div>
-        <h3>Billing Information</h3>
-        <p>
-          <input type="checkbox" id="test5"/>
-          <label for="test5">Same as shipping</label>
-        </p>
+        
+    </div>
+  </div>
       <!-- BILLING INFORMATION -->
+      <div id="billing">
+          <h3>Billing Information</h3>
+          <p>
+            <input type="checkbox" id="test5"/>
+            <label for="test5">Same as shipping</label>
+          </p>
           <div class="row billinginfo">
             <div class="input-field col s4">
               <input id="bill_first_name" name="bill_first_name" type="text" class="validate">
@@ -219,17 +249,19 @@
             <button class="btn waves-effect waves-light" type="submit" name="action">Buy
             <i class="material-icons">send</i>
             </button>
+            <form action="charge" method="post">
+              <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                      data-key="<?php echo $stripe['publishable_key']; ?>"
+                      data-description="Access for a year"
+                      data-amount="5000"
+                      data-locale="auto">
+              </script>
+            </form>
         </form>
     </div>
   <div>
-    <form action="charge" method="post">
-      <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-              data-key="<?php echo $stripe['publishable_key']; ?>"
-              data-description="Access for a year"
-              data-amount="5000"
-              data-locale="auto">
-      </script>
-    </form>
+
+    
   </div>
 </div>
 </html>

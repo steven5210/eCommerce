@@ -51,7 +51,7 @@ class items extends CI_Controller {
 	public function checkoutView()
 	{
 		// $this->session->sess_destroy();
-		$this->output->enable_profiler();
+		
 		$data=array();
 		if (!empty($this->session->userdata('cart')))
 		{
