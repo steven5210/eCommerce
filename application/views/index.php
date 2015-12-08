@@ -205,16 +205,14 @@
       <ul id="nav-mobile" class="right hide-on-med-and-down">
 <!-- Shopping Cart item count -->
 <?php        if($this->session->userdata('cart')) {   ?>
-        <li class='shopping_cart'>
-          <a href="/cart">Shopping Cart(
-
-          <?=array_sum($this->session->userdata('cart'))?>)</a></li>
+        <li class='shopping_cart'><a href="/cart">Shopping Cart(<?=array_sum($this->session->userdata('cart'))?>)</a></li>
           <?php         }?>
 
       </ul>
     </div>
   </nav>
   <div id="wrapper">
+
     <div id='nav'>
 
     <!-- Dropdown Trigger -->
@@ -236,9 +234,7 @@
 
     <!-- SEARCH FORM AJAX -->
       <div id='search'>
-
         <form id='search_form' action='index_partials' method='post' >
-
           <div class="input-field col s6">
             <i class="material-icons prefix">search</i>
             <input id="icon_prefix" type="text" name='search' class='search'>
@@ -247,53 +243,77 @@
           </div>
         </form>
       </div>
-      <div id="sort">
-        <form id="sort_by" action="sort_by" method="post">
+      
+      <div id='sort'>
+          <form id="sort_by" action="sort_by" method="post">
+ 
+              <select name="sort">
+                <option value="price_lowest">Price lowest</option>
+                <option value="price_highest">Price highest</option>
+             </select>
 
-            <select name="sort">
-              <option value="price_lowest">Price lowest</option>
-              <option value="price_highest">Price highest</option>
-           </select>
-        </form>
-      </div>
+          </form>
+        </div>
     </div>
 
-  </div>
-
     <div id="main_content">
-      <?php foreach($get_all_categories as $category){
-      	if (isset($id)&&$category['id']==$id) {  
-      		$header=ucfirst($category['name']); 
-       }elseif(!isset($id)){ 
-            $header="All Products";
-       }
-      } ?>
-      <h4><?=$header?></h4>
-            <div id="items_list">
-              
-       <!-- AJAX HERE for table      -->
-              <div class="table_here">
-                <?php require('partials/index_partial.php') ?>
-              </div>
-        <div id='pagination'>
-          <ul class="pagination">
-            <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
-        <?php     if($items_all)
-              {
-                foreach($items_all as $items_all)
-                {
-                }
-                $count = ($items_all['total']/15);
-                  for($i = 0; $i < $count; $i++)
-                  {         ?>
-            <li class="active"><a class='page_link' href="#" value='<?=$i * 15?>'><?=$i + 1?></a></li>
-        <?php     }   
-              } ?>
-            <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
-          </ul>
+<?php foreach($get_all_categories as $category){
+  if (isset($id)&&$category['id']==$id) {  
+    $header=ucfirst($category['name']); 
+ }elseif(!isset($id)){ 
+      $header="All Products";
+ }
+} ?>
+<h4><?=$header?></h4>
+      <div id="items_list">
+ <!-- AJAX HERE for table      -->
+        <div class="table_here">
+          <?php require('partials/index_partial.php') ?>
         </div>
-            </div>
-      </div>
-      <footer></footer>
+
+<!-- INDEX PAGINATION START -->
+<div id='pagination'>
+  <ul class="pagination">
+<?php     if(isset($items_all))
+      { ?>
+    <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+<?php        foreach($items_all as $items_alls)
+        {
+        }
+        $count = ($items_alls['total']/15);
+          for($i = 0; $i < $count; $i++)
+          {         ?>
+    <li class="active"><a class='page_link' href="#" value='<?=$i * 15?>'><?=$i + 1?></a></li>
+<?php     }   ?>
+    <li class="waves-effect"><a href="#"><i class="material-icons">chevron_right</i></a></li>
+<?php } ?>
+  </ul>
+</div>
+
+<!-- CATEGORY PAGINATION START -->
+<div id='pagination'>
+  <ul class="pagination">
+<?php     if(isset($item_by_category))
+      { ?>
+    <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+<?php        foreach($item_by_category as $category_item)
+        {
+        }
+        $count = floor($category_item['total']/15);
+          for($i = 0; $i < $count; $i++)
+          {         ?>
+<?php  if ($count > 1) 
+        {  ?>
+    <li class="active"><a class='page_link' href="#" value='<?=$i * 15?>'><?=$i + 1?></a></li>
+<?php   } ?>    
+<?php     }   ?>
+    <li class="waves-effect"><a href="#"><i class="material-icons">chevron_right</i></a></li>
+<?php     } ?>
+  </ul>
+</div>
+  </div>  
+</div>
+  <footer></footer>
 </body>
+
 </html>

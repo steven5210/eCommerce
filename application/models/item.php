@@ -105,5 +105,18 @@ class Item extends CI_model {
 			FROM items
 			LIMIT 0, 30")->result_array();
 	}
+	public function get_items_by_category($id)
+	{
+		$query="SELECT items.id, items.name, items.description, items.price, items.inventory, images.image, categories.name AS category_name,
+				(SELECT Count(*)
+				FROM items) AS total 
+				FROM items
+				LEFT JOIN images ON items.id = images.item_id 
+				LEFT JOIN categories ON categories.id = items.category_id
+				WHERE categories.id=?
+				LIMIT 0, 15";
+		$values=$id;
+		return $this->db->query($query, $values)->result_array();
+	}
 }
 ?>

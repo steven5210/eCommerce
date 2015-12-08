@@ -23,10 +23,13 @@ class items extends CI_Controller {
 	{
 		$get_all_categories = $this->item->get_all_categories();
 		$items=$this->item->get_category($id);
+		$item_by_category = $this->item->get_items_by_category($id);
+		
 		$this->load->view('index', 
 						array('items' => $items,
 						 'get_all_categories' => $get_all_categories,
-						 'id'=>$id));
+						 'id'=>$id,
+						 'item_by_category' => $item_by_category));
 	}
 	public function product_infoView($id)
 	{
@@ -142,10 +145,7 @@ class items extends CI_Controller {
 			$items = $this->item->sort_highest();
 			$this->load->view('/partials/index_partial', 
 								array('items' => $items));
-		}
-
-		
-
+		}	
 	}
 
 	public function productsPage()
