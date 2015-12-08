@@ -9,7 +9,7 @@ class admin_rights extends CI_Controller {
      	public function add_product()
      	{     
             $config['upload_path'] = './uploads/';
-            $config['allowed_types'] = 'gif|jpg|png';
+            $config['allowed_types'] = 'gif|jpg|png|jpe|jpeg|gif';
             $config['max_size'] = '3000';
             $config['max_width']  = '1024';
             $config['max_height']  = '768';

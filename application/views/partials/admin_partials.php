@@ -1,4 +1,7 @@
-
+<script type="text/javascript">
+    $('select').material_select();
+     $('.modal-trigger').leanModal();
+</script>
 
 <!-- start of table here -->
   <table class='striped'>
@@ -23,12 +26,12 @@
         <td></td>
         <td>
           <ul>
-<!-- Modal Trigger for new product-->
+<!-- Modal Trigger to edit product-->
             <li>
               <a class="modal-trigger" href="#modal<?=$product['id']?>">Edit</a><a class='delete_style' href="delete/<?=$product['id']?>">Delete</a>
             </li>
           </ul>
-<!-- Modal Structure for new product -->
+<!-- Modal Structure to edit product -->
           <div id="modal<?=$product['id']?>" class="modal modal-fixed-footer">
             <div class="modal-content">
               <h4>Edit Product</h4>
@@ -44,9 +47,10 @@
                 <input type="text" value="<?=$product['inventory']?>">
                 <select name='category'>
                   <option value="" disabled selected>Categories</option>
-                  <option value="tshirt">T-Shirt</option>
-                  <option value="cup">Cup</option>
-                  <option value="hat">Hat</option>
+<?php             foreach($item_by_category as $category)
+                  {  ?>
+                  <option value="<?=$category['id']?>"><?=$category['name']?></option>
+<?php             }  ?>
                 </select>
                 <input id="category" type="text" name='new_category' value="<?=$product['category_name']?>">
                 <div class="btn">

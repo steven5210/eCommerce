@@ -23,10 +23,13 @@ class items extends CI_Controller {
 	{
 		$get_all_categories = $this->item->get_all_categories();
 		$items=$this->item->get_category($id);
+		$item_by_category = $this->item->get_items_by_category($id);
+		
 		$this->load->view('index', 
 						array('items' => $items,
 						 'get_all_categories' => $get_all_categories,
-						 'id'=>$id));
+						 'id'=>$id,
+						 'item_by_category' => $item_by_category));
 	}
 	public function product_infoView($id)
 	{
@@ -48,7 +51,7 @@ class items extends CI_Controller {
 	public function checkoutView()
 	{
 		// $this->session->sess_destroy();
-		$this->output->enable_profiler();
+		
 		$data=array();
 		if (!empty($this->session->userdata('cart')))
 		{
@@ -142,18 +145,16 @@ class items extends CI_Controller {
 			$items = $this->item->sort_highest();
 			$this->load->view('/partials/index_partial', 
 								array('items' => $items));
-		}
-
-		
-
+		}	
 	}
 
 	public function productsPage()
 	{
 		$admin_products = $this->item->admin_display_all();
+		$item_by_category = $this->item->get_all_categories();
 		$this->load->view('productsPage',
-						array('admin_products' => $admin_products)
-						);
+						array('admin_products' => $admin_products,
+							  'item_by_category' => $item_by_category));
 	}
 }
 ?>

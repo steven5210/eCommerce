@@ -9,13 +9,15 @@
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+     <!-- Google fonts -->
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
       <script type="text/javascript">
     $(document).ready(function() {
       $('select').material_select();
        $('.modal-trigger').leanModal();
 
     // AJAX search and PAGINATION
-         $('form').on('change', function(data){
+         $('#search_form').on('change', function(data){
           $.ajax({
             url: "admin_products",
             method: 'post',
@@ -46,6 +48,15 @@
     });
    </script>
    <style>
+   .brand-logo {
+      margin-left: 30px;
+      font-family: 'Pacifico', cursive;
+      text-align: center;
+    }
+    .nav-wrapper {
+      background-color: black;
+      padding-left: 20px;
+    }
    .pagination{
       margin-left: 29%;
     }
@@ -61,12 +72,15 @@
    .delete_style {
     margin-left: 10px;
    }
+   .pagination li.active {
+    background-color: rgb(76, 117, 127);
+   }
    </style>
 </head>
 <body class='container'>
   <nav>
     <div class="nav-wrapper">
-      <a href="" class="brand-logo">Dashboard</a>
+      <a href="" class="brand-logo">Admin Dashboard</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li><a href="/ordersMain">Orders</a></li>
         <li><a href="/products">Products</a></li>
@@ -107,9 +121,10 @@
               <input type="text" name="inventory">
               <select name='category'>
                 <option value="" disabled selected>Categories</option>
-                <option value="tshirt">T-Shirt</option>
-                <option value="cup">Cup</option>
-                <option value="hat">Hat</option>
+<?php           foreach($item_by_category as $category)
+                {   ?>
+                <option value="<?=$category['id']?>"><?=$category['name']?></option>
+<?php           } ?>
               </select>
               <input id="category" type="text" name='new_category' placeholder='Add a new Category'>
               <div class="btn">

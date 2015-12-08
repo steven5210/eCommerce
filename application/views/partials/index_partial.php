@@ -1,32 +1,20 @@
 <table>
-  <?php for($i = 0; $i < count($items); $i+=5) { ?>
+  <?php for($i = 0; $i < count($items); $i+=3) { ?>
     <tr>
       <!-- Items Loop -->
-      <?php  for($j = $i; $j < $i + 5; $j++) { ?>
+      <?php  for($j = $i; $j < $i + 3; $j++) { ?>
         <?php  if(!empty($items[$j])) { ?>
-          <td>
-            <a href='/product_info/<?=$items[$j]['id']?>'>
-            <img class='mini_image' src="<?= $items[$j]['image'] ?>">
-            <p><?=$items[$j]['name'] ?></p>
-            <p><?=$items[$j]['price'] ?></p>
-            </a>
+          <td id="product_image"class="products_td" style="background-image: url('/assets/images/image1.jpg'); background-size: 100% 100%">
+            <a id="product_link" href='/product_info/<?=$items[$j]['id']?>'></a>
+            <div class="arrow-left"></div>
+          </td>
+          <td class="products_td" id="product_description">   
+              <p id="product_name"><?=$items[$j]['name'] ?></p>
+              <p id="product_price"><?=$items[$j]['price'] ?></p>
           </td>
         <?php  }  ?>
       <?php  }  ?>
     </tr> 
-  <?php  }  ?> 
+    <?php  }  ?>
 </table>
-<!-- PAGINATION START -->
-<div id='pagination'>
-  <ul class="pagination">
-    <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
-<?php     if(isset($items) && isset($items['total']))
-      {
-        $count = ($items['total']/5);
-          for($i = 0; $i < $count; $i++)
-          {         ?>
-    <li class="active"><a class='page_link' href="#" value='<?=$i * 5?>'><?=$i + 1?></a></li>
-<?php     }   
-          } ?>
-    <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
-  </ul>
+
