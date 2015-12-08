@@ -43,7 +43,7 @@
   });
    </script>
    </head>
-<body class='container'>
+<body>
   <nav>
     <div class="nav-wrapper">
       <a href="/" class="brand-logo">PlaceHolder eCommerce</a>

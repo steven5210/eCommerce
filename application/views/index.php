@@ -140,9 +140,7 @@
       <ul id="nav-mobile" class="right hide-on-med-and-down">
 <!-- Shopping Cart item count -->
 <?php        if($this->session->userdata('cart')) {   ?>
-        <li class='shopping_cart'><a href="/cart">Shopping Cart(
-
-          <?=array_sum($this->session->userdata('cart'))?>)</a></li>
+        <li class='shopping_cart'><a href="/cart">Shopping Cart(<?=array_sum($this->session->userdata('cart'))?>)</a></li>
           <?php         }?>
 
       </ul>
@@ -206,24 +204,46 @@
           <?php require('partials/index_partial.php') ?>
         </div>
 
-<!-- PAGINATION START -->
+<!-- INDEX PAGINATION START -->
 <div id='pagination'>
   <ul class="pagination">
+<?php     if(isset($items_all))
+      { ?>
     <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
-<?php     if($items_all)
-      {
-        foreach($items_all as $items_alls)
+<?php        foreach($items_all as $items_alls)
         {
         }
         $count = ($items_alls['total']/15);
           for($i = 0; $i < $count; $i++)
           {         ?>
     <li class="active"><a class='page_link' href="#" value='<?=$i * 15?>'><?=$i + 1?></a></li>
-<?php     }   
-          } ?>
+<?php     }   ?>
     <li class="waves-effect"><a href="#"><i class="material-icons">chevron_right</i></a></li>
+<?php } ?>
   </ul>
-      </div>
+</div>
+
+<!-- CATEGORY PAGINATION START -->
+<div id='pagination'>
+  <ul class="pagination">
+<?php     if(isset($item_by_category))
+      { ?>
+    <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+<?php        foreach($item_by_category as $category_item)
+        {
+        }
+        $count = floor($category_item['total']/15);
+          for($i = 0; $i < $count; $i++)
+          {         ?>
+<?php  if ($count > 1) 
+        {  ?>
+    <li class="active"><a class='page_link' href="#" value='<?=$i * 15?>'><?=$i + 1?></a></li>
+<?php   } ?>    
+<?php     }   ?>
+    <li class="waves-effect"><a href="#"><i class="material-icons">chevron_right</i></a></li>
+<?php     } ?>
+  </ul>
+</div>
   </div>
 </body>
 </html>
