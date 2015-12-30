@@ -32,11 +32,8 @@
       padding-right: 20px;
     }
     #main_content {
-<<<<<<< HEAD
-      padding-left: 15%;
-=======
       padding-left: 10%;
->>>>>>> 51eaf43062155de3f21d680b21957cd6935f6ab7
+
       width: 90%;
     }
    .image_size{
@@ -74,11 +71,7 @@
     }
       #product_purchase {
         margin-top: 10px; 
-<<<<<<< HEAD
-        margin-left: 30px;
-=======
         margin-left: 10px;
->>>>>>> 51eaf43062155de3f21d680b21957cd6935f6ab7
         vertical-align: top;
         display: inline-block;
         padding: 5px;
