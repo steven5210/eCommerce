@@ -52,6 +52,7 @@
    .image_size{
     width: 80%;
     display: block;
+    border: 1px solid rgb(0, 154, 173);
    }
    .mini_image{
     width: 30px;
@@ -135,6 +136,14 @@
     #quantity {
       color: black;
     }
+    .product_image {
+      border: 1px solid rgb(0, 154, 173);
+      padding-right: 150px;
+    }
+    #similar_items {
+      overflow-x: scroll;
+      width: 200px;
+    }
    </style>
 
    </head>
@@ -186,10 +195,10 @@
     <div>
       <h3>Related Items</h3>
       <table id="related_items">
-        <tr>
+        <tr id='similar_items'>
           <?php foreach($items as $item){
               if($item['category_name']==$get_product['category'] && $item['id']!==$get_product['id']){ ?>
-            <td style="background-image: url(<?= substr($item['image'], 1)?>);"><a href='/product_info/<?=$item['id']?>'></a></td>
+            <td class='product_image' style="background-image: url(<?= substr($item['image'], 1)?>);"><a href='/product_info/<?=$item['id']?>'></a></td>
             <?php }
           } ?>
         </tr>
