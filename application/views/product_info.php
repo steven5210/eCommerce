@@ -132,6 +132,9 @@
       margin-left: 10px;
       padding-left: 10px;
     }
+    #quantity {
+      color: black;
+    }
    </style>
 
    </head>
@@ -171,7 +174,7 @@
       <form action="/add_cart" method='post'>​
         <div class="input-field col s6">
           <input name='id' type='hidden' value="<?=$get_product['id']?>">
-          <input id="quantity" type="text" name='quantity'>
+          <input id="quantity" type="text" name='quantity' value='1'>
           <label for="quantity">Quantity</label>
         </div>
         <input type='submit' class="btn" onclick="Materialize.toast('Item added to the cart!', 4000)" value="Add to Cart">

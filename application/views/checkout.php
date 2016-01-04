@@ -69,12 +69,10 @@
       #checkout_wrapper {
         padding-left: 50px;
       }
-<<<<<<< HEAD
       .item_table {
         padding-left: 50px;
       }
-=======
->>>>>>> 51eaf43062155de3f21d680b21957cd6935f6ab7
+
    </style>
    </head>
 <body>
