@@ -19,7 +19,20 @@
   });
    </script>
    <style>  
-   
+   #related_items {
+      margin-top: 20px;
+   }
+   #related_items a {
+      display:block;
+      height: 100%;
+      width: 100%;
+   }
+   #related_items td{
+      width: 150px;
+      height: 100px;
+      background-size: 150px 100px; 
+      background-repeat: no-repeat;
+   }
     .nav-wrapper {
       background-color: black;
       padding-left: 20px;
@@ -41,7 +54,8 @@
     display: block;
    }
    .mini_image{
-    width: 15%;
+    width: 30px;
+    height: 30px;
     margin-right: 5px;
    }
    .description{
@@ -166,14 +180,18 @@
     </div>
         
   
-      
-    <ul>
-      <?php foreach($items as $item){
-          if($item['category_name']==$get_product['category'] && $item['id']!==$get_product['id']){ ?>
-        <li><a href='/product_info/<?=$item['id']?>'><img class='mini_image' src="<?= substr($item['image'], 1);?>"></a> <br><?=$item['name']?></li>
-        <?php }
-      } ?>
-    </ul>
+    <div>
+      <h3>Related Items</h3>
+      <table id="related_items">
+        <tr>
+          <?php foreach($items as $item){
+              if($item['category_name']==$get_product['category'] && $item['id']!==$get_product['id']){ ?>
+            <td style="background-image: url(<?= substr($item['image'], 1)?>);"><a href='/product_info/<?=$item['id']?>'></a></td>
+            <?php }
+          } ?>
+        </tr>
+      </table>
+    </div>
   </div>   
 </body>
 </html>
