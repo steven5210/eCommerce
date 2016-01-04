@@ -10,7 +10,7 @@
           </td>
           <td class="products_td" id="product_description">   
               <p id="product_name"><?=$items[$j]['name'] ?></p>
-              <p id="product_price"><?=$items[$j]['price'] ?></p>
+              <p id="product_price">$<?=$items[$j]['price'] ?></p>
           </td>
         <?php  }  ?>
       <?php  }  ?>
