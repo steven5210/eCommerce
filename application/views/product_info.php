@@ -47,9 +47,12 @@
    .description{
     display: inline-block;
     vertical-align: top;
-    width: 500px;
     font-size: 18px;
     margin-top: 0px;
+    padding: 10px;
+   }
+   .description_title{
+    padding: 5px;
    }
    .mini_image2{
     width: 10%;
@@ -143,7 +146,7 @@
     </div>
 
     <div id="product_description">
-      <h5>Description</h5>
+      <h5 class='description_title'>Description</h5>
       <p class='description'><?=$get_product['description']?></p>
     </div>
 
