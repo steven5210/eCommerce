@@ -168,7 +168,7 @@
     <ul>
       <?php foreach($items as $item){
           if($item['category_name']==$get_product['category'] && $item['id']!==$get_product['id']){ ?>
-        <li><a href='/product_info/<?=$item['id']?>'><img class='mini_image' src="<?= $item['image']?>"></a> <br><?=$item['name']?></li>
+        <li><a href='/product_info/<?=$item['id']?>'><img class='mini_image' src="<?= substr($item['image'], 1);?>"></a> <br><?=$item['name']?></li>
         <?php }
       } ?>
     </ul>
