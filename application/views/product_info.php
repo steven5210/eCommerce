@@ -139,10 +139,7 @@
     .product_image {
       border: 1px solid rgb(0, 154, 173);
       padding-right: 150px;
-    }
-    #similar_items {
-      overflow-x: scroll;
-      width: 200px;
+      display: inline-block;
     }
    </style>
 
@@ -195,7 +192,7 @@
     <div>
       <h3>Related Items</h3>
       <table id="related_items">
-        <tr id='similar_items'>
+        <tr>
           <?php foreach($items as $item){
               if($item['category_name']==$get_product['category'] && $item['id']!==$get_product['id']){ ?>
             <td class='product_image' style="background-image: url(<?= substr($item['image'], 1)?>);"><a href='/product_info/<?=$item['id']?>'></a></td>

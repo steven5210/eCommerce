@@ -224,10 +224,10 @@
           <!-- Category Loop -->
            <!-- Dropdown Structure -->
             <ul id='dropdown1' class='dropdown-content'>
-              <?php foreach($get_all_categories as $category){ ?>
+<!--               <?php foreach($get_all_categories as $category){ ?>
               <li><a href="/category/<?=$category['id']?>"><?=$category['name']?></a></li>
               <li class="divider"></li>
-              <?php }?>
+              <?php }?> -->
               <li><a href="/">Show All</a></li>
             </ul>    
         </ul>
