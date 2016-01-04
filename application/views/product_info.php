@@ -37,7 +37,7 @@
       width: 90%;
     }
    .image_size{
-    width: 70%;
+    width: 80%;
     display: block;
    }
    .mini_image{
@@ -134,12 +134,11 @@
   <!-- Product Echo -->
 
   <div id='main_content'> 
-    <h3 class='product_name'><?=$get_product['name']?></h3>
+    <h3 class='product_name'><?= $get_product['name']?></h3>
 
     <div id="image_view">
       <ul id="image_ul">
-        <li><img class='image_size' src="../assets/images/image1.jpg"></li>
-        <li><img class='mini_image' src="../assets/images/image1.jpg"><img class='mini_image' src="../assets/images/image1.jpg"><img class='mini_image' src="../assets/images/image1.jpg"><img class='mini_image' src="../assets/images/image1.jpg"><img class='mini_image' src="../assets/images/image1.jpg"></li>
+        <li><img class='image_size' src="<?= substr($get_product['image'], 1) ?>"></li>
       </ul>
     </div>
 
